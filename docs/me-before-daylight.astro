@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import MediaPlaceholder from '../../components/MediaPlaceholder.astro';
+import ComingSoon from '../../components/ComingSoon.astro';
+
+const chapters = [
+  {
+    id: 'past',
+    label: 'Past',
+    lines: ['Academic and personal background — coming soon'],
+  },
+  {
+    id: 'present',
+    label: 'Present',
+    lines: ['Where I am now, and what I am working on — coming soon'],
+  },
+];
+---
+
+<BaseLayout title="Me">
+  <PageHero
+    sectionId="me"
+    tint="blue"
+    eyebrow="Introduction"
+    title="Me"
+    lede="Who I am — the path so far, where I stand today, and where I am heading."
+  />
+
+  <div class="shell shell-x border-line/70">
+    <div class="grid gap-12 py-14 lg:grid-cols-[320px_1fr] lg:gap-16 lg:py-16">
+      <div class="reveal">
+        <MediaPlaceholder label="Portrait photo" ratio="3 / 4" />
+        <p class="mono-label mt-3 text-[10px] text-ink-faint">
+          A professional portrait will be placed here.
+        </p>
+      </div>
+
+      <div class="space-y-10">
+        <div class="reveal">
+          <div class="flex items-center gap-3">
+            <span class="size-1.5 rounded-full bg-accent"></span>
+            <h2 class="font-display text-xl font-semibold tracking-tight">Past</h2>
+          </div>
+          <div class="mt-4 space-y-2.5 border-l border-line pl-6">
+            {
+              chapters[0].lines.map((line) => (
+                <p class="text-base italic leading-relaxed text-ink-faint">[{line}]</p>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="flex items-center gap-3">
+            <span class="size-1.5 rounded-full bg-violet"></span>
+            <h2 class="font-display text-xl font-semibold tracking-tight">Present</h2>
+          </div>
+          <div class="mt-4 space-y-2.5 border-l border-line pl-6">
+            <p class="text-base italic leading-relaxed text-ink-faint">
+              [{chapters[1].lines[0]}]
+            </p>
+          </div>
+        </div>
+
+        <div class="reveal rounded-[var(--radius-card)] bg-night p-7 text-canvas shadow-lift sm:p-8">
+          <div class="flex items-center gap-3">
+            <span class="size-1.5 rounded-full bg-aqua"></span>
+            <h2 class="font-display text-xl font-semibold tracking-tight">Goal</h2>
+          </div>
+          <p class="mt-4 max-w-xl text-sm leading-relaxed text-ink-faint sm:text-base">
+            A short version of my goal belongs here as part of my story — connecting what
+            I am good at with futuristic materials and smart building innovations.
+          </p>
+          <a
+            href="/goal/"
+            class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-aqua transition-all duration-300 hover:gap-3"
+          >
+            Explore the full Goal section
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14"></path>
+              <path d="m13 6 6 6-6 6"></path>
+            </svg>
+          </a>
+        </div>
+
+        <div class="reveal rounded-[var(--radius-card)] border border-line bg-surface p-7 shadow-card">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h3 class="font-display text-xl font-semibold tracking-tight">Curriculum Vitae</h3>
+              <p class="mt-1.5 text-sm text-ink-mute">
+                A compact summary of me — view it here or download the PDF.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <button type="button" class="btn-disabled" aria-disabled="true">View PDF</button>
+              <button type="button" class="btn-disabled" aria-disabled="true">Download</button>
+            </div>
+          </div>
+          <p class="mono-label mt-5 text-[10px] text-ink-faint">
+            The PDF will be served from /files/cv/ as soon as it is provided.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <ComingSoon message="Portrait, biography, and the CV PDF will fill this page as materials arrive." />
+  </div>
+</BaseLayout>

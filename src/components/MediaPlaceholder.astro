@@ -1,0 +1,36 @@
+---
+interface Props {
+  label: string;
+  ratio?: string;
+  dark?: boolean;
+}
+
+const { label, ratio = '16 / 9', dark = false } = Astro.props;
+---
+
+<div
+  class:list={[
+    'flex items-center justify-center rounded-[var(--radius-card)] border border-dashed',
+    dark ? 'border-night-line bg-night-soft' : 'border-line-strong bg-gradient-to-br from-surface to-canvas',
+  ]}
+  style={`aspect-ratio: ${ratio};`}
+>
+  <span class="mono-label flex items-center gap-2.5 text-ink-faint">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+      <circle cx="9" cy="9" r="2"></circle>
+      <path d="m21 15-4.35-4.35a1.5 1.5 0 0 0-2.12 0L5 20"></path>
+    </svg>
+    {label}
+  </span>
+</div>

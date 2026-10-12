@@ -1,0 +1,44 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "height": 568,
+      "scrollWidth": 320,
+      "scrollHeight": 568
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "scrollHeight": 1024
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 410
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "scrollWidth": 1024,
+      "scrollHeight": 768
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "scrollHeight": 900
+    }
+  ],
+  "CTA": "Me link passed",
+  "menus": "overlay without layout movement; shade and outside dismissal passed",
+  "contacts": "vertical stack above trigger on compact screens; no clipping",
+  "errors": []
+}

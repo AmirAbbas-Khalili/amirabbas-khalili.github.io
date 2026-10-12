@@ -1,0 +1,32 @@
+/* Study Path: visual styling only; existing layout and interaction rules stay in place. */
+body.study-page{--font-display:'Inter Variable',sans-serif;--color-canvas:#f7f8f8;--color-surface:#fff;--color-ink:#111827;--color-ink-soft:#344c64;--color-ink-mute:#526475;--color-ink-faint:#647281;--color-line:#dce3e6;--color-line-strong:#cdd8de;--color-accent:#085b75;--color-accent-deep:#074b61;--color-aqua:#85cdd9;--color-violet:#a77a52;--color-night:#172f40;--color-night-soft:#213f51;--color-night-line:#436071;background:var(--color-canvas);color:var(--color-ink)}
+.study-page .font-display,.study-page .article-row-title{font-family:'Inter Variable',sans-serif}
+.study-page .mono-label{font-family:'Inter Variable',sans-serif;font-size:10px;font-weight:550;letter-spacing:.18em}
+.study-page #main>header{background:linear-gradient(115deg,#eaf2f5 0%,#f7f8f8 65%,#f4efe8 100%)}
+.study-page #main>header>[aria-hidden=true]{opacity:.15}
+.study-page #main>header h1{font-size:clamp(40px,4.5vw,60px);font-weight:600;letter-spacing:-.05em;line-height:1.08}
+.study-page #main>header .mono-label{color:#805335}
+.study-page #main>header .hero-rise-1>span:not(.section-mark){background:#a77a52}
+.study-page #main>header .hero-rise-3{font-size:16px;line-height:1.65}
+.study-page .card-base{border-radius:20px;box-shadow:0 2px 4px #24425104,0 12px 30px -22px #24425130}
+.study-page .card-base:hover{border-color:#b4cbd5;box-shadow:0 12px 30px -18px #24425140}
+.study-page nav[aria-label='Study path parts'] a:hover{background:#fff2e2;border-color:#cfb393;color:#714e31}
+.study-page #thesis>a{border:1px solid #365365;border-radius:20px;background:#172f40;color:#edf5fa;box-shadow:0 12px 30px -20px #172f4050}
+.study-page #thesis>a>.absolute{opacity:.3}
+.study-page #thesis .text-ink-faint{color:#c1d1dc}
+.study-page #thesis .text-aqua{color:#9edce4}
+.study-page #thesis li{border-color:#466171;background:#254354;color:#d4e1e9}
+.study-page #thesis>a:hover li{color:#fff}
+.study-page .article-row-title{font-weight:550;letter-spacing:-.025em}
+.study-page .article-row:is(:hover,:focus-within,.is-open){background:#eef3f5}
+.study-page .article-row .chip{font-size:9px;letter-spacing:.1em;background:#f4efe8;color:#805335;border-color:#e5d8c8}
+.study-page .article-row .chip>span{background:#a77a52}
+.study-page>footer{background:#eff3f4;border-color:#dce3e6}
+html[data-theme=dark] body.study-page{--color-canvas:#101d28;--color-surface:#182b3b;--color-ink:#e3edf4;--color-ink-soft:#bccfdd;--color-ink-mute:#afc2d0;--color-ink-faint:#a1b6c6;--color-accent:#83d0de;--color-line:#354959;--color-line-strong:#496072;--color-violet:#c09a73}
+html[data-theme=dark] .study-page #main>header{background:linear-gradient(115deg,#1c3445,#101d28 70%,#262b2d)}
+html[data-theme=dark] .study-page #main>header .mono-label{color:#d9b38e}
+html[data-theme=dark] .study-page nav[aria-label='Study path parts'] a:hover{background:#3c3a32;border-color:#78634d;color:#f2d4b2}
+html[data-theme=dark] .study-page .article-row:is(:hover,:focus-within,.is-open){background:#1b3243}
+html[data-theme=dark] .study-page .article-row .chip{background:#342f29;border-color:#5c4e3e;color:#e0bd97}
+html[data-theme=dark] .study-page>footer{background:#13232f;border-color:#354959}
+

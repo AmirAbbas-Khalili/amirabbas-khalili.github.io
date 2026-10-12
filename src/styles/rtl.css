@@ -1,0 +1,54 @@
+/* Persian content mirrors the English layout. Header and homepage geometry stay LTR. */
+html[lang="fa"] body{--font-sans:'Vazirmatn',sans-serif;--font-display:'Vazirmatn',sans-serif;--font-mono:'Vazirmatn',sans-serif;font-family:'Vazirmatn',sans-serif}
+html[lang="fa"] :is(h1,h2,h3,p,a,button,summary,dt,dd,figcaption,.font-display,.font-mono,.mono-label){font-family:'Vazirmatn',sans-serif;letter-spacing:normal}
+html[lang="fa"] :is(h1,h2,h3){line-height:1.65}
+html[lang="fa"] .portfolio-header,html[lang="fa"] .portfolio-controls,html[lang="fa"] .portfolio-selection,html[lang="fa"] .portfolio-links,html[lang="fa"] .language-switch{direction:ltr}
+html[lang="fa"] .portfolio-header :is(a,summary){text-align:center}
+html[lang="fa"] .portfolio-header .dropdown-panel a{direction:rtl;text-align:right}
+html[lang="fa"] .language-option{font-family:'Vazirmatn',sans-serif}
+html[lang="fa"] .portfolio-header .language-option[lang="en"]{font-family:'Inter Variable',sans-serif}
+html[lang="fa"] .bridge-page{direction:ltr}
+html[lang="fa"] .bridge-page :is(.hero h1,.hero-headline,.hero-description,.copyright,.contact-detail){direction:rtl}
+html[lang="fa"] .bridge-page .hero h1{line-height:1.35}
+html[lang="fa"] .bridge-page .hero-actions{direction:ltr}
+html[lang="fa"] body:not(.bridge-page) :is(main,footer){direction:rtl}
+html[lang="fa"] body:not(.bridge-page) :is(.text-left,.work-section,.thesis-open){text-align:right}
+html[lang="fa"] body:not(.bridge-page) .text-right{text-align:left}
+html[lang="fa"] .me-placeholder-copy{border-left:0;border-right:1px solid var(--color-line);padding-left:0;padding-right:18px}
+html[lang="fa"] .thesis-detail-copy h2{margin:0 0 24px 40px}
+html[lang="fa"] .thesis-close{right:auto;left:18px}
+html[lang="fa"] .thesis-photo-close{right:auto;left:18px}
+html[lang="fa"] .article-lightbox .work-lightbox-header{right:auto;left:12px}
+html[lang="fa"] .article-lightbox [data-lightbox-prev]{left:auto;right:4px}
+html[lang="fa"] .article-lightbox [data-lightbox-next]{right:auto;left:4px}
+html[lang="fa"] body:not(.bridge-page) :is(.page-heading-back,.thesis-read,.research-links,.me-text-link) svg,
+html[lang="fa"] :is([data-lightbox-prev],[data-lightbox-next],[data-photo-prev],[data-photo-next],[data-gallery-prev],[data-gallery-next]) svg{transform:scaleX(-1)}
+html[lang="fa"] body:not(.bridge-page) .page-heading-row{justify-content:flex-start}
+html[lang="fa"] .research-details>div{grid-template-columns:160px minmax(0,1fr)}
+html[lang="fa"] .mono-label{text-transform:none;letter-spacing:normal}
+html[lang="fa"] .thesis-detail :is(h2,p){direction:rtl;text-align:right}
+html[lang="fa"] .thesis-open h2{line-height:1.7}
+html[lang="fa"] .me-page h1{line-height:1.5}
+html[lang="fa"] .research-abstract{line-height:2.05}
+html[lang="fa"] #university-entrance-rankings .work-copy>p{white-space:pre-line}
+@media(max-width:639px){html[lang="fa"] .research-details>div{grid-template-columns:1fr}}
+
+html[lang="fa"] .scholar-note{margin-left:0;margin-right:8px}
+html[lang="fa"] body:not(.bridge-page)>footer a svg{transform:scaleX(-1)}
+html[lang="fa"] body.site-interior .article-row-toggle{text-align:right}
+
+/* Owner-approved original-language exceptions and final alignment corrections. */
+html[lang="fa"] [data-original-text]{font-family:'Inter Variable',sans-serif;unicode-bidi:isolate}
+html[lang="fa"] .bridge-page :is(.copyright,.contact-detail){direction:ltr}
+html[lang="fa"] .research-article>section{margin-right:0;margin-left:auto;direction:rtl;text-align:right}
+html[lang="fa"] :is(.research-authors,.research-details,.article-row-head,.article-row-journal){direction:rtl;text-align:right}
+html[lang="fa"] .research-details :is(dt,dd){text-align:right}
+html[lang="fa"] .research-links{justify-content:flex-start}
+html[lang="fa"] .research-article .page-heading h1{text-align:right}
+html[lang="fa"] .course-link-arrow{display:inline-block;transform:scaleX(-1)}
+
+html[lang="fa"] body.bridge-page .bridge-footer .copyright{direction:ltr;unicode-bidi:isolate}
+html[lang="fa"] body.bridge-page .contact-fan .contact-detail{direction:ltr;unicode-bidi:isolate}
+
+html[lang="fa"] body.site-interior .skill-tools-line{direction:rtl;text-align:right}
+html[lang="fa"] .skill-tools-line bdi{font-family:'Inter Variable',sans-serif;unicode-bidi:isolate}

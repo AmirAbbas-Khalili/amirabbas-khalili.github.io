@@ -1,0 +1,150 @@
+{
+  "/": {
+    "text": "AmirEngineering & research.My academic journey and work, toward doctoral study.Get to know me",
+    "links": [
+      "/me/"
+    ]
+  },
+  "/contact/": {
+    "text": "Get in touchContactEvery way to reach me — clean, direct, and in one place.EmailTo be addedLinkedInTo be addedGitHubTo be addedPhoneTo be addedWill be shown as click-to-reveal for privacy.InstagramTo be addedTelegramTo be addedReal handles and addresses will replace these placeholders — each card will become clickable once its value is added.",
+    "links": []
+  },
+  "/courses/": {
+    "text": "Technical trainingCoursesTechnical coursework, software training, and project phases — entries will carry external links, notes, files, images, and results.SoonWave Number + BZWave number and Brillouin zone fundamentals — materials coming soon.CourseSoonCOMSOLCOMSOL Multiphysics training — materials coming soon.Simulation SoftwareSoonAbaqusAbaqus training — materials coming soon.Simulation SoftwareSoonPhase 1Phase 1 — description and materials coming soon.Project PhaseSoonPhase 2Phase 2 — description and materials coming soon.Project PhaseSoonPhase 3Phase 3 — description and materials coming soon.Project PhaseSoonPhase 3.5Phase 3.5 — description and materials coming soon.Project PhaseSoon3D Printer3D printing training — materials coming soon.TrainingOpen any course to reach its own page — external links, educational resources, notes, and files will be attached there as materials arrive.",
+    "links": [
+      "/courses/wave-number-bz/",
+      "/courses/comsol/",
+      "/courses/abaqus/",
+      "/courses/phase-1/",
+      "/courses/phase-2/",
+      "/courses/phase-3/",
+      "/courses/phase-3-5/",
+      "/courses/3d-printer/"
+    ]
+  },
+  "/english-score/": {
+    "text": "Language proficiencyEnglish ScoreCertification results and supporting documents.English ScoreTOEFLSoonOverall Score—out of 120 · score to be addedReading—Listening—Speaking—Writing—English ScoreTTSSoonResult—",
+    "links": []
+  },
+  "/goal/": {
+    "text": "DirectionGoalThe long-term direction — where my strengths connect, and the fields I want to push forward through research.ConceptConnect Those I'm Good AtBringing together my strongest skills into a single direction will be described here.ConceptFuturistic MaterialsInterest in next-generation materials and where this curiosity leads will be described here.ConceptSmart Building InnovationsVision for intelligent, responsive buildings will be described here.This section will grow into a full statement of research direction.",
+    "links": []
+  },
+  "/me/": {
+    "text": "IntroductionMeWho I am — the path so far, where I stand today, and where I am heading.Portrait photoA professional portrait will be placed here.Past[Academic and personal background — coming soon]Present[Where I am now, and what I am working on — coming soon]GoalA short version of my goal belongs here as part of my story — connecting what I am good at with futuristic materials and smart building innovations.Explore the full Goal section Curriculum VitaeA compact summary of me — view it here or download the PDF.View PDFDownloadThe PDF will be served from /files/cv/ as soon as it is provided.Portrait, biography, and the CV PDF will fill this page as materials arrive.",
+    "links": [
+      "/goal/"
+    ]
+  },
+  "/participations/": {
+    "text": "Beyond courseworkParticipationsCompetitions, events, and organized activities — each entry will carry photographs, certificates, files, and the full story.National Competition of Designing and Building a Smart School — photosNational CompetitionSoonNational Competition of Designing and Building a Smart SchoolParticipation in the national smart school design-and-build competition — full story coming soon.Year · To be addedLocation · To be addedJashnvare Harkat — photosEventSoonJashnvare HarkatJashnvare Harkat — full description coming soon.Year · To be addedLocation · To be addedAnjoman Elmi — photosScientific AssociationSoonAnjoman ElmiScientific association activities and organized academic events — full description coming soon.Year · To be addedLocation · To be addedNational Karate Competition — photosNational CompetitionSoonNational Karate CompetitionParticipation in a national karate competition — full description coming soon.Year · To be addedLocation · To be added",
+    "links": []
+  },
+  "/recommendations/": {
+    "text": "EndorsementsRecommendationsLetters of Recommendation from professors who have supported and endorsed my path toward future academic positions.[ Letter text will appear here ]Professor — UniversityTo be added[ Letter text will appear here ]Professor — UniversityTo be addedSigned letters, professor names, and affiliations will be added with permission as materials arrive.",
+    "links": []
+  },
+  "/skills/": {
+    "text": "ToolboxSkills & SoftwareEngineering software, computational skills, and the soft skills that hold the work together.EngineeringDesign, analysis, and simulation toolsAutoCADCivil 3DETABSRevitCOMSOLAbaqusCodingComputational, data analysis, and automationPythonVS CodePyCharmData AnalysisMachine LearningPipelinesOthersCreative tools and core Office apps, and othersPhotoshopICDLSoft SkillsLeadership & OrganizationProblem SolvingDetailed proficiency notes and example work for each tool will be added over time.",
+    "links": []
+  },
+  "/study-path/": {
+    "text": "Academic journeyStudy PathTwo degrees, one thesis, and the research writing that grew out of them.DegreesThesisArticlesDegreesBachelor's DegreeUniversity, field of study, and academic record will be described here.Class Rank—GPA—DetailsComing soonMaster's DegreeUniversity, field of study, and academic record will be described here.Class Rank—GPA—DetailsComing soonThesisSeven connected research threads.From lattice design and energy absorption to graph neural networks and inverse design.Open thesis section3D LatticeEnergy AbsorptionVibration ReductionOptimizationRecommendationDeep Learning (GNN)Inverse DesignResearch writingArticles.Hover an article to preview it — click to open its dedicated page with PDF, figures, and links.LatticeJournal to be addedSoonLatticeLattice structures research — full description coming soon.Read articlePavementJournal to be addedSoonPavementPavement engineering work — full description coming soon.Read articleConcrete + LatticeJournal to be addedSoonConcrete + LatticeCombined concrete and lattice research — full description coming soon.Read articleCubic Hollow Lattice Design GuidelineTo be addedSoonDesign GuidelineA design guideline for cubic hollow lattices — full description coming soon.Read article",
+    "links": [
+      "#degrees",
+      "#thesis",
+      "#articles",
+      "/study-path/thesis/",
+      "/study-path/articles/lattice/",
+      "/study-path/articles/lattice/",
+      "/study-path/articles/pavement/",
+      "/study-path/articles/pavement/",
+      "/study-path/articles/concrete-lattice/",
+      "/study-path/articles/concrete-lattice/",
+      "/study-path/articles/cubic-hollow-guideline/",
+      "/study-path/articles/cubic-hollow-guideline/"
+    ]
+  },
+  "/work-path/": {
+    "text": "Professional experienceWork PathTeaching, engineering practice on real projects, and creative work.TeachingTeaching EnglishExperience teaching English — scope, institutions, and approach will be described here.Teaching photosEngineeringCivil Engineering ProjectsWork on civil engineering projects — roles, responsibilities, and outcomes will be described here.Project imagesCreativePhoto EditingPhoto editing experience — tools, style, and selected work will be described here.Editing samplesContent for this part is being prepared and will appear here soon.",
+    "links": []
+  },
+  "/courses/3d-printer/": {
+    "text": "TrainingSoon3D Printer3D printing training — materials coming soon.Notes, resources, and external links will be added here. Course visualNotes, certificates, and project files will appear here as materials arrive.This page fills in automatically from the course's Markdown file — description, notes, files, links, and results.",
+    "links": [
+      "/courses/"
+    ]
+  },
+  "/courses/abaqus/": {
+    "text": "Simulation SoftwareSoonAbaqusAbaqus training — materials coming soon.Notes, resources, and external links will be added here. Course visualNotes, certificates, and project files will appear here as materials arrive.This page fills in automatically from the course's Markdown file — description, notes, files, links, and results.",
+    "links": [
+      "/courses/"
+    ]
+  },
+  "/courses/comsol/": {
+    "text": "Simulation SoftwareSoonCOMSOLCOMSOL Multiphysics training — materials coming soon.Notes, resources, and external links will be added here. Course visualNotes, certificates, and project files will appear here as materials arrive.This page fills in automatically from the course's Markdown file — description, notes, files, links, and results.",
+    "links": [
+      "/courses/"
+    ]
+  },
+  "/courses/phase-1/": {
+    "text": "Project PhaseSoonPhase 1Phase 1 — description and materials coming soon.Description, notes, files, and links will be added here. Course visualNotes, certificates, and project files will appear here as materials arrive.This page fills in automatically from the course's Markdown file — description, notes, files, links, and results.",
+    "links": [
+      "/courses/"
+    ]
+  },
+  "/courses/phase-2/": {
+    "text": "Project PhaseSoonPhase 2Phase 2 — description and materials coming soon.Description, notes, files, and links will be added here. Course visualNotes, certificates, and project files will appear here as materials arrive.This page fills in automatically from the course's Markdown file — description, notes, files, links, and results.",
+    "links": [
+      "/courses/"
+    ]
+  },
+  "/courses/phase-3/": {
+    "text": "Project PhaseSoonPhase 3Phase 3 — description and materials coming soon.Description, notes, files, and links will be added here. Course visualNotes, certificates, and project files will appear here as materials arrive.This page fills in automatically from the course's Markdown file — description, notes, files, links, and results.",
+    "links": [
+      "/courses/"
+    ]
+  },
+  "/courses/phase-3-5/": {
+    "text": "Project PhaseSoonPhase 3.5Phase 3.5 — description and materials coming soon.Description, notes, files, and links will be added here. Course visualNotes, certificates, and project files will appear here as materials arrive.This page fills in automatically from the course's Markdown file — description, notes, files, links, and results.",
+    "links": [
+      "/courses/"
+    ]
+  },
+  "/courses/wave-number-bz/": {
+    "text": "CourseSoonWave Number + BZWave number and Brillouin zone fundamentals — materials coming soon.Notes, resources, and external links will be added here. Course visualNotes, certificates, and project files will appear here as materials arrive.This page fills in automatically from the course's Markdown file — description, notes, files, links, and results.",
+    "links": [
+      "/courses/"
+    ]
+  },
+  "/study-path/thesis/": {
+    "text": "Key research conceptsThesisThe thesis runs through seven connected threads — each will grow into its own detailed page with figures, results, and explanations.3D LatticeEnergy AbsorptionVibration ReductionOptimizationRecommendationDeep Learning (GNN)Inverse Design3D LatticeThe lattice architectures at the core of the thesis. — details coming soon.Energy AbsorptionEnergy absorption behavior under loading. — details coming soon.Vibration ReductionDynamic response and vibration suppression. — details coming soon.OptimizationOptimization of geometry and performance. — details coming soon.RecommendationRecommendations drawn from the thesis results. — details coming soon.Deep Learning (GNN)Graph neural networks in the research pipeline. — details coming soon.In progressInverse DesignInverse design — currently being developed. — details coming soon.",
+    "links": [
+      "/study-path/"
+    ]
+  },
+  "/study-path/articles/concrete-lattice/": {
+    "text": "Concrete + LatticeConcrete + LatticeCombined concrete and lattice research — full description coming soon.View PDFPDF to be addedDetailed description, research figures, files, and publication links will be added here. Article figureArticle figureResearch figures will appear here as they are prepared.This page fills in automatically from the article's Markdown file — description, figures, PDF, date, journal, and external links.",
+    "links": [
+      "/study-path/#articles"
+    ]
+  },
+  "/study-path/articles/cubic-hollow-guideline/": {
+    "text": "Design GuidelineTo be addedCubic Hollow Lattice Design GuidelineA design guideline for cubic hollow lattices — full description coming soon.View PDFPDF to be addedDetailed description, figures, downloadable guideline file, and related links will be added here. Article figureArticle figureResearch figures will appear here as they are prepared.This page fills in automatically from the article's Markdown file — description, figures, PDF, date, journal, and external links.",
+    "links": [
+      "/study-path/#articles"
+    ]
+  },
+  "/study-path/articles/lattice/": {
+    "text": "LatticeLatticeLattice structures research — full description coming soon.View PDFPDF to be addedDetailed description, research figures, files, and publication links will be added here. Article figureArticle figureResearch figures will appear here as they are prepared.This page fills in automatically from the article's Markdown file — description, figures, PDF, date, journal, and external links.",
+    "links": [
+      "/study-path/#articles"
+    ]
+  },
+  "/study-path/articles/pavement/": {
+    "text": "PavementPavementPavement engineering work — full description coming soon.View PDFPDF to be addedDetailed description, research figures, files, and publication links will be added here. Article figureArticle figureResearch figures will appear here as they are prepared.This page fills in automatically from the article's Markdown file — description, figures, PDF, date, journal, and external links.",
+    "links": [
+      "/study-path/#articles"
+    ]
+  }
+}

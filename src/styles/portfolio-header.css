@@ -1,0 +1,84 @@
+/* Shared reference-style navigation for homepage and Me. */
+:is(.bridge-page,.me-page,.portfolio-page){--header-ink:#111827;--header-muted:#344c64;--header-surface:rgba(249,250,250,.9);--header-panel:#fafbfb;--header-line:#d5dfe5;--header-hover:#ffedd5}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header{position:relative;z-index:5;display:flex;align-items:center;gap:24px;padding:16px 32px;background:var(--header-surface);border-bottom:1px solid var(--header-line);color:var(--header-ink);font-family:'Inter Variable',sans-serif}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-controls{display:flex;align-items:center;gap:10px;flex-shrink:0}
+:is(.bridge-page,.me-page,.portfolio-page) .language-switch{display:flex;align-items:center;padding:2px;border:1px solid var(--header-line);border-radius:100px;background:var(--header-panel)}
+:is(.bridge-page,.me-page,.portfolio-page) .language-option{font:550 10px 'Inter Variable',sans-serif;min-width:28px;min-height:24px;display:grid;place-items:center;padding:3px 6px;border:0;border-radius:100px;background:transparent;color:var(--header-muted)}
+:is(.bridge-page,.me-page,.portfolio-page) .language-option.is-selected{background:var(--header-ink);color:var(--header-panel)}
+:is(.bridge-page,.me-page,.portfolio-page) .language-option:disabled{opacity:.6;cursor:not-allowed}
+:is(.bridge-page,.me-page,.portfolio-page) .theme-switch{display:flex;align-items:center;justify-content:center;gap:6px;min-height:34px;padding:0;border:0;background:none;color:var(--header-ink);cursor:pointer}
+:is(.bridge-page,.me-page,.portfolio-page) .mode-track{position:relative;width:30px;height:16px;background:#bccbd3;border-radius:100px;display:block}
+:is(.bridge-page,.me-page,.portfolio-page) .mode-thumb{position:absolute;width:10px;height:10px;top:3px;left:3px;border-radius:100%;background:#fff;transition:transform .2s ease}
+:is(.bridge-page,.me-page,.portfolio-page) .theme-switch[aria-checked=true] .mode-track{background:#085b75}
+:is(.bridge-page,.me-page,.portfolio-page) .theme-switch[aria-checked=true] .mode-thumb{transform:translateX(14px)}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-selection{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;max-width:1200px;margin-inline:auto}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-brand{font-size:21px;letter-spacing:-.04em;font-weight:750;line-height:1;display:flex;align-items:center;min-height:38px;padding:0 6px;white-space:nowrap;border-radius:100px}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-brand span{color:#085b75}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-links{display:flex;align-items:center;gap:4px}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-links>a,:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header summary{display:flex;align-items:center;gap:6px;min-height:38px;padding:0 14px;margin:0;font-size:13px;font-weight:500;line-height:1.2;border-radius:100px;color:var(--header-muted)}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-links>a[aria-current=page]{background:var(--header-ink);color:var(--header-panel)}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-links>a:hover,:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header summary:hover{background:var(--header-hover);color:var(--header-ink)}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header .dropdown{position:relative}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header summary{list-style:none;cursor:pointer}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header summary::-webkit-details-marker{display:none}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header .dropdown-panel{position:absolute;top:calc(100% + 10px);right:0;width:max-content;min-width:0;padding:4px;max-height:calc(100dvh - 100px);overflow:auto;border-radius:16px;border:1px solid var(--header-line);background:var(--header-panel);box-shadow:0 8px 28px #18334114;transform-origin:top right;color:var(--header-ink)}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header .dropdown-panel a{display:flex;align-items:center;white-space:nowrap;min-height:36px;padding:9px 8px;font-size:12px;line-height:1.25;border-radius:12px}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header .dropdown-panel a:hover{background:var(--header-hover)}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header .dropdown-panel a[aria-current=page]{background:var(--header-ink);color:var(--header-panel)}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header .mobile-navigation{display:none}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header .more-navigation:after{width:150px}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header .ph-icon{width:14px;height:14px;display:inline-flex;flex-shrink:0}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header .ph-icon svg{width:100%;height:100%;fill:currentColor}
+:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header a:focus-visible,:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header button:focus-visible,:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header summary:focus-visible{outline:2px solid #085b75;outline-offset:3px}
+@media(max-width:1000px){:is(.bridge-page,.me-page,.portfolio-page) .portfolio-links{display:none}:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header .mobile-navigation{display:block}:is(.bridge-page,.me-page,.portfolio-page) .portfolio-selection{max-width:none}}
+@media(max-width:640px){:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header{padding:12px 16px;gap:12px}:is(.bridge-page,.me-page,.portfolio-page) .portfolio-selection{gap:8px}:is(.bridge-page,.me-page,.portfolio-page) .portfolio-brand{font-size:18px;min-height:40px;padding:0}:is(.bridge-page,.me-page,.portfolio-page) .portfolio-header summary{min-height:40px;padding:0 8px;font-size:12px}:is(.bridge-page,.me-page,.portfolio-page) .portfolio-controls{gap:6px}:is(.bridge-page,.me-page,.portfolio-page) .language-option{min-width:25px}:is(.bridge-page,.me-page,.portfolio-page) .theme-switch{gap:4px}}
+/* Night mode is a deliberate tint of the approved bridge scene, not a new image. */
+html[data-theme=dark] :is(.bridge-page,.me-page,.portfolio-page){--header-ink:#e3edf4;--header-muted:#bdccda;--header-surface:rgba(17,29,40,.95);--header-panel:#182b3b;--header-line:#354959;--header-hover:#3c3a32;color:#e3edf4;background:#101d28;--ink:#e3edf4;--muted:#c0d0de;--accent:#83d0de;--warm:#d9b38e;color-scheme:dark}
+html[data-theme=dark] .bridge-page .bridge-background{filter:brightness(.35) saturate(.65)}
+html[data-theme=dark] .bridge-page:before{background:linear-gradient(180deg,#0b172a45,#0b172a15)}
+html[data-theme=dark] .bridge-page .hero-description{color:#d0dee9}
+html[data-theme=dark] .bridge-page .glass{background:rgba(23,43,59,.91);border-color:#405666}
+html[data-theme=dark] .bridge-page .primary{background:#174f64;color:#f4fbff;border-color:#54899b}
+html[data-theme=dark] .bridge-page .shortcut-dock button:disabled{color:#b7c6d2}
+html[data-theme=dark] .bridge-page .shortcut-dock .youtube-link,html[data-theme=dark] .bridge-page .contact-trigger{color:#e3edf4}
+html[data-theme=dark] .bridge-page .shortcut-dock a:hover,html[data-theme=dark] .bridge-page .shortcut-dock button:not(:disabled):hover{background:#3c3a32}
+html[data-theme=dark] .bridge-page .orbit-button:hover,html[data-theme=dark] .bridge-page .orbit-button:focus-visible{background:#203a4d}
+html[data-theme=dark] .bridge-page .copyright{background:#182b3be6;color:#ccdae5}
+html[data-theme=dark] .me-page{--color-canvas:#101d28;--color-surface:#182b3b;--color-ink:#e3edf4;--color-ink-soft:#bccfdd;--color-ink-mute:#afc2d0;--color-ink-faint:#a1b6c6;--color-accent:#83d0de;--color-line:#354959;--color-aqua:#83d0de}
+html[data-theme=dark] .me-page:before{background:radial-gradient(ellipse at 6% 0%,#1c3445,transparent 48%),radial-gradient(ellipse at 100% 75%,#2c2c2b,transparent 48%)}
+html[data-theme=dark] .me-page .me-intro,html[data-theme=dark] .me-page .me-materials-note{border-color:#354959}
+html[data-theme=dark] .me-page .me-label{color:#d9b38e}
+html[data-theme=dark] .me-page .me-lede,html[data-theme=dark] .me-page .me-goal>p,html[data-theme=dark] .me-page .me-cv>p:not(.me-file-note){color:#bccfdd}
+html[data-theme=dark] .me-page .me-portrait-placeholder{background:linear-gradient(145deg,#1a3041,#282d30);border-color:#354959;color:#b4c7d6}
+html[data-theme=dark] .me-page .me-portrait-placeholder .ph-icon{color:#d9b38e}
+html[data-theme=dark] .me-page .me-placeholder-copy,html[data-theme=dark] .me-page .me-photo-note,html[data-theme=dark] .me-page .me-file-note,html[data-theme=dark] .me-page .me-materials-note{color:#a9bdcd;border-color:#354959}
+html[data-theme=dark] .me-page .me-goal{background:#1a3041;border-color:#354959}
+html[data-theme=dark] .me-page .me-cv{background:#242c31;border-color:#465057}
+html[data-theme=dark] .me-page .me-text-link{color:#83d0de}
+html[data-theme=dark] .me-page .me-cv-actions button{background:#192b39;border-color:#3c5060;color:#a9bdcd}
+html[data-theme=dark] .me-page>footer{background:#13232fe0;border-color:#354959}
+html[data-theme=dark] .me-page>footer .mono-label{color:#d9b38e}
+@media(prefers-reduced-motion:reduce){:is(.bridge-page,.me-page,.portfolio-page) .mode-thumb{transition:none}}
+html[data-theme=dark] .me-page>footer a{color:#c5d7e3}
+html[data-theme=dark] .me-page>footer a:hover{color:#fff}
+html[data-theme=dark] .me-page>footer .font-display{color:#e3edf4}
+
+/* Separate homepage floating navigation from the full inner-page header. */
+:is(.me-page,.portfolio-page) .portfolio-selection{width:auto;max-width:none;margin:0 0 0 auto;justify-content:flex-start;gap:12px}
+.portfolio-page #main{padding-top:0}
+.portfolio-page .menu-shade{position:fixed;inset:0;z-index:4;background:#10233335;backdrop-filter:blur(3px)}
+.portfolio-page .menu-shade[hidden]{display:none}
+.portfolio-page .portfolio-header a{text-decoration:none;color:inherit}
+.bridge-page .portfolio-header{justify-content:space-between;align-items:center;padding:20px 32px 0;background:transparent;border:0}
+.bridge-page .portfolio-selection{width:auto;max-width:none;margin:0;gap:0;padding:3px;border-radius:100px;background:var(--header-surface);border:1px solid var(--header-line);backdrop-filter:blur(18px)}
+.bridge-page .portfolio-links>a,.bridge-page .portfolio-header summary{min-height:34px;padding:0 10px;font-size:12px}
+html[data-theme=dark] .portfolio-page{--color-canvas:#101d28;--color-surface:#182b3b;--color-ink:#e3edf4;--color-ink-soft:#bccfdd;--color-ink-mute:#afc2d0;--color-ink-faint:#a1b6c6;--color-accent:#83d0de;--color-line:#354959}
+@media(max-width:640px){.bridge-page .portfolio-header{padding:16px 16px 0}:is(.me-page,.portfolio-page) .portfolio-selection{gap:12px}.bridge-page .portfolio-header summary{min-height:36px}}
+
+@media(max-width:360px){:is(.me-page,.portfolio-page) .portfolio-header .portfolio-brand{font-size:14px}}
+
+
+:is(.me-page,.portfolio-page) .controls-brand{display:inline-flex;align-items:center;min-height:34px;font-size:18px;font-weight:750;white-space:nowrap;text-decoration:none;color:var(--header-ink)}
+@media(max-width:640px){:is(.me-page,.portfolio-page) .controls-brand{font-size:16px}}
+@media(max-width:360px){:is(.me-page,.portfolio-page) .controls-brand{font-size:12px}.portfolio-page .portfolio-header,.me-page .portfolio-header{gap:8px}.portfolio-page .portfolio-controls,.me-page .portfolio-controls{gap:4px}}
+

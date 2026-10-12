@@ -1,0 +1,80 @@
+/* Shared inner-page system. The approved bridge homepage has its own stylesheet. */
+body.site-interior{
+  --font-display:'Inter Variable',sans-serif;
+  --section-accent:#085b75;--section-night:#8fd0dd;--section-wash:#e9f1f5;--section-wash-dark:#1b3344;
+  --color-canvas:#f7f8f8;--color-surface:#fff;--color-ink:#111827;--color-ink-soft:#344c64;--color-ink-mute:#526475;--color-ink-faint:#647281;
+  --color-line:#dce3e6;--color-line-strong:#bccdd5;--color-accent:var(--section-accent);--color-accent-deep:var(--section-accent);
+  --color-aqua:var(--section-accent);--color-violet:#956744;--color-night:#172f40;--color-night-soft:#213f51;--color-night-line:#436071;
+  --radius-card:20px;--shadow-card:0 2px 4px #24425104,0 12px 30px -22px #24425130;--shadow-lift:0 12px 30px -18px #24425140;
+  background:var(--color-canvas);color:var(--color-ink);
+}
+/* Restrained families repeat across a section and its detail pages. Icons provide a second cue. */
+.site-interior .font-display,.site-interior .article-row-title{font-family:'Inter Variable',sans-serif}
+.site-interior .mono-label{font-family:'Inter Variable',sans-serif;font-size:10px;font-weight:550;letter-spacing:.16em;line-height:1.65}
+.site-interior .mono-label.normal-case{letter-spacing:0;font-size:12px}
+.site-interior:not(.me-page) h1{font-size:clamp(36px,4.5vw,60px);font-weight:600;letter-spacing:-.05em;line-height:1.1;overflow-wrap:break-word}
+.site-interior h2,.site-interior h3{letter-spacing:-.025em}
+.site-interior .hero-rise-3.text-lg{font-size:16px;line-height:1.65}
+.site-interior .section-mark{display:inline-flex;width:22px;height:22px;flex-shrink:0;color:var(--section-accent)}
+.site-interior .section-mark svg{width:100%;height:100%;fill:currentColor}
+/* A quiet wash connects to the homepage sky without repeating the bridge. */
+.site-interior:not(.me-page) #main>header,.site-interior #main>article>header{background:linear-gradient(110deg,var(--section-wash),var(--color-canvas) 75%)}
+.site-interior #main>header>[aria-hidden=true],.site-interior #main>article>header>[aria-hidden=true]{opacity:.12}
+.site-interior:not(.study-page) #main .hero-rise-1>.mono-label{color:var(--section-accent)}
+.site-interior .card-base,.site-interior #main .shadow-card{box-shadow:var(--shadow-card)}
+.site-interior .card-base:hover{box-shadow:var(--shadow-lift)}
+.site-interior .chip{font-size:9px;letter-spacing:.08em;line-height:1.4;font-weight:550}
+.site-interior #main .chip.border-line{background:var(--section-wash);border-color:var(--color-line);color:var(--section-accent)}
+.site-interior #main .chip.border-line>span{background:var(--section-accent)}
+.site-interior .btn-primary{background:var(--section-accent);color:#fff;border:1px solid transparent}
+.site-interior .btn-primary:hover{background:color-mix(in srgb,var(--section-accent),#000 15%)}
+.site-interior :is(.btn-primary,.btn-ghost,.btn-disabled,.btn-light,.btn-dark-ghost){padding:9px 18px;min-height:40px;font-size:12px;font-weight:550;line-height:1.5}
+.site-interior .btn-ghost:hover,.site-interior [data-back]:hover{background:var(--section-wash);color:var(--section-accent);border-color:var(--section-accent)}
+.site-interior .btn-disabled{cursor:not-allowed;color:var(--color-ink-faint)}
+.site-interior .prose-body{font-size:15px;line-height:1.8}
+.site-interior .article-row-title{font-weight:550}
+.site-interior .article-row:is(:hover,:focus-within,.is-open){background:var(--section-wash)}
+.site-interior #main .border-dashed{background:linear-gradient(135deg,var(--section-wash),var(--color-surface));border-color:var(--color-line-strong)}
+.site-interior .gradient-text,.site-interior .gradient-text-cool{background:none;color:var(--section-accent);-webkit-text-fill-color:currentColor}
+.site-interior>footer{background:color-mix(in srgb,var(--section-wash),var(--color-canvas) 60%);border-color:var(--color-line)}
+.site-interior>footer .mono-label{color:var(--color-ink-mute)}
+.site-interior>footer a{color:var(--color-ink-soft)}
+.site-interior>footer a:hover{color:var(--section-accent)}
+.site-interior>footer .font-display{color:var(--color-ink)}
+/* The Goal retains its composition, with daylight surfaces matching the selected mode. */
+.site-interior[data-section=goal] #main>section{background:linear-gradient(125deg,var(--section-wash),var(--color-canvas) 80%);color:var(--color-ink)}
+.site-interior[data-section=goal] #main>section>.absolute{opacity:.05}
+.site-interior[data-section=goal] #main article{background:var(--color-surface);border-color:var(--color-line);box-shadow:var(--shadow-card)}
+.site-interior[data-section=goal] #main article>[aria-hidden=true]{opacity:.12}
+.site-interior .orb{display:none}
+.site-interior .shimmer-line:after{animation:none;display:none}
+/* Section identity reaches selected content, without changing the page grids. */
+.site-interior[data-section=recommendations] figure{background:linear-gradient(140deg,var(--color-surface),var(--section-wash));border-color:var(--color-line)}
+.site-interior[data-section=work-path] #main article .mono-label,.site-interior[data-section=participations] #main .text-violet{color:var(--section-accent)}
+.site-interior[data-section=skills] #main>div>section{background:linear-gradient(130deg,var(--section-wash),var(--color-surface));border-color:var(--color-line)}
+.site-interior[data-section=skills] #main li:hover{background:var(--section-wash);color:var(--section-accent);border-color:var(--section-accent)}
+.site-interior[data-section=contact] #main .font-mono{font-family:'Inter Variable',sans-serif;overflow-wrap:anywhere}
+/* Explicit night surfaces and accents; dark feature panels retain their own light text. */
+html[data-theme=dark] body.site-interior{
+ --section-accent:var(--section-night);--section-wash:var(--section-wash-dark);
+ --color-canvas:#101d28;--color-surface:#182b3b;--color-ink:#e3edf4;--color-ink-soft:#bccfdd;--color-ink-mute:#afc2d0;--color-ink-faint:#a1b6c6;
+ --color-line:#354959;--color-line-strong:#496072;--color-accent:var(--section-accent);--color-accent-deep:var(--section-accent);--color-aqua:var(--section-accent);--color-violet:#d9b38e;
+}
+html[data-theme=dark] .site-interior .btn-primary{background:#235468;border-color:#467488;color:#f4fbff}
+html[data-theme=dark] .site-interior .btn-primary:hover{background:#2b657b}
+html[data-theme=dark] .site-interior .portfolio-header :focus-visible{outline-color:#9edce4}
+html[data-theme=dark] .site-interior:not(.study-page) #main .text-canvas{color:var(--color-ink)}
+html[data-theme=dark] .site-interior[data-section=contact] #main .group:hover>.contact-channel-icon{color:#101d28}
+@media(max-width:640px){.site-interior h1{hyphens:auto}.site-interior .section-mark{width:20px;height:20px}.site-interior #main .border-dashed>span{padding:12px;text-align:center}.site-interior>footer .shell{gap:32px}}
+@media(prefers-reduced-motion:reduce){.site-interior .article-row-body{transition:none}.site-interior .article-row-chevron{transition:none}}
+.site-interior>footer .text-ink-faint{color:var(--color-ink-mute)}
+.site-interior .section-mark{background:transparent}
+
+.site-interior>footer .footer-section-heading{font-size:12px}
+
+.site-interior>footer .footer-email-copy{padding:0;border:0;background:transparent;cursor:pointer;user-select:text;text-align:inherit}
+.site-interior>footer .footer-email-copy:focus-visible{outline:2px solid var(--section-accent);outline-offset:4px;border-radius:2px}
+.footer-copy-status{min-height:1.25em}
+
+.site-interior[data-section=contact] button[data-email-copy]{cursor:pointer}
+.site-interior[data-section=contact] [data-email-status]{min-height:1.25em}

@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { RECOMMENDATION_GROUPS } from '../../data/recommendations';
+import caret from '@phosphor-icons/core/assets/regular/caret-down.svg?raw';
+---
+<BaseLayout title="Recommendations" description="Letters of recommendation from professors.">
+  <PageHero sectionId="recommendations" title="Recommendations" />
+  <div class="shell shell-x recommendation-groups">
+    {RECOMMENDATION_GROUPS.map(group => <details class="recommendation-group">
+      <summary><h2>{group.title}</h2><span aria-hidden="true" set:html={caret} /></summary>
+      <div class="recommendation-slots">
+        {group.letters.map((letter,index) => <article class="card-base recommendation-slot" aria-label={`${group.title}, letter ${index+1}`}>
+          <div class="letter-action">{letter.providedViaEmail ? <p class="letter-email">Provided via Email</p> : letter.pdf ? <a href={letter.pdf} download class="btn-ghost">Click to Download PDF</a> : <button type="button" class="btn-ghost" disabled aria-label={`Click to Download PDF, letter ${index+1}: PDF not yet available`}>Click to Download PDF</button>}</div>
+          <dl>
+            <div><dt>Professor</dt><dd>{letter.scholar ? <a href={letter.scholar} target="_blank" rel="noopener noreferrer" class="scholar-name">{letter.professor}<span class="scholar-note">Scholar ↗</span></a> : (letter.professor || 'Name to be added')}</dd></div>
+            <div><dt>Course</dt><dd>{letter.course || 'Course to be added'}</dd></div>
+            <div><dt>Year</dt><dd>{letter.year ?? 'To be added'}{letter.institution && ` · ${letter.institution}`}</dd></div>
+          </dl>
+          {letter.providedViaEmail && <p class="letter-pending">Completed through an email-based process using the professor’s personal link.</p>}
+          {!letter.pdf && !letter.providedViaEmail && <p class="letter-pending">PDF to be added</p>}
+        </article>)}
+      </div>
+    </details>)}
+  </div>
+</BaseLayout>
+<style>
+  .recommendation-groups{padding-block:48px 64px;display:grid;gap:20px}
+  .recommendation-group{border:1px solid var(--color-line);border-radius:16px;background:var(--color-surface)}
+  summary{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 28px;cursor:pointer;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary h2{font-family:var(--font-display);font-size:21px;font-weight:600;line-height:1.3;letter-spacing:-.02em}
+  summary span{flex-shrink:0;color:var(--color-ink-mute)}
+  summary :global(svg){width:20px;height:20px;fill:currentColor}
+  details[open] summary span{transform:rotate(180deg)}
+  summary:focus-visible{outline:2px solid var(--section-accent);outline-offset:4px;border-radius:16px}
+  .recommendation-slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:0 28px 28px}
+  .recommendation-slot{padding:24px;min-width:0;display:grid;grid-template-rows:subgrid;grid-row:span 5;row-gap:14px}
+  .letter-action{display:flex;align-items:center;min-height:44px}
+  .recommendation-slot dl{display:grid;grid-template-rows:subgrid;grid-row:span 3;margin-top:0;row-gap:14px}
+  .recommendation-slot .letter-pending{margin-top:0}
+  .scholar-note{display:inline-block;margin-left:8px;font-size:10px;font-weight:500;white-space:nowrap;text-decoration:none;color:var(--section-accent)}
+  .recommendation-slot .btn-ghost{font-size:13px;white-space:normal;text-align:center}
+  .recommendation-slot button:disabled{opacity:.6;cursor:not-allowed}
+  dl{margin-top:22px;display:grid;gap:14px}
+  dt{font-size:11px;color:var(--color-ink-faint);margin-bottom:3px}
+  dd{font-size:14px;color:var(--color-ink-soft);line-height:1.5}
+  dl div:first-child dd{font-weight:600;color:var(--color-ink)}
+  .scholar-name{color:var(--section-accent);text-decoration:underline;text-underline-offset:3px}
+  .letter-email{font-size:13px;font-weight:600;color:var(--color-ink-soft);padding-block:10px}
+  .letter-pending{font-size:12px;color:var(--color-ink-faint);margin-top:18px}
+  @media(max-width:767px){.recommendation-groups{padding-block:32px 48px}summary{padding:20px}summary h2{font-size:19px}.recommendation-slots{grid-template-columns:minmax(0,1fr);padding:0 16px 16px}.recommendation-slot{padding:22px}}
+</style>

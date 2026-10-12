@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import ExperienceGallery from '../../components/ExperienceGallery.astro';
+import { WORK_SECTIONS } from '../../data/work-path';
+---
+<BaseLayout title="Work Path">
+  <PageHero sectionId="work-path" title="Work Path" />
+  <ExperienceGallery sections={WORK_SECTIONS} />
+</BaseLayout>

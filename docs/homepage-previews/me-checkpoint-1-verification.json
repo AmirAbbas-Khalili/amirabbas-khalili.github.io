@@ -1,0 +1,68 @@
+{
+  "sizes": [
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "headings": [
+        "Me",
+        "Past",
+        "Present",
+        "Goal",
+        "Curriculum Vitae"
+      ],
+      "font": "\"Inter Variable\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "headings": [
+        "Me",
+        "Past",
+        "Present",
+        "Goal",
+        "Curriculum Vitae"
+      ],
+      "font": "\"Inter Variable\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "headings": [
+        "Me",
+        "Past",
+        "Present",
+        "Goal",
+        "Curriculum Vitae"
+      ],
+      "font": "\"Inter Variable\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024,
+      "headings": [
+        "Me",
+        "Past",
+        "Present",
+        "Goal",
+        "Curriculum Vitae"
+      ],
+      "font": "\"Inter Variable\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "headings": [
+        "Me",
+        "Past",
+        "Present",
+        "Goal",
+        "Curriculum Vitae"
+      ],
+      "font": "\"Inter Variable\", ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", sans-serif"
+    }
+  ],
+  "contentHierarchy": "preserved",
+  "navigation": "passed",
+  "scope": "Me only; original other-page theme preserved",
+  "errors": []
+}

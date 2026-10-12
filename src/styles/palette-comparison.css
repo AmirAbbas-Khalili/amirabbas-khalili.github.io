@@ -1,0 +1,141 @@
+/* Two-page palette comparison. Vivid reference swatches remain small accents.
+   Preserve the academic layout, Inter type, content and existing motion (3/2/3). */
+html[data-theme] body.site-interior.palette-comparison[data-section="skills"] {
+  /* Palette 1: orange / peach, supported by charcoal and slate. */
+  --palette-pop: #ea580c;
+  --palette-accent: #99502e;
+  --palette-wash: #faf2eb;
+  --palette-canvas: #fafafa;
+  --palette-surface: #fff;
+  --palette-ink: #191c21;
+  --palette-soft: #4b5563;
+  --palette-muted: #606873;
+  --palette-line: #e5e7eb;
+  --palette-line-strong: #c7cbd1;
+}
+html[data-theme] body.site-interior.palette-comparison[data-section="study-path"] {
+  /* Palette 2: indigo / cyan, softened for long-form academic reading. */
+  --palette-pop: #4f46e5;
+  --palette-accent: #55549a;
+  --palette-wash: #f1f2f8;
+  --palette-canvas: #f9fafb;
+  --palette-surface: #fff;
+  --palette-ink: #111827;
+  --palette-soft: #4b5563;
+  --palette-muted: #606873;
+  --palette-line: #e5e7eb;
+  --palette-line-strong: #c7cbd1;
+  --palette-detail: #347785;
+}
+html[data-theme="dark"] body.site-interior.palette-comparison[data-section="skills"] {
+  /* Palette 3: neutral charcoal and slate, a quiet terracotta detail. */
+  --palette-pop: #cc8066;
+  --palette-accent: #cf9a87;
+  --palette-wash: #2b292b;
+  --palette-canvas: #191c21;
+  --palette-surface: #22262d;
+  --palette-ink: #e5e7eb;
+  --palette-soft: #c6cbd3;
+  --palette-muted: #aeb6c2;
+  --palette-line: #3b424d;
+  --palette-line-strong: #596272;
+}
+html[data-theme="dark"] body.site-interior.palette-comparison[data-section="study-path"] {
+  /* Palette 4: near-black / purple, cyan only in the small research link. */
+  --palette-pop: #605a8c;
+  --palette-accent: #b8b2d2;
+  --palette-wash: #25232c;
+  --palette-canvas: #101113;
+  --palette-surface: #1c1d22;
+  --palette-ink: #e5e7eb;
+  --palette-soft: #c9c8d2;
+  --palette-muted: #afadbc;
+  --palette-line: #37363f;
+  --palette-line-strong: #595565;
+  --palette-detail: #91c7cf;
+}
+/* A route-local marker excludes the homepage, other sections and detail pages. */
+html[data-theme] body.site-interior.palette-comparison {
+  --section-accent: var(--palette-accent);
+  --section-wash: var(--palette-wash);
+  --color-accent: var(--palette-accent);
+  --color-accent-deep: var(--palette-accent);
+  --color-aqua: var(--palette-accent);
+  --color-violet: var(--palette-accent);
+  --color-canvas: var(--palette-canvas);
+  --color-surface: var(--palette-surface);
+  --color-ink: var(--palette-ink);
+  --color-ink-soft: var(--palette-soft);
+  --color-ink-mute: var(--palette-muted);
+  --color-ink-faint: var(--palette-muted);
+  --color-line: var(--palette-line);
+  --color-line-strong: var(--palette-line-strong);
+  --header-ink: var(--palette-ink);
+  --header-muted: var(--palette-soft);
+  --header-surface: var(--palette-canvas);
+  --header-panel: var(--palette-surface);
+  --header-line: var(--palette-line);
+  --header-hover: var(--palette-wash);
+  --shadow-card: 0 2px 4px #11182704, 0 12px 30px -22px #11182720;
+  --shadow-lift: 0 12px 30px -18px #11182730;
+  background: var(--palette-canvas);
+  color: var(--palette-ink);
+}
+html[data-theme] body.site-interior.palette-comparison #main .page-heading {
+  background: linear-gradient(110deg, var(--palette-wash), var(--palette-canvas) 78%);
+}
+html[data-theme] body.site-interior.palette-comparison .portfolio-header .portfolio-brand span {
+  color: var(--palette-accent);
+}
+html[data-theme] body.site-interior.palette-comparison .portfolio-header :focus-visible {
+  outline-color: var(--palette-accent);
+}
+html[data-theme] body.site-interior.palette-comparison .mode-track {
+  background: var(--palette-line-strong);
+}
+html[data-theme] body.site-interior.palette-comparison .theme-switch[aria-checked="true"] .mode-track {
+  background: var(--palette-accent);
+}
+html[data-theme] body.site-interior.palette-comparison .mode-thumb {
+  background: var(--palette-surface);
+}
+html[data-theme] body.site-interior.palette-comparison #main .card-base:hover {
+  border-color: var(--palette-line-strong);
+}
+html[data-theme] body.site-interior.palette-comparison[data-section="skills"] #main > div > section {
+  background: linear-gradient(130deg, var(--palette-wash), var(--palette-surface) 72%);
+  border-color: var(--palette-line);
+}
+html[data-theme] body.site-interior.palette-comparison[data-section="skills"] #main section > div > span[aria-hidden="true"],
+html[data-theme] body.site-interior.palette-comparison[data-section="skills"] #main section > div > div > span[aria-hidden="true"],
+html[data-theme] body.site-interior.palette-comparison[data-section="study-path"] #degrees article > div > span[aria-hidden="true"] {
+  background: var(--palette-pop);
+}
+html[data-theme] body.site-interior.palette-comparison[data-section="study-path"] #thesis > a {
+  background: var(--palette-surface);
+  border-color: var(--palette-line-strong);
+  color: var(--palette-ink);
+  box-shadow: var(--shadow-card);
+}
+html[data-theme] body.site-interior.palette-comparison[data-section="study-path"] #thesis > a > .absolute {
+  opacity: .035;
+}
+html[data-theme] body.site-interior.palette-comparison[data-section="study-path"] #thesis .text-ink-faint {
+  color: var(--palette-muted);
+}
+html[data-theme] body.site-interior.palette-comparison[data-section="study-path"] #thesis .text-aqua {
+  color: var(--palette-detail);
+}
+html[data-theme] body.site-interior.palette-comparison[data-section="study-path"] #thesis li,
+html[data-theme] body.site-interior.palette-comparison[data-section="study-path"] #thesis > a:hover li {
+  background: var(--palette-wash);
+  border-color: var(--palette-line);
+  color: var(--palette-soft);
+}
+html[data-theme] body.site-interior.palette-comparison .article-row:is(:hover, :focus-within, .is-open) {
+  background: var(--palette-wash);
+}
+html[data-theme] body.site-interior.palette-comparison > footer {
+  background: var(--palette-canvas);
+  border-color: var(--palette-line);
+}

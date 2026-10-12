@@ -1,0 +1,62 @@
+{
+  "routes": 8,
+  "failures": 0,
+  "results": [
+    {
+      "route": "/participations/",
+      "previewImages": 11,
+      "initialBytes": 447260,
+      "bytesAfterAllPreviews": 790838,
+      "originalOnlyAfterClick": true
+    },
+    {
+      "route": "/work-path/",
+      "previewImages": 8,
+      "initialBytes": 531696,
+      "bytesAfterAllPreviews": 531696,
+      "originalOnlyAfterClick": true
+    },
+    {
+      "route": "/study-path/articles/lattice/",
+      "previewImages": 3,
+      "initialBytes": 310814,
+      "bytesAfterAllPreviews": 310814,
+      "originalOnlyAfterClick": true
+    },
+    {
+      "route": "/study-path/articles/pavement/",
+      "previewImages": 1,
+      "initialBytes": 150546,
+      "bytesAfterAllPreviews": 204236,
+      "originalOnlyAfterClick": true
+    },
+    {
+      "route": "/fa/participations/",
+      "previewImages": 11,
+      "initialBytes": 669188,
+      "bytesAfterAllPreviews": 1012766,
+      "originalOnlyAfterClick": true
+    },
+    {
+      "route": "/fa/work-path/",
+      "previewImages": 8,
+      "initialBytes": 753624,
+      "bytesAfterAllPreviews": 753624,
+      "originalOnlyAfterClick": true
+    },
+    {
+      "route": "/fa/study-path/articles/lattice/",
+      "previewImages": 3,
+      "initialBytes": 532742,
+      "bytesAfterAllPreviews": 532742,
+      "originalOnlyAfterClick": true
+    },
+    {
+      "route": "/fa/study-path/articles/pavement/",
+      "previewImages": 1,
+      "initialBytes": 426164,
+      "bytesAfterAllPreviews": 426164,
+      "originalOnlyAfterClick": true
+    }
+  ]
+}

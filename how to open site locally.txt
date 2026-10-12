@@ -1,0 +1,15 @@
+HOW TO OPEN SITE LOCALLY
+
+1. Open the Website v2 folder in File Explorer.
+2. Click the address bar, type powershell, and press Enter.
+3. Paste this command and press Enter:
+
+.\node_modules\.bin\astro.cmd dev --background --host 127.0.0.1 --port 4322
+
+4. Open this address in your browser:
+http://127.0.0.1:4322/
+
+You can close PowerShell afterward. The website keeps running.
+
+To stop the website, open PowerShell in this same folder and run:
+.\node_modules\.bin\astro.cmd dev stop

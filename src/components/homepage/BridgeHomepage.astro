@@ -1,0 +1,198 @@
+---
+import '@fontsource-variable/inter';
+import '../../styles/bridge-homepage.css';
+import DaylightHeader from '../DaylightHeader.astro';
+import '../../styles/spectrum-theme.css';
+import '../../styles/homepage-photo-refinement.css';
+import { getSectionTheme } from '../../data/spectrum-theme';
+import { MAIN_NAV, HYBRID_NAV } from '../../data/site';
+import arrow from '@phosphor-icons/core/assets/regular/arrow-right.svg?raw';
+import caret from '@phosphor-icons/core/assets/regular/caret-down.svg?raw';
+import globe from '@phosphor-icons/core/assets/regular/globe.svg?raw';
+import download from '@phosphor-icons/core/assets/regular/download-simple.svg?raw';
+import envelope from '@phosphor-icons/core/assets/regular/envelope.svg?raw';
+import linkedin from '@phosphor-icons/core/assets/regular/linkedin-logo.svg?raw';
+import telegram from '@phosphor-icons/core/assets/regular/telegram-logo.svg?raw';
+import contact from '@phosphor-icons/core/assets/regular/address-book.svg?raw';
+import youtube from '@phosphor-icons/core/assets/regular/youtube-logo.svg?raw';
+import menu from '@phosphor-icons/core/assets/regular/list.svg?raw';
+const topLinks = [MAIN_NAV[1], { ...MAIN_NAV[3], title: 'Expertise' }];
+const moreLinks = [MAIN_NAV[0], MAIN_NAV[2], ...HYBRID_NAV];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Amir's academic background, research, engineering experience, and goals for doctoral study." />
+    <title>Amir | Academic Portfolio</title>
+    <script is:inline>
+      let theme = 'light';
+      try { theme = localStorage.getItem('amir-theme') === 'dark' ? 'dark' : 'light'; } catch {}
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.dataset.harbourTheme = theme;
+      const backgroundPreload = document.createElement('link');
+      backgroundPreload.rel = 'preload';
+      backgroundPreload.as = 'image';
+      backgroundPreload.href = theme === 'dark' ? '/images/harbour-night-high-stars.webp' : '/images/harbour-sparse-clouds.webp';
+      backgroundPreload.setAttribute('fetchpriority', 'high');
+      document.head.append(backgroundPreload);
+    </script>
+  </head>
+  <body class="bridge-page spectrum-theme" style={getSectionTheme("/")}>
+    <div class="bridge-background" aria-hidden="true">
+      <div class="harbour-frame harbour-frame--light"><div class="harbour-scene"></div></div>
+      <div class="harbour-frame harbour-frame--dark"><div class="harbour-scene"></div></div>
+    </div>
+    <script>
+      import '../../scripts/homepage-photo-transition';
+    </script>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <DaylightHeader />
+    <main id="main" class="bridge-main">
+      <div class="hero">
+        <h1>Amir A. Khalili</h1>
+        <p class="hero-headline">Engineering &amp; research.</p>
+        <p class="hero-description">My education, research, and professional experience.</p>
+        <div class="hero-actions">
+          <a class="action primary" href="/me/">Get to know me <span class="ph-icon" aria-hidden="true" set:html={arrow} /></a>
+        </div>
+      </div>
+    </main>
+    <footer class="bridge-footer">
+      <div class="glass shortcut-dock" role="group" aria-label="CV and contact actions">
+        <a class="cv-download" href="/files/Amir-Abbas-Khalili-CV.pdf" download aria-label="Download CV"><span class="ph-icon" aria-hidden="true" set:html={download} /><span>Download CV</span></a>
+        <a class="youtube-link" href="https://www.youtube.com/@farsish_by_ak" target="_blank" rel="noopener noreferrer"><span class="ph-icon" aria-hidden="true" set:html={youtube} /><span>YouTube</span></a>
+        <div class="contact-control">
+          <button type="button" class="contact-trigger" aria-expanded="false" aria-controls="contact-fan"><span class="ph-icon" aria-hidden="true" set:html={contact} /><span>Contact</span></button>
+        </div>
+      </div>
+      <div class="contact-fan" id="contact-fan" role="group" aria-label="Contact options" hidden>
+        <div class="orbit-item" style="--angle:-90deg">
+          <button class="orbit-button glass" type="button" data-copy="amirkhalili.work@gmail.com" data-label="Email" aria-label="Email: copy amirkhalili.work@gmail.com"><span class="ph-icon" aria-hidden="true" set:html={envelope} /><span class="contact-detail">amirkhalili.work@gmail.com</span></button>
+        </div>
+        <div class="orbit-item" style="--angle:0deg">
+          <a class="orbit-button glass" href="https://www.linkedin.com/in/amirjas" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn: open linkedin.com/in/amirjas"><span class="ph-icon" aria-hidden="true" set:html={linkedin} /><span class="contact-detail">linkedin.com/in/amirjas</span></a>
+        </div>
+        <div class="orbit-item" style="--angle:90deg">
+          <a class="orbit-button glass" href="https://t.me/Amirjas" target="_blank" rel="noopener noreferrer" aria-label="Telegram: open t.me/Amirjas"><span class="ph-icon" aria-hidden="true" set:html={telegram} /><span class="contact-detail">t.me/Amirjas</span></a>
+        </div>
+      </div>
+      <span class="copy-status" role="status" aria-live="polite"></span>
+      <small class="copyright">© {new Date().getFullYear()} Amir. All rights reserved.</small>
+    </footer>
+    <script>
+      const contactTrigger = document.querySelector<HTMLButtonElement>('.contact-trigger');
+      const contactFan = document.querySelector<HTMLElement>('.contact-fan');
+      const contactControl = document.querySelector<HTMLElement>('.contact-control');
+      const copyStatus = document.querySelector<HTMLElement>('.copy-status');
+      let statusTimer: ReturnType<typeof setTimeout>;
+      let idleTimer: ReturnType<typeof setTimeout>;
+      const positionFan = () => {
+        if (!contactTrigger || !contactFan) return;
+        contactFan.querySelectorAll<HTMLElement>('.orbit-button').forEach(button => {
+          const detail = button.querySelector<HTMLElement>('.contact-detail');
+          if (detail) {
+            const range = document.createRange();
+            range.selectNodeContents(detail);
+            button.style.setProperty('--expanded-width', `${Math.ceil(range.getBoundingClientRect().width) + 48}px`);
+          }
+        });
+        const anchor = contactTrigger.getBoundingClientRect();
+        const compact = window.innerWidth <= 900;
+        const radius = 36;
+        const pivotX = compact ? anchor.left + anchor.width / 2 : anchor.right + 24;
+        const pivotY = compact ? Math.max(164, anchor.top - 20) : anchor.top + anchor.height / 2;
+        contactFan.style.setProperty('--orbit-radius', `${radius}px`);
+        contactFan.style.left = `${pivotX - 16}px`;
+        contactFan.style.top = `${pivotY - 16}px`;
+      };      const closeContact = (restoreFocus = false) => {
+        if (!contactFan || !contactTrigger) return;
+        clearTimeout(idleTimer);
+        contactFan.hidden = true;
+        contactFan.removeAttribute('data-open');
+        contactTrigger.setAttribute('aria-expanded', 'false');
+        if (restoreFocus) contactTrigger.focus();
+      };
+      const interactionInside = () => Boolean(
+        contactControl?.matches(':hover') || contactFan?.matches(':hover') ||
+        contactFan?.contains(document.activeElement)
+      );
+      const resetIdle = () => {
+        clearTimeout(idleTimer);
+        if (!contactFan || contactFan.hidden || interactionInside()) return;
+        idleTimer = setTimeout(() => {
+          if (!interactionInside()) closeContact(false);
+        }, 3000);
+      };
+      [contactControl, contactFan].forEach(surface => {
+        surface?.addEventListener('pointerenter', () => clearTimeout(idleTimer));
+        surface?.addEventListener('pointerleave', resetIdle);
+        surface?.addEventListener('focusin', () => clearTimeout(idleTimer));
+        surface?.addEventListener('focusout', () => requestAnimationFrame(resetIdle));
+      });      contactFan?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => closeContact(true)));
+      contactTrigger?.addEventListener('click', () => {
+        if (!contactFan) return;
+        if (!contactFan.hidden) { closeContact(); return; }
+        if (copyStatus) copyStatus.textContent = '';
+        clearTimeout(statusTimer);
+        contactFan.hidden = false;
+        positionFan();
+        contactTrigger.setAttribute('aria-expanded', 'true');
+        requestAnimationFrame(() => contactFan.setAttribute('data-open', ''));
+        resetIdle();
+      });
+      window.addEventListener('resize', positionFan);
+      window.addEventListener('scroll', () => { if (contactFan && !contactFan.hidden) positionFan(); }, { passive: true });
+      document.addEventListener('click', event => {
+        if (!contactControl?.contains(event.target as Node) && !contactFan?.contains(event.target as Node)) closeContact();
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && contactFan && !contactFan.hidden) closeContact(true);
+      });
+      document.querySelectorAll<HTMLButtonElement>('.orbit-button[data-copy]').forEach(button => {
+        button.addEventListener('click', async () => {
+          const value = button.dataset.copy;
+          if (!value) return;
+          try {
+            if (navigator.clipboard?.writeText) {
+              await navigator.clipboard.writeText(value);
+            } else {
+              const field = document.createElement('textarea');
+              field.value = value;
+              field.style.position = 'fixed';
+              field.style.opacity = '0';
+              document.body.append(field);
+              field.select();
+              const copied = document.execCommand('copy');
+              field.remove();
+              if (!copied) throw new Error('Clipboard unavailable');
+            }
+            closeContact(true);
+            if (copyStatus) copyStatus.textContent = document.documentElement.lang === 'fa' ? 'نشانی ایمیل رونوشت شد' : `${button.dataset.label} copied`;
+          } catch {
+            if (copyStatus) copyStatus.textContent = document.documentElement.lang === 'fa' ? 'رونوشت‌برداری ممکن نیست. نشانی تماس را به‌صورت دستی رونوشت کنید.' : 'Copy unavailable. Select the contact text to copy manually.';
+          }
+          clearTimeout(statusTimer);
+          statusTimer = setTimeout(() => { if (copyStatus) copyStatus.textContent = ''; }, 1800);
+        });
+      });
+      document.addEventListener('portfolio-menu-open', () => closeContact());
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

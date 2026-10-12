@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import { THESIS_TOPICS, THESIS_TITLE, THESIS_SUMMARY } from '../../../data/thesis-topics';
+import '../../../styles/thesis.css';
+import left from '@phosphor-icons/core/assets/regular/arrow-left.svg?raw';
+import right from '@phosphor-icons/core/assets/regular/arrow-right.svg?raw';
+import close from '@phosphor-icons/core/assets/regular/x.svg?raw';
+import { THESIS_PHOTOS } from '../../../data/thesis-photos';
+---
+<BaseLayout title="Thesis" description={THESIS_SUMMARY}>
+  <PageHero title="Thesis" lede={THESIS_TITLE} back={{href:'/study-path/'}}>
+    <nav class="thesis-keywords" aria-label="Thesis topics">
+      {THESIS_TOPICS.map(topic => <a href={`#${topic.id}`}>{topic.keyword}</a>)}
+    </nav>
+  </PageHero>
+  <div class="shell shell-x thesis-content">
+    <div class="thesis-grid">
+      {THESIS_TOPICS.map((topic,index) => <article id={topic.id} class="thesis-card" data-topic={topic.id}>
+        <button class="thesis-open" aria-expanded="false" aria-controls="thesis-detail" aria-label={`Read more about ${topic.title}`}>
+          <span class="thesis-number" aria-hidden="true">{String(index+1).padStart(2,'0')}</span>
+          <h2>{topic.title}</h2>
+          <p>{topic.short}</p>
+          <span class="thesis-read">Read more <span class="thesis-icon" aria-hidden="true" set:html={right}/></span>
+        </button>
+        <template data-detail><h2>{topic.title}</h2>{topic.paragraphs.map(text => <p>{text}</p>)}</template>
+        <noscript><div class="thesis-full-text">{topic.paragraphs.map(text => <p>{text}</p>)}</div></noscript>
+      </article>)}
+    </div>
+    <section class="thesis-gallery" aria-labelledby="gallery-heading">
+      <div class="thesis-gallery-heading"><h2 id="gallery-heading">Research gallery</h2>
+        <div class="thesis-gallery-controls"><button data-gallery-prev aria-label="Previous gallery images" aria-controls="thesis-gallery-track"><span class="thesis-icon" set:html={left}/></button><button data-gallery-next aria-label="Next gallery images" aria-controls="thesis-gallery-track"><span class="thesis-icon" set:html={right}/></button></div>
+      </div>
+      <div class="thesis-gallery-track" id="thesis-gallery-track" tabindex="0" aria-label="Research photographs">
+        {THESIS_PHOTOS.map((image,index) => <figure class="thesis-gallery-item">
+          <button class="thesis-image-slot" data-thesis-photo={index} aria-label={`Open ${image.label} photo`} aria-haspopup="dialog"><img src={image.thumbnail} alt={image.label} loading="lazy" width="500" height="500" /></button>
+          <figcaption>{image.label}</figcaption>
+        </figure>)}
+      </div>
+    </section>
+  </div>
+  <div id="thesis-detail" class="thesis-detail" popover="auto" role="dialog" aria-modal="false" aria-labelledby="thesis-detail-title">
+    <button class="thesis-close" aria-label="Close full description"><span class="thesis-icon" set:html={close}/></button>
+    <div class="thesis-detail-copy"></div>
+  </div>
+  <dialog class="thesis-photo-dialog" aria-label="Research photograph" data-photos={JSON.stringify(THESIS_PHOTOS)}>
+    <button data-photo-close class="thesis-close" aria-label="Close photograph"><span class="thesis-icon" set:html={close}/></button>
+    <div class="thesis-photo-view"><button data-photo-prev aria-label="Previous photograph"><span class="thesis-icon" set:html={left}/></button><figure><img data-photo-image alt="" /><figcaption data-photo-caption></figcaption></figure><button data-photo-next aria-label="Next photograph"><span class="thesis-icon" set:html={right}/></button></div>
+  </dialog>
+  <script src="../../../scripts/thesis.ts"></script>
+</BaseLayout>

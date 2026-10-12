@@ -1,0 +1,79 @@
+---
+import { SECTIONS, CONTACT_CHANNELS } from '../data/site';
+
+const year = new Date().getFullYear();
+const featured = CONTACT_CHANNELS.filter((c) => ['email', 'linkedin', 'telegram'].includes(c.id));
+const sectionCols = [SECTIONS.slice(0, 5), SECTIONS.slice(5)];
+---
+
+<footer class="mt-24 border-t border-line bg-surface">
+  <div class="shell grid gap-12 py-14 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_0.9fr] lg:gap-16">
+    <div class="max-w-sm">
+      <a href="/" class="font-display text-lg font-semibold tracking-tight transition-colors hover:text-accent">
+        Amir Khalili
+      </a>
+      <p class="mt-4 text-sm leading-relaxed text-ink-mute">
+        A personal academic portfolio — study path, research, engineering practice,
+        and goals on the road to doctoral study.
+      </p>
+    </div>
+
+    <div>
+      <p class="footer-section-heading mono-label text-ink-faint">Sections</p>
+      <div class="mt-4 grid grid-cols-2 gap-x-8 gap-y-1">
+        {
+          sectionCols.map((col) => (
+            <ul class="space-y-1" role="list">
+              {col.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="text-sm text-ink-mute transition-colors hover:text-ink"
+                  >
+                    {item.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ))
+        }
+      </div>
+    </div>
+
+    <div>
+      <p class="footer-section-heading mono-label text-ink-faint">Contact</p>
+      <ul class="mt-4 space-y-2.5" role="list">
+        {
+          featured.map((channel) => (
+            <li class="flex items-baseline justify-between gap-3 text-sm">
+              <span class="text-ink-faint">{channel.label}</span>
+              {channel.id === 'email' ? <button type="button" class="footer-email-copy font-mono text-xs break-all text-ink-mute hover:text-accent" data-email-copy={channel.handle} aria-label="Copy email address">{channel.handle}</button> : <a href={channel.href} target="_blank" rel="noopener noreferrer" class="font-mono text-xs break-all text-ink-mute hover:text-accent">{channel.handle}</a>}
+            </li>
+          ))
+        }
+      </ul>
+      <p data-email-status class="footer-copy-status mt-2 text-xs text-ink-mute" role="status" aria-live="polite" aria-atomic="true"></p>
+      <a
+        href="/contact/"
+        class="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-all duration-300 hover:gap-2.5"
+      >
+        All contact methods
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14"></path>
+          <path d="m13 6 6 6-6 6"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="border-t border-line">
+    <div class="shell flex flex-wrap items-center justify-between gap-3 py-5">
+      <p class="text-xs text-ink-faint">© {year} Amir. All rights reserved.</p>
+      <p class="mono-label text-[10px] text-ink-faint">Built with Astro</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  import '../scripts/copy-email';
+</script>

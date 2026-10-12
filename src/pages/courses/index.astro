@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CourseCard from '../../components/CourseCard.astro';
+
+const courses = (await getCollection('courses')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+---
+
+<BaseLayout title="Courses">
+  <PageHero
+    sectionId="courses"
+    tint="aqua"
+    eyebrow="Technical training"
+    title="Courses"
+    lede="Technical Coursework And Engineering Methods."
+  />
+
+  <div class="shell shell-x border-line/70">
+    <div class="reveal-stagger grid gap-4 py-14 sm:grid-cols-2 lg:grid-cols-3 lg:py-16">
+      {
+        courses.map((course) => (
+          <CourseCard entry={course} />
+        ))
+      }
+    </div>
+
+    
+  </div>
+</BaseLayout>

@@ -1,0 +1,15 @@
+# Persian version
+
+The Persian website is at `/fa/`, with matching routes for all 25 English pages. The original page components are reused through `src/pages/fa/[...path].astro`. `src/middleware.ts` translates the rendered HTML for Persian routes during both development and static builds; this prevents untranslated content flashing before JavaScript runs.
+
+`src/i18n/fa.json` holds reviewed Persian text. `src/i18n/persian.ts` translates text, metadata, accessibility labels, templates, and gallery data. Missing English translations fail the build. When editing an English paragraph, update its exact normalized key and Persian translation. Asset filenames, real contact destinations, identifiers in URLs, and original image pixels remain unchanged.
+
+Persian pages have `lang="fa"` and `dir="rtl"`. The locally hosted Vazirmatn font supports Persian typography. `src/styles/rtl.css` mirrors inner page grids, titles, text alignment, side borders, back arrows, footers, and dialogs. The homepage layout and shared header/navigation/control order retain their original direction and positions. The language switch stays in its existing position and always switches to the equivalent page in the other language when either label or the surrounding control is clicked. Its EN label is intentionally preserved.
+
+Full dates use the Persian calendar through Intl.DateTimeFormat, with an explicit UTC date so the server timezone cannot shift the day. Dates such as December 24, 2025 become ۳ دی ۱۴۰۴. Year-only records use the lower Solar Hijri year by the owner's explicit instruction (e.g. 2024 becomes ۱۴۰۲). This is a year-only display convention, not an inferred exact date. Paper IDs remain unchanged identifiers rather than being converted as calendar years.
+
+Original photos, certificates, and plots remain unchanged by explicit instruction. All surrounding webpage text and controls are Persian. Contact information is displayed in its original English form, with isolated left-to-right direction. Software names, technical identifiers, the English copyright notice and the Built with Astro credit remain in their original form by explicit instruction. The email label is ایمیل. kx, ky, and kz are permitted mathematical symbols.
+
+Validation: all 25 Persian routes, four viewport widths (320, 390, 768, 1440), both themes, Latin-text scan, images, and internal links; nested language switching; gallery opening/closing; RTL thesis scrolling; translated thesis pop-ups; calendar regression checks; theme persistence; no-JavaScript thesis fallback; selected English page regression checks. Static build generates 50 pages.
+
+The supplied CV is available at /files/Amir-Abbas-Khalili-CV.pdf through the homepage download and Me page View/Download links. The homepage introduction no longer mentions doctoral study. Footer identity reads Amir Khalili. Recommendation names include Dr. in English and دکتر in Persian. Work Path includes the photography-studio experience. Follow-up verification covers all 13 requested corrections.

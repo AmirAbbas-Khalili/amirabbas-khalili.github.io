@@ -1,0 +1,243 @@
+---
+import { MAIN_NAV, HYBRID_NAV, SECTIONS, LANGUAGES } from '../data/site';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path === href || path.startsWith(href);
+---
+
+<header class="fixed inset-x-0 top-0 z-40 border-b border-line/70 bg-canvas/85 backdrop-blur-md">
+  <div class="shell flex h-16 items-center justify-between gap-3">
+    <a
+      href="/"
+      class="font-display text-lg font-semibold tracking-tight transition-colors hover:text-accent"
+    >
+      Amir<span class="text-accent">.</span>
+    </a>
+
+    <div class="flex items-center gap-1.5">
+      <nav class="hidden items-center gap-0.5 lg:flex" aria-label="Primary">
+        {
+          MAIN_NAV.map((item) => (
+            <a
+              href={item.href}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              class:list={[
+                'rounded-full px-3.5 py-2 text-sm font-medium transition-colors xl:px-4',
+                isActive(item.href)
+                  ? 'bg-ink text-canvas'
+                  : 'text-ink-soft hover:bg-ink/5 hover:text-ink',
+              ]}
+            >
+              {item.title}
+            </a>
+          ))
+        }
+
+        <div class="group relative">
+          <button
+            type="button"
+            class="flex items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-medium text-ink-soft transition-colors hover:bg-ink/5 hover:text-ink xl:px-4"
+            aria-haspopup="true"
+          >
+            More
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:rotate-180" aria-hidden="true">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+          <div
+            class="invisible absolute right-0 top-full pt-2 opacity-0 translate-y-1 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
+          >
+            <div class="w-60 rounded-[var(--radius-card)] border border-line bg-surface p-2 shadow-lift">
+              <p class="mono-label px-3 pb-1 pt-2 text-[10px] text-ink-faint">More</p>
+              {
+                HYBRID_NAV.map((item) => (
+                  <a
+                    href={item.href}
+                    aria-current={isActive(item.href) ? 'page' : undefined}
+                    class:list={[
+                      'flex items-center rounded-xl px-3 py-2.5 text-sm transition-colors',
+                      isActive(item.href)
+                        ? 'bg-accent/5 font-medium text-accent'
+                        : 'text-ink-soft hover:bg-canvas hover:text-ink',
+                    ]}
+                  >
+                    {item.title}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div
+        class="ml-1 hidden items-center rounded-full border border-line bg-surface p-0.5 sm:flex"
+        role="group"
+        aria-label="Language"
+      >
+        {
+          LANGUAGES.map((lang) =>
+            lang.enabled ? (
+              <a
+                href={lang.href}
+                aria-current={lang.code === 'en' ? 'true' : undefined}
+                class="rounded-full bg-ink px-2.5 py-1 font-mono text-xs font-semibold tracking-wide text-canvas"
+              >
+                {lang.label}
+              </a>
+            ) : (
+              <span
+                title="Persian version — coming soon"
+                aria-disabled="true"
+                class="cursor-not-allowed rounded-full px-2.5 py-1 font-mono text-xs font-medium text-ink-faint"
+              >
+                {lang.label}
+              </span>
+            )
+          )
+        }
+      </div>
+
+      <button
+        type="button"
+        data-menu-open
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+        class="flex size-10 items-center justify-center rounded-full text-ink transition-colors hover:bg-ink/5 lg:hidden"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16"></path>
+          <path d="M4 12h16"></path>
+          <path d="M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div
+  id="mobile-menu"
+  class="invisible fixed inset-0 z-50 flex flex-col bg-canvas opacity-0 transition-all duration-200 lg:hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Site menu"
+>
+  <div class="shell flex h-16 shrink-0 items-center justify-between">
+    <span class="font-display text-lg font-semibold tracking-tight">Amir<span class="text-accent">.</span></span>
+    <button
+      type="button"
+      data-menu-close
+      aria-label="Close menu"
+      class="flex size-10 items-center justify-center rounded-full text-ink transition-colors hover:bg-ink/5"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="shell flex items-center justify-end pb-2">
+    <div class="flex items-center rounded-full border border-line bg-surface p-0.5" role="group" aria-label="Language">
+      {
+        LANGUAGES.map((lang) =>
+          lang.enabled ? (
+            <a
+              href={lang.href}
+              data-menu-link
+              class="rounded-full bg-ink px-3 py-1 font-mono text-xs font-semibold text-canvas"
+            >
+              {lang.label}
+            </a>
+          ) : (
+            <span
+              title="Persian version — coming soon"
+              aria-disabled="true"
+              class="cursor-not-allowed px-3 py-1 font-mono text-xs font-medium text-ink-faint"
+            >
+              {lang.label}
+            </span>
+          )
+        )
+      }
+    </div>
+  </div>
+
+  <nav class="shell flex-1 overflow-y-auto pb-10" aria-label="All sections">
+    <ul class="grid gap-1">
+      {
+        SECTIONS.map((item, i) => (
+          <>
+            {i === 0 && (
+              <li class="pb-1">
+                <p class="mono-label px-3 text-[10px] text-ink-faint">Core</p>
+              </li>
+            )}
+            {i === 4 && (
+              <li class="pt-5 pb-1">
+                <p class="mono-label px-3 text-[10px] text-ink-faint">More</p>
+              </li>
+            )}
+            <li>
+              <a
+                href={item.href}
+                data-menu-link
+                class:list={[
+                  'flex items-center gap-3.5 rounded-2xl px-3 py-3 transition-colors',
+                  isActive(item.href) ? 'bg-ink text-canvas' : 'hover:bg-surface',
+                ]}
+              >
+                <span
+                  class:list={[
+                    'flex size-8 shrink-0 items-center justify-center rounded-lg',
+                    isActive(item.href) ? 'bg-night-soft text-aqua' : 'bg-canvas text-ink-faint',
+                  ]}
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    {item.icon.map((d) => (
+                      <path d={d} />
+                    ))}
+                  </svg>
+                </span>
+                <span class="font-display text-xl font-semibold tracking-tight sm:text-2xl">
+                  {item.title}
+                </span>
+              </a>
+            </li>
+          </>
+        ))
+      }
+    </ul>
+  </nav>
+</div>
+
+<script>
+  const doc = document.documentElement;
+  const openBtn = document.querySelector('[data-menu-open]');
+  const closeBtn = document.querySelector('[data-menu-close]');
+  const menu = document.getElementById('mobile-menu');
+
+  function openMenu() {
+    if (!menu) return;
+    menu.classList.remove('invisible', 'opacity-0');
+    doc.classList.add('overflow-hidden');
+    openBtn?.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMenu() {
+    if (!menu) return;
+    menu.classList.add('opacity-0');
+    doc.classList.remove('overflow-hidden');
+    openBtn?.setAttribute('aria-expanded', 'false');
+    window.setTimeout(() => menu.classList.add('invisible'), 200);
+  }
+
+  openBtn?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  menu?.querySelectorAll('[data-menu-link]').forEach((link) => link.addEventListener('click', closeMenu));
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+</script>

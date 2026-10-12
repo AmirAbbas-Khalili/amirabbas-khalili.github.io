@@ -1,0 +1,39 @@
+---
+import Home from '../index.astro';
+import Me from '../me/index.astro';
+import Study from '../study-path/index.astro';
+import Thesis from '../study-path/thesis/index.astro';
+import Courses from '../courses/index.astro';
+import Course from '../courses/[slug].astro';
+import Article from '../study-path/articles/[slug].astro';
+import Skills from '../skills/index.astro';
+import Work from '../work-path/index.astro';
+import Participations from '../participations/index.astro';
+import Goal from '../goal/index.astro';
+import Recommendations from '../recommendations/index.astro';
+import EnglishScore from '../english-score/index.astro';
+import Contact from '../contact/index.astro';
+import Design from '../designs/[design].astro';
+import { getCollection } from 'astro:content';
+import { articleView } from '../../data/article-content';
+import { HOMEPAGE_DESIGNS } from '../../data/homepage-designs';
+import '@fontsource/vazirmatn/400.css';
+import '@fontsource/vazirmatn/500.css';
+import '@fontsource/vazirmatn/600.css';
+import '@fontsource/vazirmatn/700.css';
+import '../../styles/rtl.css';
+export async function getStaticPaths() {
+  const fixed=['','me','study-path','study-path/thesis','courses','skills','work-path','participations','goal','recommendations','english-score','contact'];
+  const routes=fixed.map(path=>({params:{path:path||undefined},props:{route:path}}));
+  const courses=await getCollection('courses');
+  const articles=(await getCollection('articles')).filter(entry=>articleView(entry).status==='published');
+  return [...routes,
+    ...courses.map(entry=>({params:{path:`courses/${entry.id}`},props:{route:'course',entry}})),
+    ...articles.map(entry=>({params:{path:`study-path/articles/${entry.id}`},props:{route:'article',entry}})),
+    ...HOMEPAGE_DESIGNS.map(design=>({params:{path:`designs/${design.id}`},props:{route:'design',design:design.id}}))];
+}
+const pages:Record<string,any>={'':Home,me:Me,'study-path':Study,'study-path/thesis':Thesis,courses:Courses,course:Course,article:Article,skills:Skills,'work-path':Work,participations:Participations,goal:Goal,recommendations:Recommendations,'english-score':EnglishScore,contact:Contact,design:Design};
+const {route,...props}=Astro.props;
+const Page=pages[route];
+---
+<Page {...props} />

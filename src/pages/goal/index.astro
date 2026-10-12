@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import PageHero from '../../components/PageHero.astro';
+
+const pillars = [
+  {
+    id: 'connect',
+    title: "Connect Those I'm Good At",
+    desc: 'I am interested in research related to civil engineering, mechanical engineering, and programming. I enjoy building on my existing skills while learning new approaches, and I hope to work on projects that bring these fields together.',
+    dot: 'bg-accent',
+    glow: 'bg-accent/20',
+  },
+  {
+    id: 'materials',
+    title: 'Futuristic Materials',
+    desc: 'Developing advanced materials and engineered structures is a key research interest of mine. Emerging approaches, such as metamaterials and additive manufacturing, are particularly appealing for the new possibilities they offer in engineering.',
+    dot: 'bg-aqua',
+    glow: 'bg-aqua/15',
+  },
+  {
+    id: 'smart-buildings',
+    title: 'Smart Building Innovations',
+    desc: 'My background in civil engineering motivates me to advance building design and performance through innovative engineering solutions. My goal is to contribute to the development of smarter, more efficient, and more sustainable buildings.',
+    dot: 'bg-violet',
+    glow: 'bg-violet/20',
+  },
+];
+---
+
+<BaseLayout title="Goal">
+  <PageHero title="Goal" />
+  <section class="goal-content">
+    <div class="shell relative pb-16">
+      <div class="mt-14 grid gap-4 md:grid-cols-3">
+        {
+          pillars.map((pillar) => (
+            <article
+              class:list={[
+                'reveal group relative overflow-hidden rounded-[var(--radius-card)] border border-night-line bg-night-soft p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-night-line/0 sm:p-8',
+              ]}
+            >
+              <span
+                class:list={[
+                  'pointer-events-none absolute -right-10 -top-12 size-40 rounded-full blur-3xl opacity-40 transition-opacity duration-500 group-hover:opacity-90',
+                  pillar.glow,
+                ]}
+                aria-hidden="true"
+              />
+              <h2 class="flex items-start gap-3 font-display text-xl font-semibold tracking-tight">
+                <span class:list={['mt-[0.5em] size-2 shrink-0 rounded-full', pillar.dot]} aria-hidden="true"></span>
+                <span>{pillar.title}</span>
+              </h2>
+              <p class="mt-3 text-sm leading-relaxed text-ink-faint">{pillar.desc}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      
+    </div>
+  </section>
+</BaseLayout>
+

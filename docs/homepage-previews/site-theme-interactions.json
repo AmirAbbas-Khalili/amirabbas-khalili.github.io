@@ -1,0 +1,18 @@
+[
+  {
+    "touch": false,
+    "articlePreview": true,
+    "thesisNavigation": true,
+    "back": true,
+    "menu": true,
+    "themePersistence": true
+  },
+  {
+    "touch": true,
+    "articlePreview": true,
+    "thesisNavigation": true,
+    "back": true,
+    "menu": true,
+    "themePersistence": true
+  }
+]

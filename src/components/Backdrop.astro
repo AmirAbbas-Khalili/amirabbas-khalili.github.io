@@ -1,0 +1,55 @@
+---
+import { BACKGROUNDS, type SectionTint } from '../data/site';
+
+interface Props {
+  id?: string;
+  tint?: SectionTint;
+  dark?: boolean;
+  class?: string;
+}
+
+const { id, tint = 'blue', dark = false, class: className } = Astro.props;
+
+const bgImage = id ? BACKGROUNDS[id] : undefined;
+
+const washes: Record<SectionTint, string> = {
+  blue: 'radial-gradient(60% 48% at 50% -12%, rgb(13 22 48 / 0.07), transparent 68%), radial-gradient(52% 46% at 18% 12%, rgb(38 70 178 / 0.10), transparent 72%), radial-gradient(40% 38% at 85% 30%, rgb(124 102 242 / 0.08), transparent 70%)',
+  aqua: 'radial-gradient(60% 48% at 45% -12%, rgb(13 22 48 / 0.06), transparent 68%), radial-gradient(52% 46% at 82% 14%, rgb(0 184 200 / 0.09), transparent 72%), radial-gradient(40% 38% at 12% 40%, rgb(38 70 178 / 0.07), transparent 70%)',
+  violet:
+    'radial-gradient(60% 48% at 55% -12%, rgb(13 22 48 / 0.06), transparent 68%), radial-gradient(52% 46% at 78% 16%, rgb(124 102 242 / 0.10), transparent 72%), radial-gradient(40% 38% at 15% 35%, rgb(0 184 200 / 0.06), transparent 70%)',
+};
+
+const washesDark: Record<SectionTint, string> = {
+  blue: 'radial-gradient(60% 50% at 50% -14%, rgb(13 22 48 / 0.35), transparent 70%), radial-gradient(55% 50% at 20% 10%, rgb(36 86 230 / 0.22), transparent 70%), radial-gradient(45% 42% at 88% 34%, rgb(124 102 242 / 0.16), transparent 70%)',
+  aqua: 'radial-gradient(60% 50% at 48% -14%, rgb(13 22 48 / 0.32), transparent 70%), radial-gradient(55% 50% at 80% 12%, rgb(0 184 200 / 0.18), transparent 70%), radial-gradient(45% 42% at 10% 44%, rgb(36 86 230 / 0.20), transparent 70%)',
+  violet:
+    'radial-gradient(60% 50% at 52% -14%, rgb(13 22 48 / 0.32), transparent 70%), radial-gradient(55% 50% at 76% 14%, rgb(124 102 242 / 0.24), transparent 70%), radial-gradient(45% 42% at 14% 40%, rgb(0 184 200 / 0.13), transparent 70%)',
+};
+---
+
+<div class:list={['pointer-events-none absolute inset-0 overflow-hidden', className]} aria-hidden="true">
+  {
+    bgImage && (
+      <div
+        class="absolute inset-0 bg-cover bg-center"
+        style={`background-image:url('${bgImage}')`}
+      />
+    )
+  }
+  <div
+    class="absolute inset-0"
+    style={`background-image:${dark ? washesDark[tint] : washes[tint]}`}
+  />
+  {
+    bgImage && (
+      <div
+        class:list={[
+          'absolute inset-0',
+          dark
+            ? 'bg-night/70'
+            : 'bg-gradient-to-b from-canvas/60 via-canvas/75 to-canvas',
+        ]}
+      />
+    )
+  }
+</div>

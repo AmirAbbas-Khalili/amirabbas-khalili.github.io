@@ -1,0 +1,49 @@
+---
+interface Props {
+  fallback?: string;
+  label?: string;
+  dark?: boolean;
+  class?: string;
+}
+
+const { fallback = '/', label, dark = false, class: className } = Astro.props;
+
+const base = label
+  ? 'inline-flex items-center gap-2 rounded-full border px-4 py-2 font-mono text-xs font-medium tracking-wide'
+  : 'grid size-10 place-items-center rounded-full border';
+---
+
+<a
+  href={fallback}
+  aria-label={label ?? "Back to previous page"}
+  data-back
+  class:list={[
+    base,
+    'transition-colors',
+    dark
+      ? 'border-night-line text-ink-faint hover:border-ink-mute hover:text-canvas'
+      : 'border-line text-ink-faint hover:border-ink-mute hover:text-ink',
+    className,
+  ]}
+>
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M19 12H5"></path>
+    <path d="m11 18-6-6 6-6"></path>
+  </svg>
+  {label && <span>{label}</span>}
+</a>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('[data-back]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      const internal =
+        document.referrer &&
+        new URL(document.referrer).origin === window.location.origin;
+      if (internal && window.history.length > 1) {
+        e.preventDefault();
+        window.history.back();
+      }
+    });
+  });
+</script>
+

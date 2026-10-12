@@ -1,0 +1,61 @@
+---
+export async function getStaticPaths() {
+  const { getCollection } = await import('astro:content');
+  const { articleView } = await import('../../../data/article-content');
+  return (await getCollection('articles')).filter(entry => articleView(entry).status === 'published').map(entry => ({params:{slug:entry.id},props:{entry}}));
+}
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import { render } from 'astro:content';
+import { articleView } from '../../../data/article-content';
+import { galleryPreview } from '../../../data/gallery-thumbnails';
+import '../../../styles/research-article.css';
+import '../../../styles/work-gallery.css';
+import close from '@phosphor-icons/core/assets/regular/x.svg?raw';
+import left from '@phosphor-icons/core/assets/regular/caret-left.svg?raw';
+import right from '@phosphor-icons/core/assets/regular/caret-right.svg?raw';
+const { entry } = Astro.props;
+const d = entry.data;
+const view = articleView(entry);
+const { Content } = await render(entry);
+const date = d.date?.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric',timeZone:'UTC'});
+const details = [
+  {label:'Conference',value:d.conference},
+  {label:'Date',value:date ?? d.year},
+  {label:'Presentation format',value:d.presentationFormat},
+  {label:'Status',value:d.presentationStatus},
+  {label:'Paper ID',value:d.paperId},
+];
+---
+<BaseLayout title={d.title} description={view.summary}>
+  <article>
+    <PageHero title={d.title} back={{href:'/study-path/#articles'}} />
+    <div class="shell shell-x research-article">
+      {d.authors.length>0 && <section class="research-authors" aria-labelledby="authors-heading"><h2 id="authors-heading">Authors</h2><p>{d.authors.map((author,index) => <>{index>0 && ', '}{typeof author === 'string' ? author : author.url ? <a href={author.url} target="_blank" rel="noopener">{author.name}</a> : author.name}</>)}</p>{d.affiliation && <p>{d.affiliation}</p>}</section>}
+      {d.role && <section aria-labelledby="role-heading"><h2 id="role-heading">Role</h2><p>{d.role}</p>{d.contribution && <p>{d.contribution}</p>}</section>}
+      {d.abstract && <section aria-labelledby="abstract-heading"><h2 id="abstract-heading">Abstract</h2>{d.abstract.split(/\n\s*\n/).map(paragraph => <p class="research-abstract">{paragraph}</p>)}</section>}
+      {entry.body?.trim() && <div class="prose-body"><Content /></div>}
+      {d.keywords.length>0 && <section aria-labelledby="keywords-heading"><h2 id="keywords-heading">Keywords</h2><ul class="research-keywords" role="list">{d.keywords.map(keyword=><li>{keyword}</li>)}</ul></section>}
+      {<section aria-labelledby="publication-heading"><h2 id="publication-heading">Publication and Presentation Details</h2><dl class="research-details">{details.map(detail=><div><dt>{detail.label}</dt><dd>{detail.value ?? '—'}</dd></div>)}</dl></section>}
+      {(d.venue||d.location) && <section aria-labelledby="location-heading"><h2 id="location-heading">Presentation Location</h2><dl class="research-details">{d.venue && <div><dt>Venue</dt><dd>{d.venue}</dd></div>}{d.location && <div><dt>Location</dt><dd>{d.location}</dd></div>}</dl></section>}
+      {(d.externalUrl||d.pdf) && <div class="research-links">{d.externalUrl && <a class="btn-ghost" href={d.externalUrl} target="_blank" rel="noopener">{d.externalLabel || (d.conference?'Conference record':'Publication record')}</a>}{d.pdf && <><a class="btn-ghost" href={d.pdf} target="_blank" rel="noopener">View PDF</a><a class="btn-ghost" href={d.pdf} download>Download PDF</a></>}</div>}
+      {d.images.length>0 && <section aria-labelledby="images-heading"><h2 id="images-heading">Research Images</h2><div class:list={["research-images", { "research-images-lattice": entry.id === "lattice" }]} data-work-gallery data-title={d.title} data-photos={JSON.stringify(d.images)}>{d.images.map((image,index)=><figure><button type="button" data-photo-index={index} aria-label={`Open image ${index + 1}`} aria-haspopup="dialog"><img src={galleryPreview(image.src).src} width={galleryPreview(image.src).width} height={galleryPreview(image.src).height} alt={image.alt} loading="lazy" decoding="async"/></button>{image.caption&&<figcaption>{image.caption}</figcaption>}</figure>)}</div></section>}
+    </div>
+  </article>
+  <dialog class="work-lightbox article-lightbox" aria-label="Article image gallery">
+    <div class="work-lightbox-panel">
+      <header class="work-lightbox-header"><h2 id="work-lightbox-title"></h2><button type="button" data-lightbox-close aria-label="Close gallery" autofocus><span aria-hidden="true" set:html={close} /></button></header>
+      <div class="work-lightbox-view">
+        <button type="button" data-lightbox-prev aria-label="Previous image"><span aria-hidden="true" set:html={left} /></button>
+        <figure><img data-lightbox-image alt="" /><figcaption data-lightbox-error hidden>Image unavailable. Try another photo.</figcaption></figure>
+        <button type="button" data-lightbox-next aria-label="Next image"><span aria-hidden="true" set:html={right} /></button>
+      </div>
+      <p class="work-lightbox-count" aria-live="polite" aria-atomic="true"></p>
+    </div>
+  </dialog>
+
+</BaseLayout>
+<script>
+  import '../../../scripts/work-gallery';
+</script>
+

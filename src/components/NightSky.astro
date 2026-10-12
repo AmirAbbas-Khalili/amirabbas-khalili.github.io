@@ -1,0 +1,168 @@
+---
+interface Props {
+  base?: boolean;
+  class?: string;
+}
+
+const { base = false, class: className } = Astro.props;
+
+type Star = [number, number, number, number];
+
+const bright: Star[] = [
+  [500, 140, 2.4, 0.95],
+  [800, 300, 2.2, 0.9],
+  [1120, 120, 2.5, 0.95],
+  [260, 480, 2.0, 0.85],
+  [370, 600, 2.1, 0.9],
+];
+
+const medium: Star[] = [
+  [80, 110, 1.4, 0.65],
+  [210, 90, 1.1, 0.55],
+  [330, 200, 1.2, 0.6],
+  [430, 330, 1.0, 0.5],
+  [560, 420, 1.3, 0.62],
+  [620, 240, 1.0, 0.48],
+  [720, 100, 1.2, 0.58],
+  [900, 170, 1.3, 0.62],
+  [1010, 260, 1.1, 0.52],
+  [1170, 380, 1.2, 0.58],
+  [120, 560, 1.0, 0.5],
+  [600, 40, 1.3, 0.6],
+  [770, 40, 1.0, 0.48],
+  [1040, 40, 1.0, 0.46],
+  [470, 520, 1.2, 0.55],
+  [990, 500, 1.3, 0.6],
+];
+
+const small: Star[] = [
+  [150, 320, 0.9, 0.38],
+  [290, 50, 0.8, 0.32],
+  [400, 40, 0.95, 0.4],
+  [520, 620, 0.85, 0.36],
+  [680, 560, 1.0, 0.44],
+  [850, 520, 0.9, 0.38],
+  [950, 420, 0.8, 0.32],
+  [1060, 560, 0.95, 0.4],
+  [180, 650, 1.0, 0.42],
+  [830, 640, 1.0, 0.44],
+  [930, 640, 0.8, 0.32],
+  [1150, 660, 0.95, 0.4],
+  [60, 300, 0.7, 0.26],
+  [350, 450, 0.7, 0.26],
+  [640, 340, 0.75, 0.28],
+  [750, 220, 0.8, 0.3],
+  [870, 80, 0.8, 0.3],
+  [1090, 300, 0.8, 0.32],
+  [240, 380, 0.85, 0.34],
+  [700, 480, 0.8, 0.3],
+];
+
+let seed = 42;
+const rand = () => {
+  seed = (seed * 1664525 + 1013904223) % 4294967296;
+  return seed / 4294967296;
+};
+
+const dust: Star[] = [];
+for (let i = 0; i < 26; i++) {
+  const x = Math.round(rand() * 1200);
+  const y = Math.round(rand() * 700);
+  const r = 0.45 + rand() * 0.4;
+  const o = 0.16 + rand() * 0.22;
+  dust.push([x, y, Number(r.toFixed(2)), Number(o.toFixed(2))]);
+}
+for (let i = 0; i < 18; i++) {
+  const t = rand();
+  const x = Math.round(t * 1200);
+  const y = Math.round(700 * (0.12 + 0.76 * t) + (rand() - 0.5) * 240);
+  const r = 0.5 + rand() * 0.45;
+  const o = 0.18 + rand() * 0.26;
+  dust.push([Math.max(0, Math.min(1200, x)), Math.max(0, Math.min(700, Math.round(y))), Number(r.toFixed(2)), Number(o.toFixed(2))]);
+}
+
+const allStars = [...dust, ...small, ...medium, ...bright];
+const twinkleStart = dust.length + 4;
+const twinkles = new Set(
+  Array.from({ length: 9 }, (_, i) => twinkleStart + i * 4)
+);
+
+const glowFor: Record<number, number> = {};
+bright.forEach((_, i) => {
+  glowFor[allStars.length - bright.length + i] = 7 + (i % 3) * 1.6;
+});
+---
+
+<div class:list={['pointer-events-none absolute inset-0 overflow-hidden', className]} aria-hidden="true">
+  {
+    base && (
+      <div
+        class="absolute inset-0"
+        style="background:
+          radial-gradient(110% 85% at 72% -12%, rgb(46 72 170 / 0.32), transparent 62%),
+          radial-gradient(75% 55% at 8% 104%, rgb(108 88 220 / 0.13), transparent 65%),
+          linear-gradient(180deg, #070c19 0%, #0a1128 48%, #0d1734 100%)"
+      />
+    )
+  }
+
+  <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" fill="none">
+    <defs>
+      <radialGradient id="ns-glow">
+        <stop offset="0%" stop-color="#d6e4ff" stop-opacity="0.75"></stop>
+        <stop offset="40%" stop-color="#9db8f0" stop-opacity="0.22"></stop>
+        <stop offset="100%" stop-color="#9db8f0" stop-opacity="0"></stop>
+      </radialGradient>
+    </defs>
+
+    <g fill="#aebde4">
+      {allStars.map(([x, y, r, o], i) =>
+        i < dust.length ? <circle cx={x} cy={y} r={r} fill-opacity={o} /> : null
+      )}
+    </g>
+
+    <g fill="#ccd8f5">
+      {allStars.map(([x, y, r, o], i) =>
+        i >= dust.length && i < dust.length + small.length ? (
+          <circle cx={x} cy={y} r={r} fill-opacity={o} />
+        ) : null
+      )}
+    </g>
+
+    <g fill="#dbe4ff">
+      {allStars.map(([x, y, r, o], i) =>
+        i >= dust.length + small.length && i < dust.length + small.length + medium.length ? (
+          <circle
+            cx={x}
+            cy={y}
+            r={r}
+            fill-opacity={o}
+            class={twinkles.has(i) ? 'star-twinkle' : undefined}
+            style={
+              twinkles.has(i)
+                ? `--tw-min:${(o * 0.45).toFixed(2)};--tw-max:${Math.min(o * 1.35, 0.95).toFixed(2)};animation-delay:${((i % 7) * 0.8).toFixed(1)}s`
+                : undefined
+            }
+          />
+        ) : null
+      )}
+    </g>
+
+    <g>
+      {Object.entries(glowFor).map(([idx, gr]) => {
+        const [x, y] = allStars[Number(idx)];
+        return <circle cx={x} cy={y} r={gr} fill="url(#ns-glow)" />;
+      })}
+    </g>
+
+    <g fill="#f0f5ff">
+      {allStars.map(([x, y, r, o], i) =>
+        i >= allStars.length - bright.length ? (
+          <circle cx={x} cy={y} r={r} fill-opacity={o} />
+        ) : null
+      )}
+    </g>
+  </svg>
+
+  <span class="meteor" style="top:16%; right:11%; width:170px" />
+</div>

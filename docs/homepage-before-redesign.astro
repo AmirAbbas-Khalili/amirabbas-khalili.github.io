@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentCard from '../components/ContentCard.astro';
+import NightSky from '../components/NightSky.astro';
+import { SECTIONS, MAIN_NAV, HYBRID_NAV, TINT_TILE } from '../data/site';
+---
+
+<BaseLayout>
+  <section class="relative overflow-hidden">
+    <NightSky base />
+    <div class="orb orb-drift left-[-10%] top-[20%] size-[34rem] bg-accent/20" data-parallax="0.06" aria-hidden="true"></div>
+    <div class="orb orb-drift-slow right-[-8%] top-[45%] size-[30rem] bg-violet/15" data-parallax="-0.04" aria-hidden="true"></div>
+
+    <div class="shell relative pb-24 pt-20 text-canvas sm:pb-32 sm:pt-28">
+      <div class="hero-rise hero-rise-1 flex items-center gap-4">
+        <span class="h-px w-12 bg-gradient-to-r from-aqua to-violet"></span>
+        <p class="mono-label !text-[#a7b6dc]">Academic Portfolio</p>
+      </div>
+
+      <h1
+        class="hero-rise hero-rise-2 mt-8 max-w-4xl font-display text-[2.75rem] font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-[4.5rem]"
+      >
+        Study, research, and engineering —
+        <span class="gradient-text-cool">on one clear path.</span>
+      </h1>
+
+      <p class="hero-rise hero-rise-3 mt-7 max-w-xl text-lg leading-relaxed !text-[#b9c4e4]">
+        This website gathers my academic background, research, work experience, and goals
+        in a single place — prepared for PhD applications and everyone curious about my work.
+      </p>
+
+      <div class="hero-rise hero-rise-4 mt-10 flex flex-wrap items-center gap-3">
+        <a href="#sections" class="btn-primary">
+          Explore sections
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5v14"></path>
+            <path d="m19 12-7 7-7-7"></path>
+          </svg>
+        </a>
+        <a href="/contact/" class="rounded-full border border-white/25 px-6 py-2.5 font-mono text-xs font-medium tracking-wide text-canvas transition-colors hover:border-white/50 hover:bg-white/5">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="rule-gradient pointer-events-none absolute inset-x-0 bottom-0" aria-hidden="true"></div>
+  </section>
+
+  <section id="sections" class="shell shell-x scroll-mt-24 border-line/70 pb-10">
+    <div class="reveal flex items-end justify-between gap-4 pt-12">
+      <div>
+        <p class="mono-label text-ink-faint">Overview</p>
+        <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+          Core sections.
+        </h2>
+      </div>
+    </div>
+
+    <div class="reveal-stagger mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        MAIN_NAV.map((s) => (
+          <ContentCard
+            title={s.title}
+            desc={s.tagline}
+            href={s.href}
+            icon={s.icon}
+            tintClass={TINT_TILE[s.tint]}
+          />
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-14 flex items-center gap-5">
+      <p class="mono-label shrink-0 text-ink-faint">More</p>
+      <span class="h-px flex-1 bg-gradient-to-r from-line-strong to-transparent"></span>
+    </div>
+
+    <div class="reveal-stagger mt-8 grid gap-4 pb-14 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        HYBRID_NAV.map((s) => (
+          <ContentCard
+            title={s.title}
+            desc={s.tagline}
+            href={s.href}
+            icon={s.icon}
+            tintClass={TINT_TILE[s.tint]}
+          />
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,51 @@
+{
+  "results": [
+    {
+      "width": 132.6875,
+      "height": 844,
+      "longest": 106.6875,
+      "padding": [
+        "4px",
+        "4px",
+        "4px",
+        "4px"
+      ]
+    },
+    {
+      "width": 132.6875,
+      "height": 390,
+      "longest": 106.6875,
+      "padding": [
+        "4px",
+        "4px",
+        "4px",
+        "4px"
+      ]
+    },
+    {
+      "width": 132.6875,
+      "height": 768,
+      "longest": 106.6875,
+      "padding": [
+        "4px",
+        "4px",
+        "4px",
+        "4px"
+      ]
+    },
+    {
+      "width": 132.6875,
+      "height": 900,
+      "longest": 106.6875,
+      "padding": [
+        "4px",
+        "4px",
+        "4px",
+        "4px"
+      ]
+    }
+  ],
+  "animations": "opening, closing and reversal passed",
+  "reducedMotion": "passed",
+  "errors": []
+}

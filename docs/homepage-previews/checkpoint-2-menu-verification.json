@@ -1,0 +1,90 @@
+[
+  {
+    "width": 320,
+    "overlap": false,
+    "overflow": false,
+    "panel": {
+      "left": 87,
+      "right": 297,
+      "top": 71,
+      "bottom": 489
+    }
+  },
+  {
+    "width": 390,
+    "overlap": false,
+    "overflow": false,
+    "panel": {
+      "left": 157,
+      "right": 367,
+      "top": 71,
+      "bottom": 489
+    }
+  },
+  {
+    "width": 768,
+    "overlap": false,
+    "overflow": false,
+    "panel": {
+      "left": 535,
+      "right": 745,
+      "top": 71,
+      "bottom": 489
+    }
+  },
+  {
+    "width": 900,
+    "overlap": false,
+    "overflow": false,
+    "panel": {
+      "left": 667,
+      "right": 877,
+      "top": 71,
+      "bottom": 489
+    }
+  },
+  {
+    "width": 1024,
+    "overlap": false,
+    "overflow": false,
+    "panel": {
+      "left": 799,
+      "right": 983,
+      "top": 73,
+      "bottom": 363
+    }
+  },
+  {
+    "width": 1200,
+    "overlap": false,
+    "overflow": false,
+    "panel": {
+      "left": 975,
+      "right": 1159,
+      "top": 73,
+      "bottom": 363
+    }
+  },
+  {
+    "width": 1440,
+    "overlap": false,
+    "overflow": false,
+    "panel": {
+      "left": 1215,
+      "right": 1399,
+      "top": 73,
+      "bottom": 363
+    }
+  },
+  {
+    "width": 1920,
+    "overlap": false,
+    "overflow": false,
+    "panel": {
+      "left": 1695,
+      "right": 1879,
+      "top": 73,
+      "bottom": 363
+    }
+  }
+]

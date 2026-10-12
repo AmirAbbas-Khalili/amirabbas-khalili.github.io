@@ -1,0 +1,34 @@
+---
+import PageHero from '../../components/PageHero.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/daylight-me.css';
+import { EDUCATION } from '../../data/academic-profile';
+import arrow from '@phosphor-icons/core/assets/regular/arrow-right.svg?raw';
+const chapters = EDUCATION.map(degree => ({id:degree.chapter.toLowerCase(), label:degree.chapter, lines:[degree.info]}));
+---
+<BaseLayout title="Me" theme="daylight-me">
+  <PageHero title="Me" />
+  <div class="me-shell">
+    <div class="me-story-grid">
+      <aside class="me-portrait-column" aria-label="Portrait">
+        <img class="me-portrait" src="/images/me-cv-final.webp" alt="Amir A. Khalili" width="991" height="1317" decoding="async" />
+        
+      </aside>
+      <div class="me-chapters">
+        {chapters.map(chapter => <section class="me-chapter" aria-labelledby={`${chapter.id}-title`}><h2 id={`${chapter.id}-title`}>{chapter.label}</h2><div class="me-placeholder-copy">{chapter.lines.map(line => <p>{line}</p>)}</div></section>)}
+        <section class="me-goal" aria-labelledby="goal-title">
+          <h2 id="goal-title">Goal</h2>
+          <p>What I hope to pursue next, and the questions and opportunities I look forward to exploring.</p>
+          
+          <a class="me-text-link" href="/goal/">Explore the full Goal section <span class="ph-icon" aria-hidden="true" set:html={arrow} /></a>
+        </section>
+        <section class="me-cv" aria-labelledby="cv-title">
+          <h3 id="cv-title">Curriculum Vitae</h3>
+          <p>A concise overview of my education, research, and experience so far.</p>
+          <div class="me-cv-actions"><a href="/files/Amir-Abbas-Khalili-CV.pdf" download>Click to download</a></div>
+          
+        </section>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

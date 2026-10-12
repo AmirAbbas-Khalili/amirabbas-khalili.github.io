@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { SKILL_CATEGORIES, SOFT_SKILLS } from '../../data/skills';
+import { CONTACT_CHANNELS } from '../../data/site';
+const github = CONTACT_CHANNELS.find(channel => channel.id === 'github')!;
+
+const ACCENT_TICKS: Record<string, string> = {
+  engineering: 'bg-accent',
+  coding: 'bg-aqua',
+  others: 'bg-violet',
+};
+---
+
+<BaseLayout title="Expertise">
+  <PageHero
+    sectionId="skills"
+    tint="aqua"
+    eyebrow="Toolbox"
+    title="Expertise"
+    lede="Engineering software, computational skills, and the soft skills that hold the work together."
+  />
+
+  <div class="shell shell-x border-line/70">
+    <h2 class="reveal pt-10 font-display text-2xl font-semibold tracking-tight sm:text-3xl">Expertise</h2>
+    <div class="divide-y divide-line/70 py-6 lg:py-10">
+      {
+        SKILL_CATEGORIES.map((cat) => (
+          <section class="reveal grid gap-4 py-8 first:pt-4 md:grid-cols-[240px_1fr] md:gap-10 lg:py-10">
+            <div class="flex items-start gap-3">
+              <span class={`mt-1 h-6 w-0.5 rounded-full ${ACCENT_TICKS[cat.id] ?? 'bg-accent'}`} aria-hidden="true" />
+              <div>
+                <h3 class="font-display text-lg font-semibold tracking-tight">{cat.title}</h3>
+                {cat.id === 'coding' && <a href={github.href} target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex text-xs text-ink-mute underline underline-offset-4 transition-colors hover:text-accent">GitHub ↗</a>}
+
+              </div>
+            </div>
+
+            <div class="min-w-0">
+            <ul class="flex flex-wrap content-start gap-2" role="list">
+              {cat.items.map((item) => (
+                <li class="rounded-full border border-line bg-surface px-3.5 py-1.5 text-sm text-ink-soft transition-colors hover:border-accent/40 hover:text-accent">
+                  {item}
+                </li>
+              ))}
+            </ul>
+            {cat.tools && <p class="skill-tools-line mt-5 text-sm leading-relaxed text-ink-mute"><strong class="font-semibold text-ink">{cat.toolLabel}:</strong> {cat.tools.map((tool,index) => <>{index > 0 && ", "}<bdi dir="ltr">{tool}</bdi></>)}</p>}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+
+    <section class="reveal relative mt-4 overflow-hidden rounded-[var(--radius-card)] border border-line bg-gradient-to-br from-violet/[0.06] via-surface to-accent/[0.05] p-8 sm:p-10">
+      <span class="pointer-events-none absolute -right-16 -top-20 size-64 rounded-full bg-violet/15 blur-3xl" aria-hidden="true" />
+      <span class="pointer-events-none absolute -bottom-24 -left-16 size-56 rounded-full bg-aqua/10 blur-3xl" aria-hidden="true" />
+
+      <div class="relative grid items-center gap-6 md:grid-cols-[240px_1fr] md:gap-10">
+        <div class="flex items-start gap-3">
+          <span class="mt-1 h-6 w-0.5 rounded-full bg-gradient-to-b from-violet to-accent" aria-hidden="true" />
+          <h2 class="font-display text-xl font-semibold tracking-tight sm:text-2xl">{SOFT_SKILLS.title}</h2>
+        </div>
+
+        <ul class="flex flex-wrap content-start gap-2.5" role="list">
+          {
+            SOFT_SKILLS.items.map((item) => (
+              <li class="rounded-full border border-violet/25 bg-surface/80 px-4 py-2 text-sm font-medium text-ink shadow-card transition-colors hover:border-violet/50 hover:text-violet">
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    
+  </div>
+</BaseLayout>

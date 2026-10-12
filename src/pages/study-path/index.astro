@@ -1,0 +1,144 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import ArticleRow from '../../components/ArticleRow.astro';
+import NightSky from '../../components/NightSky.astro';
+import '../../styles/daylight-study.css';
+import { THESIS_TOPICS, THESIS_TITLE, THESIS_SUMMARY } from '../../data/thesis-topics';
+import { articleView } from '../../data/article-content';
+import { EDUCATION } from '../../data/academic-profile';
+
+const articles = (await getCollection('articles')).map(entry => ({...entry, view: articleView(entry)})).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+const degrees = EDUCATION;
+
+const thesisKeywords = THESIS_TOPICS.map(topic => topic.keyword);
+---
+
+<BaseLayout
+  title="Study Path"
+  pageClass="study-page"
+  description="Academic journey — Bachelor's and Master's degrees with Class Rank and GPA, thesis research threads, and articles."
+>
+  <PageHero
+    sectionId="study-path"
+    tint="blue"
+    eyebrow="Academic journey"
+    title="Study Path"
+  pageClass="study-page"
+    lede="Two degrees, one thesis, and the research writing that grew out of them."
+  />
+
+  <div class="shell shell-x border-line/70">
+    <nav class="reveal flex flex-wrap gap-2 pt-10" aria-label="Study path parts">
+      {
+        [
+          { href: '#degrees', label: 'Degrees' },
+          { href: '#thesis', label: 'Thesis' },
+          { href: '#articles', label: 'Articles' },
+        ].map((pill) => (
+          <a
+            href={pill.href}
+            class="rounded-full border border-line bg-surface px-4 py-1.5 text-sm font-medium text-ink-soft transition-colors hover:border-accent/40 hover:text-accent"
+          >
+            {pill.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <section id="degrees" class="scroll-mt-24 pt-12">
+      <p class="reveal mono-label text-ink-faint">Degrees</p>
+      <div class="reveal-stagger mt-6 grid gap-4 md:grid-cols-2">
+        {
+          degrees.map((deg) => (
+            <article class="card-base p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:p-8">
+              <div class="flex items-center gap-3">
+                <span class={`h-8 w-1 rounded-full ${deg.class}`} aria-hidden="true" />
+                <h2 class="font-display text-xl font-semibold tracking-tight">{deg.title}</h2>
+              </div>
+              <p class="mt-4 text-sm leading-relaxed text-ink"><strong>{deg.degree} — {deg.university}</strong></p>
+              <dl class="mt-5">
+                <div class="spec-row">
+                  <dt class="mono-label text-[10px] text-ink-faint">GPA</dt>
+                  <dd class="font-display text-lg font-semibold text-ink-mute">{deg.gpa}</dd>
+                </div>
+                <div class="spec-row">
+                  <dt class="mono-label text-[10px] text-ink-faint">Class Rank</dt>
+                  <dd class="font-display text-lg font-semibold text-ink-mute">{deg.rank}</dd>
+                </div>
+              </dl>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="thesis" class="scroll-mt-24 pt-14">
+      <a href="/study-path/thesis/" class="reveal group relative block overflow-hidden rounded-2xl bg-night p-8 text-canvas shadow-lift transition-all duration-300 hover:-translate-y-1 sm:p-10">
+        <NightSky class="absolute inset-0" />
+        <span class="pointer-events-none absolute -right-20 -top-24 size-72 rounded-full bg-violet/15 blur-3xl transition-opacity duration-500 group-hover:opacity-100" aria-hidden="true"></span>
+        <div class="relative flex flex-wrap items-start justify-between gap-6">
+          <div class="min-w-0 flex-1">
+            <p class="mono-label text-aqua">Thesis</p>
+            <h2 class="mt-3 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+              {THESIS_TITLE}
+            </h2>
+            <p class="mt-3 text-sm leading-relaxed text-ink-faint sm:text-base">
+              {THESIS_SUMMARY}
+            </p>
+            <span class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-aqua transition-all duration-300 group-hover:gap-3">
+              Open thesis section
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+            </span>
+          </div>
+          <ul class="flex w-full flex-wrap gap-2" role="list">
+            {
+              thesisKeywords.map((kw) => (
+                <li class="rounded-full border border-night-line bg-night-soft px-3 py-1 text-xs text-ink-faint transition-colors duration-300 group-hover:text-canvas">
+                  {kw}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </a>
+    </section>
+
+    <section id="articles" class="scroll-mt-24 pb-16 pt-16">
+      <div class="reveal flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="mono-label text-ink-faint">Research writing</p>
+          <h2 class="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+            Articles.
+          </h2>
+        </div>
+      </div>
+
+      <div class="reveal mt-8 rounded-t-2xl">
+        {
+          articles.map((article) => (
+            <ArticleRow
+              title={article.data.title}
+              journal={article.view.publication}
+              summary={article.view.summary}
+              meta={article.data.topic}
+              role={article.data.role}
+              contribution={article.data.contribution}
+              status={article.view.status}
+              href={`/study-path/articles/${article.id}/`}
+            />
+          ))
+        }
+      </div>
+      <div class="h-10"></div>
+    </section>
+  </div>
+</BaseLayout>
+

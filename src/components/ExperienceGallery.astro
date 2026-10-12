@@ -1,0 +1,47 @@
+---
+import type { WorkSection } from '../data/work-path';
+import { galleryThumbnail } from '../data/gallery-thumbnails';
+import close from '@phosphor-icons/core/assets/regular/x.svg?raw';
+import left from '@phosphor-icons/core/assets/regular/caret-left.svg?raw';
+import right from '@phosphor-icons/core/assets/regular/caret-right.svg?raw';
+import images from '@phosphor-icons/core/assets/regular/images.svg?raw';
+import '../styles/work-gallery.css';
+interface Props { sections: WorkSection[]; alternate?: boolean; dividers?: boolean }
+const { sections, alternate = true, dividers = false } = Astro.props;
+---
+  <div class:list={["shell shell-x work-sections", dividers && "work-sections-divided"]}>
+    {sections.map((section, index) => (
+      <section id={section.id} class:list={['reveal work-section', alternate && index % 2 === 1 && 'work-section-reverse', section.showGallery === false && 'work-section-text-only', ['research-assistantship', 'buspro-training', 'teacher-training'].includes(section.id) && 'work-section-certificate']} aria-labelledby={`${section.id}-title`}>
+        <div class="work-copy">
+          <h2 id={`${section.id}-title`}>{section.title}</h2>
+          {section.description && <p>{section.description}</p>}
+          
+          {section.subItems?.map((item, subIndex) => <section class="work-subitem" aria-labelledby={`${section.id}-activity-${subIndex}`}><h3 id={`${section.id}-activity-${subIndex}`}>{item.title}</h3><p>{section.id === 'anjoman-elmi' && item.description.includes('Professor Fereydoon Tehrani of California State University, director of ESCSI') ? <>{item.description.split('Professor Fereydoon Tehrani of California State University, director of ESCSI')[0]}<strong><a class="professor-link" href="https://engineering.fresnostate.edu/about/directory/civil/tehrani-fariborz.html" target="_blank" rel="noopener">Professor Fereydoon Tehrani</a> of California State University, director of ESCSI</strong>{item.description.split('Professor Fereydoon Tehrani of California State University, director of ESCSI')[1]}</> : item.description}</p></section>)}
+        </div>
+        {section.showGallery !== false && <div class="work-media">
+          {section.photos.length > 0 ? <>
+            <div class:list={["work-photo-strip", section.id === "photo-editing" && "work-photo-strip-editing"]} data-work-gallery data-title={section.title} data-photos={JSON.stringify(section.photos)}>
+              {section.photos.slice(0, 4).map((photo, photoIndex) => <button type="button" data-photo-index={photoIndex} aria-label={`Open ${section.title} gallery, image ${photoIndex + 1}`} aria-haspopup="dialog"><img src={galleryThumbnail(photo.thumbnail)} alt={photo.alt} loading="lazy" width="600" height="600" /></button>)}
+            </div>
+            <p class="work-gallery-hint">{section.photos.length} {section.photos.length === 1 ? 'photo' : 'photos'} <span aria-hidden="true">/</span> Click to view</p>
+          </> : <div class="work-gallery-empty"><span aria-hidden="true" set:html={images} /><p>Photos coming soon</p></div>}
+          {section.links?.map(link => <a class="btn-primary mt-4" href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a>)}
+          {section.files?.map(file => <a class="btn-primary mt-4" href={file.url} download>{file.label}</a>)}
+        </div>}
+      </section>
+    ))}
+  </div>
+  <dialog class="work-lightbox" aria-labelledby="work-lightbox-title">
+    <div class="work-lightbox-panel">
+      <header class="work-lightbox-header"><h2 id="work-lightbox-title"></h2><button type="button" data-lightbox-close aria-label="Close gallery" autofocus><span aria-hidden="true" set:html={close} /></button></header>
+      <div class="work-lightbox-view">
+        <button type="button" data-lightbox-prev aria-label="Previous image"><span aria-hidden="true" set:html={left} /></button>
+        <figure><img data-lightbox-image alt="" /><figcaption data-lightbox-error hidden>Image unavailable. Try another photo.</figcaption></figure>
+        <button type="button" data-lightbox-next aria-label="Next image"><span aria-hidden="true" set:html={right} /></button>
+      </div>
+      <p class="work-lightbox-count" aria-live="polite" aria-atomic="true"></p>
+    </div>
+  </dialog>
+<script>
+  import '../scripts/work-gallery';
+</script>

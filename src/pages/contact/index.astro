@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { CONTACT_CHANNELS } from '../../data/site';
+
+const icons: Record<string, string> = {
+  email:
+    'M4 6h16v12H4z M4 7l8 6 8-6',
+  linkedin:
+    'M6 9v9 M6 5.5v.01 M10.5 18v-5a3 3 0 0 1 6 0v5 M10.5 13v-4',
+  phone:
+    'M5 4h4l1.5 4L8 10a12 12 0 0 0 6 6l2-2.5 4 1.5v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2',
+  instagram:
+    'M4 4h16v16H4z M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7 M17 7v.01',
+  telegram: 'm21 4-3 15-6-4-3 3-1-5L4 9z',
+  github:
+    'M8 20V17a3 3 0 0 1 .9-2.4A8 8 0 0 1 12 7.2 8 8 0 0 1 15.1 14.6 3 3 0 0 1 16 17v3 M8 20h8 M6 8.5A4 4 0 0 1 7 4.5c1.5.3 2.6.8 3.3 1.4a9 9 0 0 1 3.4 0c.7-.6 1.8-1.1 3.3-1.4a4 4 0 0 1 1 4A8 8 0 0 1 12 7.2 8 8 0 0 1 6 8.5',
+};
+---
+
+<BaseLayout title="Contact">
+  <PageHero
+    sectionId="contact"
+    tint="blue"
+    eyebrow="Get in touch"
+    title="Contact"
+    lede="Every way to reach me — clean, direct, and in one place."
+  />
+
+  <div class="shell shell-x border-line/70">
+    <div class="reveal-stagger grid gap-4 py-14 sm:grid-cols-2 lg:grid-cols-3 lg:py-16">
+      {
+        CONTACT_CHANNELS.map((channel) => {
+          const Control = channel.id === 'email' ? 'button' : 'a';
+          return (
+          <Control type={channel.id === 'email' ? "button" : undefined} href={channel.id === 'email' ? undefined : channel.href} data-email-copy={channel.id === 'email' ? channel.handle : undefined} aria-label={channel.id === 'email' ? "Copy email address" : undefined} target={channel.id === 'email' ? undefined : '_blank'} rel={channel.id === 'email' ? undefined : 'noopener noreferrer'} class="card-base group w-full text-start p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lift sm:p-7">
+            <span
+              class:list={[
+                'contact-channel-icon flex size-11 items-center justify-center rounded-full transition-colors duration-300 group-hover:text-canvas',
+                channel.featured ? 'bg-accent/10 text-accent group-hover:bg-accent' : 'bg-line/60 text-ink-mute group-hover:bg-ink',
+              ]}
+            >
+              {channel.id === 'github' ? <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297C5.37.297 0 5.67 0 12.297c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.043-1.61-4.043-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.729.083-.729 1.205.084 1.838 1.237 1.838 1.237 1.07 1.835 2.809 1.305 3.495.998.108-.776.418-1.305.762-1.605-2.665-.305-5.467-1.334-5.467-5.931 0-1.31.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23a11.52 11.52 0 0 1 3.003-.404c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.652.243 2.873.12 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.015 2.898-.015 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" /></svg> : (
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d={icons[channel.id]} />
+              </svg>
+              )}
+            </span>
+            <span class="block mono-label mt-5 text-[10px] text-ink-faint">{channel.label}</span>
+            <span class="block mt-1.5 font-mono text-sm font-medium break-all text-ink-mute">{channel.handle}</span>
+            {channel.note && <span class="block mt-3 text-xs leading-relaxed text-ink-faint">{channel.note}</span>}
+            {channel.id === 'email' && <><span class="block mt-3 text-xs text-ink-faint">Click to copy</span><span data-email-status class="block mt-1 text-xs text-ink-mute" role="status" aria-live="polite" aria-atomic="true"></span></>}
+          </Control>
+          );
+        })
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import '../../scripts/copy-email';
+</script>

@@ -1,0 +1,15 @@
+---
+import user from '@phosphor-icons/core/assets/regular/user.svg?raw';
+import student from '@phosphor-icons/core/assets/regular/student.svg?raw';
+import book from '@phosphor-icons/core/assets/regular/book-open.svg?raw';
+import cpu from '@phosphor-icons/core/assets/regular/cpu.svg?raw';
+import briefcase from '@phosphor-icons/core/assets/regular/briefcase.svg?raw';
+import trophy from '@phosphor-icons/core/assets/regular/trophy.svg?raw';
+import compass from '@phosphor-icons/core/assets/regular/compass.svg?raw';
+import envelope from '@phosphor-icons/core/assets/regular/envelope.svg?raw';
+import certificate from '@phosphor-icons/core/assets/regular/seal-check.svg?raw';
+import contact from '@phosphor-icons/core/assets/regular/address-book.svg?raw';
+const icons: Record<string, string> = {me:user,'study-path':student,courses:book,skills:cpu,'work-path':briefcase,participations:trophy,goal:compass,recommendations:envelope,'english-score':certificate,contact};
+const section = Astro.url.pathname.split('/')[1];
+---
+<span class="section-mark" aria-hidden="true" set:html={icons[section] ?? student} />

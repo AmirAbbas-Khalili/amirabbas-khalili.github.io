@@ -1,0 +1,68 @@
+{
+  "results": [
+    {
+      "width": 320,
+      "height": 568,
+      "scrollWidth": 320,
+      "scrollHeight": 679,
+      "image": 1585
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844,
+      "image": 1585
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "scrollWidth": 768,
+      "scrollHeight": 1024,
+      "image": 1585
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "scrollWidth": 1024,
+      "scrollHeight": 768,
+      "image": 1585
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "scrollHeight": 900,
+      "image": 1585
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "scrollHeight": 1080,
+      "image": 1585
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 529,
+      "image": 1585
+    }
+  ],
+  "routes": [
+    "/me/",
+    "/study-path/",
+    "/courses/",
+    "/skills/",
+    "/work-path/",
+    "/participations/",
+    "/goal/",
+    "/recommendations/",
+    "/english-score/",
+    "/contact/"
+  ],
+  "errors": [],
+  "keyboard": "Escape closes and restores focus",
+  "reducedMotion": "0s"
+}

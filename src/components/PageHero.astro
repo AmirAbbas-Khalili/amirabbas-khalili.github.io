@@ -1,0 +1,18 @@
+---
+import BackButton from './BackButton.astro';
+import SectionMark from './SectionMark.astro';
+import type { SectionTint } from '../data/site';
+interface Props {
+ title: string;
+ back?: { href: string; label?: string };
+ eyebrow?: string; lede?: string; sectionId?: string; tint?: SectionTint; dark?: boolean;
+}
+const { title, back } = Astro.props;
+---
+<header class="page-heading">
+ <div class="shell page-heading-inner">
+  {back && <div class="page-heading-back"><BackButton fallback={back.href} label={back.label} /></div>}
+  <div class="page-heading-row"><SectionMark /><h1>{title}</h1></div>
+  {Astro.slots.has('default') && <div class="page-heading-actions"><slot /></div>}
+ </div>
+</header>

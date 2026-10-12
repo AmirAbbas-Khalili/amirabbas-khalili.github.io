@@ -1,0 +1,44 @@
+---
+export async function getStaticPaths() {
+  const courses = (await import('astro:content')).getCollection('courses');
+  return (await courses).map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+
+import { render } from 'astro:content';
+import { courseView } from '../../data/course-content';
+
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+
+const view = courseView(entry);
+---
+
+<BaseLayout title={d.title} description={d.summary}>
+  <article>
+    <PageHero title={d.title} back={{href: '/courses/'}}>
+{!view.published && <span class="chip border-line bg-canvas text-ink-faint">Soon</span>}
+    </PageHero>
+
+    <div class="shell shell-x border-line/70 py-14">
+      <div class="reveal min-w-0 max-w-3xl" data-course-description>
+        {view.date && <div class="mb-6"><h2 class="mono-label text-ink-faint">Publication Date</h2><p class="mt-2 text-sm text-ink-mute"><time datetime={view.dateTime}>{view.date}</time></p></div>}
+        {view.links.length > 0 && <div class="mb-6"><h2 class="mono-label text-ink-faint">Video Link</h2><div class="mt-3 flex flex-wrap gap-3">{view.links.map(link => <a href={link.url} class="btn-ghost" target="_blank" rel="noopener noreferrer">{link.label}<span class="course-link-arrow" aria-hidden="true">↗</span></a>)}</div></div>}
+        <h2 class="mono-label mb-4 text-ink-faint">Description</h2>
+        <div class="prose-body min-w-0"><Content /></div>
+        {view.files.length > 0 && <div class="mt-6 flex flex-wrap gap-3">{view.files.map(file => <a href={file.url} class="btn-ghost" download>{file.label}</a>)}</div>}
+      </div>
+    </div>
+
+    <div class="shell pb-10">
+    </div>
+  </article>
+</BaseLayout>
+

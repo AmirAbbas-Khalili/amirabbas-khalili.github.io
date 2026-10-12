@@ -1,0 +1,77 @@
+---
+interface Props {
+  title: string;
+  journal?: string;
+  summary: string;
+  href: string;
+  status?: 'published' | 'coming-soon';
+  meta?: string;
+  role?: string;
+  contribution?: string;
+}
+
+const { title, journal, summary, href, status = 'coming-soon', meta, role, contribution } = Astro.props;
+const published = status === 'published';
+const HeadingWrapper = published ? 'a' : 'div';
+---
+
+<article class="article-row group/article relative" data-article-row>
+  <div class="article-row-head">
+    <HeadingWrapper href={published ? href : undefined} class="min-w-0">
+      <h3 class="article-row-title">{title}</h3>
+      {journal && <p class="article-row-journal">{journal}</p>}
+      {role && <p class="article-row-journal">{role}</p>}
+    </HeadingWrapper>
+    <div class="flex items-center gap-3">
+      {
+        status === 'coming-soon' && (
+          <span class="chip inline-flex border-line bg-canvas text-ink-faint">
+            <span class="size-1.5 rounded-full bg-aqua"></span>
+            Soon
+          </span>
+        )
+      }
+      <button
+        type="button"
+        data-article-toggle
+        aria-expanded="false"
+        aria-label={`Toggle details for ${title}`}
+        class="article-row-chevron flex size-9 shrink-0 items-center justify-center rounded-full border border-line text-ink-faint transition-colors hover:border-ink-mute hover:text-ink"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m6 9 6 6 6-6"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="article-row-body">
+    <div>
+      <div class="px-4 pb-6 sm:px-6 sm:pl-[4.5rem]">
+        {published && meta && <p class="mono-label mb-2 text-[10px] text-ink-faint">{meta}</p>}
+        <p class="max-w-2xl text-sm leading-relaxed text-ink-mute">{summary}</p>
+        {contribution && <p class="mt-3 max-w-2xl text-sm leading-relaxed text-ink-mute">{contribution}</p>}
+        {published && <a
+          href={href}
+          class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-accent transition-all duration-300 hover:gap-3"
+        >
+          Read article
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"></path>
+            <path d="m13 6 6 6-6 6"></path>
+          </svg>
+        </a>}
+      </div>
+    </div>
+  </div>
+</article>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-article-row]').forEach((row) => {
+    const toggle = row.querySelector<HTMLButtonElement>('[data-article-toggle]');
+    toggle?.addEventListener('click', () => {
+      const open = row.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  });
+</script>

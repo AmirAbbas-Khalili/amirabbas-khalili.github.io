@@ -1,0 +1,158 @@
+---
+import { MAIN_NAV, HYBRID_NAV } from '../data/site';
+import '../styles/portfolio-header.css';
+import '../styles/theme-refinement.css';
+import caret from '@phosphor-icons/core/assets/regular/caret-down.svg?raw';
+import moon from '@phosphor-icons/core/assets/regular/moon.svg?raw';
+import menu from '@phosphor-icons/core/assets/regular/list.svg?raw';
+const isPersian = Astro.url.pathname.startsWith('/fa/');
+const englishPath = Astro.url.pathname.replace(/^\/fa(?=\/)/, '');
+const isHomepage = englishPath === '/';
+const pageNav = [...MAIN_NAV];
+if (!isHomepage) {
+  const expertiseIndex = pageNav.findIndex(section => section.id === 'skills');
+  const coursesIndex = pageNav.findIndex(section => section.id === 'courses');
+  [pageNav[expertiseIndex], pageNav[coursesIndex]] = [pageNav[coursesIndex], pageNav[expertiseIndex]];
+}
+const primaryLinks = isHomepage ? [MAIN_NAV[1], { ...MAIN_NAV[3], title: 'Expertise' }] : pageNav;
+const extraLinks = isHomepage ? [MAIN_NAV[0], MAIN_NAV[2], ...HYBRID_NAV] : HYBRID_NAV;
+const isActive = (href: string) => englishPath.startsWith(href);
+---
+<div class="menu-shade" aria-hidden="true" hidden></div>
+<header class="portfolio-header">
+  <div class="portfolio-controls">
+    <div class="language-switch" role="group" aria-label="Language" data-language-target={isPersian ? englishPath : "/fa" + englishPath}>
+      <a class:list={["language-option", isPersian && "is-selected"]} href={isPersian ? englishPath : "/fa" + englishPath} data-language="fa" aria-current={isPersian ? "true" : undefined} aria-label="فارسی" lang="fa">فا</a>
+      <a class:list={["language-option", !isPersian && "is-selected"]} href={isPersian ? englishPath : "/fa" + englishPath} data-language="en" aria-current={!isPersian ? "true" : undefined} aria-label="انگلیسی" lang="en">EN</a>
+    </div>
+    <button type="button" class="theme-switch" role="switch" aria-checked="false" aria-label="Night mode">
+      <span class="ph-icon" aria-hidden="true" set:html={moon} />
+      <span class="mode-track" aria-hidden="true"><span class="mode-thumb"></span></span>
+    </button>
+    {!isHomepage && <a class="controls-brand" href="/" aria-label="Amir Khalili, home">Amir Khalili</a>}
+  </div>
+  <nav class="portfolio-selection" aria-label="Main navigation">
+    <div class="portfolio-links">
+      {primaryLinks.map(section => <a href={section.href} aria-current={isActive(section.href) ? 'page' : undefined}>{section.title}</a>)}
+      <details class="dropdown more-navigation">
+        <summary>More <span class="ph-icon" aria-hidden="true" set:html={caret} /></summary>
+        <div class="dropdown-panel">{extraLinks.map(section => <a href={section.href} aria-current={isActive(section.href) ? 'page' : undefined}>{section.title}</a>)}</div>
+      </details>
+    </div>
+    <details class="dropdown mobile-navigation">
+      <summary aria-label="Menu: open navigation"><span class="ph-icon" aria-hidden="true" set:html={menu} /><span>Menu</span></summary>
+      <div class="dropdown-panel">{[...pageNav, ...HYBRID_NAV].map(section => <a href={section.href} aria-current={isActive(section.href) ? 'page' : undefined}>{section.title}</a>)}</div>
+    </details>
+  </nav>
+</header>
+<script is:inline>
+  try { document.documentElement.dataset.theme = localStorage.getItem('amir-theme') === 'dark' ? 'dark' : 'light'; } catch { document.documentElement.dataset.theme = 'light'; }
+</script>
+<script>
+  document.querySelector<HTMLElement>('.language-switch')?.addEventListener('click', event => {
+    const target = event.target as Element;
+    if (target.closest('a')) return;
+    const switcher = event.currentTarget as HTMLElement;
+    if (switcher.dataset.languageTarget) window.location.assign(switcher.dataset.languageTarget);
+  });
+  const themeSwitch = document.querySelector<HTMLButtonElement>('.theme-switch');
+  const syncTheme = () => themeSwitch?.setAttribute('aria-checked', String(document.documentElement.dataset.theme === 'dark'));
+  syncTheme();
+  themeSwitch?.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('amir-theme', next); } catch {}
+    syncTheme();
+  });
+      const dropdowns = [...document.querySelectorAll<HTMLDetailsElement>('details.dropdown')];
+      const menuShade = document.querySelector<HTMLElement>('.menu-shade');
+      const compactScreen = window.matchMedia('(max-width: 1000px)');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const animations = new Map<HTMLDetailsElement, Animation>();
+      const updateMenuShade = () => {
+        const open = dropdowns.some(dropdown => dropdown.querySelector('summary')?.getAttribute('aria-expanded') === 'true');
+        if (menuShade) menuShade.hidden = !(compactScreen.matches && open);
+        if (open) document.dispatchEvent(new Event('portfolio-menu-open'));
+
+      };
+      const setDropdown = (dropdown: HTMLDetailsElement, open: boolean) => {
+        const panel = dropdown.querySelector<HTMLElement>('.dropdown-panel');
+        if (!panel) return;
+        const previous = animations.get(dropdown);
+        const current = previous ? { opacity: getComputedStyle(panel).opacity, transform: getComputedStyle(panel).transform } : null;
+        previous?.cancel();
+        animations.delete(dropdown);
+        dropdown.querySelector('summary')?.setAttribute('aria-expanded', String(open));
+        panel.inert = !open;
+        if (open) {
+          dropdowns.forEach(other => { if (other !== dropdown && other.open) setDropdown(other, false); });
+          dropdown.open = true;
+        } else if (!dropdown.open) return;
+        if (reducedMotion.matches) { dropdown.open = open; updateMenuShade(); return; }
+        const shown = { opacity: '1', transform: 'translateY(0) scale(1)' };
+        const hidden = { opacity: '0', transform: 'translateY(-5px) scale(.985)' };
+        const animation = panel.animate([current ?? (open ? hidden : shown), open ? shown : hidden], {
+          duration: open ? 250 : 140,
+          easing: 'cubic-bezier(.22,.61,.36,1)',
+          fill: 'forwards',
+        });
+        animations.set(dropdown, animation);
+        updateMenuShade();
+        animation.finished.then(() => {
+          if (animations.get(dropdown) !== animation) return;
+          dropdown.open = open;
+          animations.delete(dropdown);
+          animation.cancel();
+          updateMenuShade();
+        }).catch(() => {});
+      };
+      dropdowns.forEach(dropdown => {
+        dropdown.querySelector('summary')?.setAttribute('aria-expanded', 'false');
+        const panel = dropdown.querySelector<HTMLElement>('.dropdown-panel');
+        if (panel) panel.inert = true;
+      });
+      compactScreen.addEventListener('change', updateMenuShade);
+      const more = document.querySelector<HTMLDetailsElement>('.more-navigation');
+      const hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)');
+      let hoverOpened = false;
+      let pinned = false;
+      let hoverTimer: ReturnType<typeof setTimeout>;
+      more?.addEventListener('pointerenter', () => {
+        if (!hoverCapable.matches) return;
+        clearTimeout(hoverTimer);
+        if (!more.open || more.querySelector('summary')?.getAttribute('aria-expanded') === 'false') {
+          setDropdown(more, true); hoverOpened = true;
+        }
+      });
+      more?.addEventListener('pointerleave', () => {
+        if (!hoverCapable.matches) return;
+        hoverTimer = setTimeout(() => {
+          if (!pinned && !more.contains(document.activeElement)) { setDropdown(more, false); hoverOpened = false; }
+        }, 180);
+      });
+      dropdowns.forEach(dropdown => dropdown.querySelector('summary')?.addEventListener('click', event => {
+        event.preventDefault();
+        clearTimeout(hoverTimer);
+        if (dropdown === more && hoverOpened && !pinned) { pinned = true; hoverOpened = false; return; }
+        const open = dropdown.querySelector('summary')?.getAttribute('aria-expanded') !== 'true';
+        if (dropdown === more) { pinned = open; hoverOpened = false; }
+        setDropdown(dropdown, open);
+      }));
+      const closeMenus = () => {
+        pinned = false; hoverOpened = false; clearTimeout(hoverTimer);
+        dropdowns.forEach(dropdown => setDropdown(dropdown, false));
+      };
+      document.addEventListener('click', event => {
+        if (!dropdowns.some(dropdown => dropdown.contains(event.target as Node))) closeMenus();
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key !== 'Escape') return;
+        const active = dropdowns.find(dropdown => dropdown.open);
+        closeMenus();
+        active?.querySelector('summary')?.focus();
+      });
+
+</script>
+
+
+

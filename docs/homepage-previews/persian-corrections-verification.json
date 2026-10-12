@@ -1,0 +1,19 @@
+{
+  "checks": [
+    "original contact values",
+    "English copyright, credit and CV links",
+    "فرامواد",
+    "article alignment and original identifier",
+    "original software names",
+    "course arrows",
+    "photography studio experience",
+    "association wording",
+    "recommendation titles",
+    "homepage description",
+    "either language label always toggles",
+    "language switch edge toggles",
+    "footer name"
+  ],
+  "failures": [],
+  "errors": []
+}

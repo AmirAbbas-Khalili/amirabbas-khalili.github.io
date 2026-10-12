@@ -1,0 +1,112 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/space-grotesk';
+import '../styles/global.css';
+
+import SiteFooter from '../components/SiteFooter.astro';
+import DaylightHeader from '../components/DaylightHeader.astro';
+import '../styles/portfolio-theme.css';
+import '../styles/spectrum-theme.css';
+import { getSectionTheme } from '../data/spectrum-theme';
+
+interface Props {
+  title?: string;
+  description?: string;
+  theme?: 'original' | 'daylight-me';
+  pageClass?: string;
+}
+
+const {
+  title,
+  theme = 'original',
+  pageClass = '',
+  description = 'Personal academic portfolio — study path, research, engineering practice, and goals on the road to doctoral study.',
+} = Astro.props;
+
+const pageTitle = title ? `${title} · Amir` : 'Amir — Academic Portfolio';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <script is:inline>document.documentElement.classList.add('js');try{document.documentElement.dataset.theme=localStorage.getItem('amir-theme')==='dark'?'dark':'light';}catch{document.documentElement.dataset.theme='light';}</script>
+  </head>
+<body class:list={['site-interior', 'spectrum-theme', theme === 'daylight-me' ? 'me-page' : 'portfolio-page', pageClass]} data-section={Astro.url.pathname.replace(/^\/fa(?=\/)/, '').split('/')[1]} style={getSectionTheme(Astro.url.pathname)}>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-canvas"
+    >
+      Skip to content
+    </a>
+
+    <DaylightHeader />
+
+    <main id="main" class="pt-16">
+      <slot />
+    </main>
+
+    <SiteFooter />
+
+    <script>
+      const revealables = document.querySelectorAll('.reveal, .reveal-stagger');
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.1, rootMargin: '0px 0px -5% 0px' }
+        );
+        revealables.forEach((el) => io.observe(el));
+      } else {
+        revealables.forEach((el) => el.classList.add('is-visible'));
+      }
+
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (!reduced.matches) {
+        const parallaxEls = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax]'));
+        if (parallaxEls.length > 0) {
+          let ticking = false;
+          const update = () => {
+            ticking = false;
+            const vh = window.innerHeight;
+            for (const el of parallaxEls) {
+              const rect = el.getBoundingClientRect();
+              if (rect.bottom < 0 || rect.top > vh) continue;
+              const speed = parseFloat(el.dataset.parallax ?? '0.1');
+              const centerDelta = rect.top + rect.height / 2 - vh / 2;
+              const shift = Math.max(-60, Math.min(60, centerDelta * speed));
+              el.style.transform = `translate3d(0, ${shift.toFixed(1)}px, 0)`;
+            }
+          };
+          const onScroll = () => {
+            if (!ticking) {
+              ticking = true;
+              requestAnimationFrame(update);
+            }
+          };
+          window.addEventListener('scroll', onScroll, { passive: true });
+          window.addEventListener('resize', onScroll);
+          update();
+        }
+      }
+    </script>
+  </body>
+</html>
+
+
+
+

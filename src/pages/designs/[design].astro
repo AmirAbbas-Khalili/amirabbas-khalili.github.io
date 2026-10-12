@@ -1,0 +1,9 @@
+---
+import Homepage from '../../components/homepage/Homepage.astro';
+import { HOMEPAGE_DESIGNS } from '../../data/homepage-designs';
+export function getStaticPaths() {
+  return HOMEPAGE_DESIGNS.map((design) => ({ params: { design: design.id }, props: { design: design.id } }));
+}
+const { design } = Astro.props;
+---
+<Homepage design={design} />

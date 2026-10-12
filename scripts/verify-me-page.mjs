@@ -1,0 +1,16 @@
+import {createRequire} from 'node:module';
+import fs from 'node:fs';
+const require=createRequire('C:/Users/Amir/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/package.json');const {chromium}=require('playwright');const browser=await chromium.launch({headless:true,channel:'msedge'});const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));const sizes=[];
+for(const [width,height] of [[320,568],[390,844],[768,1024],[1024,768],[1440,900]]){
+ await page.setViewportSize({width,height});await page.goto('http://127.0.0.1:4322/me/',{waitUntil:'networkidle'});await page.evaluate(()=>document.fonts.ready);
+ if(!await page.locator('body').evaluate(el=>el.classList.contains('me-page')))throw Error('Theme not applied');
+ const metric=await page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,headings:[...document.querySelectorAll('main h1,main h2,main h3')].map(el=>el.textContent),font:getComputedStyle(document.querySelector('h1')).fontFamily}));if(metric.scrollWidth>width)throw Error('Overflow '+width);if(JSON.stringify(metric.headings)!==JSON.stringify(['Me','Past','Present','Goal','Curriculum Vitae']))throw Error('Hierarchy changed');sizes.push(metric);
+ if(width===1440||width===390)await page.screenshot({path:`docs/homepage-previews/me-checkpoint-1-${width}.png`,fullPage:true});
+ if(await page.locator('.me-cv button:disabled').count()!==2)throw Error('CV controls incorrect');
+ if(width<=900){const before=await page.locator('.me-intro').boundingBox();await page.locator('.mobile-navigation summary').click();await page.waitForTimeout(350);if(await page.locator('.mobile-navigation a').count()!==10)throw Error('Navigation missing');if(Math.abs(before.y-(await page.locator('.me-intro').boundingBox()).y)>1)throw Error('Menu shifts content');if(!await page.locator('.menu-shade').isVisible())throw Error('Menu shade missing');await page.keyboard.press('Escape');await page.waitForTimeout(300);}
+}
+await page.locator('.more-navigation summary').click();await page.waitForTimeout(350);if(await page.locator('.more-navigation a[aria-current="page"]').textContent()!=='Me')throw Error('Active page marker');await page.keyboard.press('Escape');await page.waitForTimeout(300);
+if(await page.locator('.home-brand').getAttribute('href')!=='/')throw Error('Home link');if((await page.request.get('http://127.0.0.1:4322/goal/')).status()!==200)throw Error('Goal link');
+await page.goto('http://127.0.0.1:4322/courses/',{waitUntil:'networkidle'});if(await page.locator('body').evaluate(el=>el.classList.contains('me-page')))throw Error('Theme leaked');if(await page.locator('header.fixed').count()!==1)throw Error('Original navigation changed');
+await page.goto('http://127.0.0.1:4322/',{waitUntil:'networkidle'});if(!await page.locator('.bridge-background').count())throw Error('Homepage changed');
+if(errors.length)throw Error(errors.join('\n'));fs.writeFileSync('docs/homepage-previews/me-checkpoint-1-verification.json',JSON.stringify({sizes,contentHierarchy:'preserved',navigation:'passed',scope:'Me only; original other-page theme preserved',errors},null,2));console.log('Me hierarchy, five responsive sizes, navigation and scoped-theme checks passed');await browser.close();

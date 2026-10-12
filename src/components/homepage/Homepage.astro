@@ -1,0 +1,115 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/geist';
+import '@fontsource-variable/jetbrains-mono';
+import '@fontsource-variable/playfair-display';
+import '../../styles/global.css';
+import '../../styles/homepage.css';
+import { MAIN_NAV, HYBRID_NAV, SECTIONS } from '../../data/site';
+import { HOMEPAGE_DESIGNS, type HomepageDesign } from '../../data/homepage-designs';
+interface Props { design?: HomepageDesign; }
+const { design = 'flowops' } = Astro.props;
+const selected = HOMEPAGE_DESIGNS.find((d) => d.id === design)!;
+const idx = HOMEPAGE_DESIGNS.findIndex((d) => d.id === design);
+const previous = HOMEPAGE_DESIGNS[(idx + 4) % 5];
+const next = HOMEPAGE_DESIGNS[(idx + 1) % 5];
+const primaryLinks = [
+  { title: 'Study Path', href: '/study-path/', description: 'Education, thesis, and articles' },
+  { title: 'Courses', href: '/courses/', description: 'Technical learning and resources' },
+  { title: 'Work Path', href: '/work-path/', description: 'Teaching and engineering experience' },
+  { title: 'Contact', href: '/contact/', description: 'Ways to get in touch' },
+];
+const supportingLinks = HYBRID_NAV.filter((s) => !['work-path', 'contact'].includes(s.id));
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Amir | Academic Portfolio | {selected.name}</title>
+    <meta name="description" content="Amir's academic portfolio. Mechanical and civil engineering, education, research, and experience." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta property="og:title" content="Amir | Mechanical & Civil Engineering" />
+    <meta property="og:description" content="Education, research, and engineering experience." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" as="image" href="/images/bridge-daylight.webp" />
+  </head>
+  <body class={`homepage hp-${design}`} style={`--hp-font: '${selected.font}'`}>
+    <a class="hp-skip" href="#main">Skip to content</a>
+    <div class="hp-comparison" aria-label="Compare homepage designs">
+      <div class="hp-comparison-inner">
+        <label for="design-choice">Homepage options</label>
+        <select id="design-choice" aria-label="Choose a homepage design">
+          {HOMEPAGE_DESIGNS.map((d) => <option value={`/designs/${d.id}/`} selected={d.id === design}>{d.name}</option>)}
+        </select>
+        <div class="hp-compare-arrows">
+          <a href={`/designs/${previous.id}/`} aria-label={`Previous design: ${previous.name}`}>←</a>
+          <a href={`/designs/${next.id}/`} aria-label={`Next design: ${next.name}`}>→</a>
+        </div>
+      </div>
+      <noscript><nav aria-label="Homepage options">{HOMEPAGE_DESIGNS.map((d) => <a href={`/designs/${d.id}/`}>{d.name}</a>)}</nav></noscript>
+    </div>
+    <div class="hp-scene">
+      <header class="hp-header">
+        <a class="hp-brand" href="/" aria-label="Amir Khalili, homepage">Amir Khalili</a>
+        <nav class="hp-desktop-nav" aria-label="Primary">
+          {MAIN_NAV.map((s) => <a href={s.href}>{s.title}</a>)}
+          <details class="hp-more">
+            <summary>More <span aria-hidden="true">⌄</span></summary>
+            <nav class="hp-dropdown" aria-label="More sections">{HYBRID_NAV.map((s) => <a href={s.href}>{s.title}</a>)}</nav>
+          </details>
+        </nav>
+        <span class="hp-language" aria-label="Current language: English">EN</span>
+        <details class="hp-mobile-nav">
+          <summary>Menu <span aria-hidden="true">☰</span></summary>
+          <nav class="hp-dropdown" aria-label="All sections">{SECTIONS.map((s) => <a href={s.href}>{s.title}</a>)}</nav>
+        </details>
+      </header>
+      <main id="main">
+        <section class="hp-hero" aria-labelledby="hero-title">
+          <div class="hp-hero-copy">
+            <p class="hp-eyebrow">Amir / Mechanical & Civil Engineer</p>
+            <h1 id="hero-title">Engineering, research,<br class="hp-desktop-break" /> and the next chapter.</h1>
+            <p class="hp-lede">My education, research, and engineering experience, brought together as I prepare for doctoral study.</p>
+            <div class="hp-actions">
+              <a class="hp-button hp-primary" href="/study-path/">Explore my work <span aria-hidden="true">↗</span></a>
+              <a class="hp-button hp-secondary" href="/me/">About me & CV</a>
+            </div>
+          </div>
+          <div class="hp-photo" aria-hidden="true"><img src="/images/bridge-daylight.webp" alt="" width="1586" height="992" fetchpriority="high" decoding="async" /></div>
+          <nav class="hp-quicklinks" aria-label="Explore my portfolio">
+            {primaryLinks.map((s) => <a href={s.href}><span>{s.title}</span><span class="hp-link-description">{s.description}</span><span class="hp-link-arrow" aria-hidden="true">↗</span></a>)}
+          </nav>
+        </section>
+        <section class="hp-directory" aria-labelledby="directory-title">
+          <div class="hp-directory-heading"><h2 id="directory-title">A closer look.</h2><p>Background, tools, and the direction ahead.</p></div>
+          <div class="hp-directory-content">
+            <a class="hp-feature-link" href="/skills/"><span class="hp-link-title">Expertise <span aria-hidden="true">↗</span></span><p>Explore the tools and methods behind my work.</p></a>
+            <nav class="hp-supporting-links" aria-label="Additional portfolio sections">{supportingLinks.map((s) => <a href={s.href}><span>{s.title}</span><span aria-hidden="true">↗</span></a>)}</nav>
+          </div>
+        </section>
+      </main>
+      <footer class="hp-footer"><a href="/">Amir Khalili</a><span>Academic portfolio</span></footer>
+    </div>
+    <script>
+      const chooser = document.querySelector<HTMLSelectElement>('#design-choice');
+      chooser?.addEventListener('change', () => { window.location.assign(chooser.value); });
+      const menus = Array.from(document.querySelectorAll<HTMLDetailsElement>('.hp-more, .hp-mobile-nav'));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          const openMenu = menus.find((menu) => menu.open);
+          if (openMenu) { openMenu.open = false; openMenu.querySelector<HTMLElement>('summary')?.focus(); }
+        }
+      });
+      document.addEventListener('click', (event) => {
+        for (const menu of menus) if (event.target instanceof Node && !menu.contains(event.target)) menu.open = false;
+      });
+      for (const menu of menus) {
+        menu.addEventListener('toggle', () => { if (menu.open) for (const other of menus) if (other !== menu) other.open = false; });
+        menu.addEventListener('focusout', (event) => { if (event.relatedTarget instanceof Node && !menu.contains(event.relatedTarget)) menu.open = false; });
+      }
+    </script>
+  </body>
+</html>

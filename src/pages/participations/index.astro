@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import ExperienceGallery from '../../components/ExperienceGallery.astro';
+const sections = (await getCollection('participations')).sort((a,b) => a.data.order - b.data.order).map(entry => ({
+  id: entry.id,
+  title: entry.data.title,
+  description: entry.data.summary,
+  showGallery: entry.data.showGallery,
+  subItems: entry.data.subItems,
+  files: entry.data.files,
+  photos: entry.data.images.map((src,index) => ({src, thumbnail:src, alt:`${entry.data.title}, image ${index+1}`})),
+}));
+---
+<BaseLayout title="Participations">
+  <PageHero sectionId="participations" title="Participations" />
+  <ExperienceGallery sections={sections} alternate={false} dividers />
+</BaseLayout>

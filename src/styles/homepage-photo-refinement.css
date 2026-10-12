@@ -1,0 +1,117 @@
+/* Photo presentation only: retain the existing homepage composition. */
+html[data-theme] body.spectrum-theme.bridge-page .bridge-background {
+  background: none;
+  overflow: hidden;
+  pointer-events: none;
+  filter: none;
+}
+.harbour-frame {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: #76ade0;
+  transition: opacity 850ms cubic-bezier(.4,0,.2,1);
+}
+.harbour-frame--dark { background: #062351; }
+html[data-harbour-theme="light"] .harbour-frame--light,
+.harbour-frame--light[data-loaded="true"] { --harbour-photo: url('/images/harbour-sparse-clouds.webp'); }
+html[data-harbour-theme="dark"] .harbour-frame--dark,
+.harbour-frame--dark[data-loaded="true"] { --harbour-photo: url('/images/harbour-night-high-stars.webp'); }
+html[data-harbour-theme="light"] .harbour-frame--light,
+html[data-harbour-theme="dark"] .harbour-frame--dark { opacity: 1; }
+/* Extend only the sky, leaving room for a modestly wider harbour view. */
+.harbour-frame::before {
+  content: '';
+  position: absolute;
+  inset: -14px;
+  background: var(--harbour-photo) center / cover no-repeat;
+  filter: none;
+  mask-image: linear-gradient(#000 0%, #000 18%, transparent 45%);
+}
+.harbour-scene {
+  position: absolute;
+  inset: 8% 0 0;
+  background: var(--harbour-photo) center / cover no-repeat;
+  mask-image: linear-gradient(transparent, #000 12%, #000);
+}
+/* Match the arch/horizon more closely across the two supplied photographs. */
+.harbour-frame--dark .harbour-scene { transform: translate(.8%, 2%) scale(1.025); }
+html[data-theme] body.spectrum-theme.bridge-page::before { background: none; }
+html[data-theme] body.spectrum-theme.bridge-page .hero::before { content: none; }
+html[data-theme] body.spectrum-theme.bridge-page h1 { font-size: clamp(46px, 5.3vw, 76px); }
+html[data-theme] body.spectrum-theme.bridge-page .hero-headline { font-size: clamp(25px, 2.65vw, 36px); }
+html[data-theme] body.spectrum-theme.bridge-page .hero-description { color: #20252b; }
+html[data-theme="dark"] body.spectrum-theme.bridge-page .hero-description { color: #eef0f2; }
+/* Neutral, more opaque surfaces separate controls from clouds and reflections. */
+html[data-theme] body.spectrum-theme.bridge-page {
+  --header-surface: #ffffff;
+  --header-panel: #ffffff;
+  --header-line: #a5a5a5;
+  --header-muted: #303030;
+  --header-ink: #171717;
+  --header-hover: #ededed;
+}
+html[data-theme="dark"] body.spectrum-theme.bridge-page {
+  --header-surface: #292929;
+  --header-panel: #292929;
+  --header-line: #777777;
+  --header-muted: #ededed;
+  --header-ink: #fafafa;
+  --header-hover: #373737;
+}
+html[data-theme] body.spectrum-theme.bridge-page :is(.portfolio-selection,.language-switch,.glass) {
+  background: var(--header-surface);
+  border-color: var(--header-line);
+  color: var(--header-ink);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .12);
+  transition: background-color 650ms ease, border-color 650ms ease, color 650ms ease;
+}
+html[data-theme] body.spectrum-theme.bridge-page .shortcut-dock button:disabled { color: var(--header-muted); }
+html[data-theme] body.spectrum-theme.bridge-page .shortcut-dock :is(.youtube-link,.contact-trigger) { color: var(--header-ink); }
+html[data-theme] body.spectrum-theme.bridge-page .shortcut-dock :is(a,button:not(:disabled)):hover,
+html[data-theme] body.spectrum-theme.bridge-page .orbit-button:is(:hover,:focus-visible) { background: var(--header-hover); }
+html[data-theme] body.spectrum-theme.bridge-page .primary {
+  background: #085b75;
+  border-color: #085b75;
+  color: #ffffff;
+}
+html[data-theme] body.spectrum-theme.bridge-page .primary:hover { background: #074b61; border-color: #074b61; }
+html[data-theme] body.spectrum-theme.bridge-page :is(h1,.hero-headline,.hero-description,.action) {
+  transition: color 650ms ease, background-color 650ms ease, border-color 650ms ease;
+}
+@media (max-width: 760px) {
+  .harbour-scene { background-position: 42% center; }
+}
+html[data-theme] body.spectrum-theme.bridge-page .hero-description { font-size: 13px; }
+@media (max-width: 420px) {
+  html[data-theme] body.spectrum-theme.bridge-page .hero-headline { font-size: 25px; }
+  html[data-theme] body.spectrum-theme.bridge-page .hero-description { font-size: 12px; }
+}
+@media (min-width: 901px) and (max-width: 1200px) {
+  html[data-theme] body.spectrum-theme.bridge-page .hero-headline { font-size: 30px; }
+}
+@media (max-height: 720px) and (min-width: 761px) {
+  html[data-theme] body.spectrum-theme.bridge-page h1 { font-size: 51px; }
+  html[data-theme] body.spectrum-theme.bridge-page .hero-headline { font-size: 30px; }
+}
+@media (max-height: 500px) {
+  html[data-theme] body.spectrum-theme.bridge-page h1 { font-size: 40px; }
+  html[data-theme] body.spectrum-theme.bridge-page .hero-headline { font-size: 25px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .harbour-frame,
+  html[data-theme] body.spectrum-theme.bridge-page :is(.hero::before,h1,.hero-headline,.hero-description,.action,.portfolio-selection,.language-switch,.glass) { transition: none; }
+}
+
+
+/* Both harbour photos remain sharp, with no persistent sky blur. */
+
+/* Homepage navigation and shortcut bars use the opposite theme surfaces. */
+html[data-theme] body.spectrum-theme.bridge-page :is(.portfolio-selection,.shortcut-dock,.orbit-button){
+  --header-surface:#292929;--header-panel:#292929;--header-line:#777777;
+  --header-muted:#ededed;--header-ink:#fafafa;--header-hover:#373737;
+}
+html[data-theme="dark"] body.spectrum-theme.bridge-page :is(.portfolio-selection,.shortcut-dock,.orbit-button){
+  --header-surface:#ffffff;--header-panel:#ffffff;--header-line:#a5a5a5;
+  --header-muted:#303030;--header-ink:#171717;--header-hover:#ededed;
+}

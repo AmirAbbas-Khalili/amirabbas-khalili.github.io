@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+
+const toeflParts = [
+  { label: 'Reading', value: '28' },
+  { label: 'Listening', value: '28' },
+  { label: 'Speaking', value: '20' },
+  { label: 'Writing', value: '23' },
+];
+---
+
+<BaseLayout title="English Score">
+  <PageHero
+    sectionId="english-score"
+    tint="blue"
+    eyebrow="Language proficiency"
+    title="English Score"
+    lede="Certification results and supporting documents."
+  />
+
+  <div class="shell shell-x border-line/70">
+    <div class="grid gap-4 py-14 lg:py-16">
+      <article class="reveal card-base overflow-hidden">
+        <div class="px-7 pt-8 pb-9 text-center sm:px-8 sm:pb-10">
+          <div class="flex items-start justify-between">
+            <div class="flex items-center gap-3 text-left">
+              <span class="h-10 w-1 rounded-full bg-accent" aria-hidden="true"></span>
+              <div>
+                <p class="mono-label text-[10px] text-ink-faint">English Score</p>
+                <h2 class="mt-1 font-display text-xl font-semibold tracking-tight">TOEFL</h2>
+              </div>
+            </div>
+            <span class="chip border-line bg-canvas text-ink-faint">
+              <span class="size-1.5 rounded-full bg-aqua"></span>
+              Completed
+            </span>
+          </div>
+
+          <p class="mono-label mt-9 text-[10px] text-ink-faint">Overall Score</p>
+          <p class="gradient-text mt-3 font-display text-7xl font-semibold tracking-tight sm:text-8xl">99</p>
+          <p class="mt-2 text-xs text-ink-faint">out of 120</p>
+          <p class="mt-4 text-sm text-ink-mute">Test date: <time datetime="2022-09-25">September 25, 2022</time></p>
+        </div>
+
+        <div class="border-t border-line/70">
+          <dl class="grid grid-cols-2 gap-px bg-line/50 sm:grid-cols-4">
+            {
+              toeflParts.map((part) => (
+                <div class="bg-surface px-4 py-6 text-center transition-colors hover:bg-canvas">
+                  <dt class="mono-label text-[10px] text-ink-faint">{part.label}</dt>
+                  <dd class="mt-2 font-display text-2xl font-semibold tracking-tight text-ink-mute">
+                    {part.value}
+                  </dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+      </article>
+
+      <article class="reveal card-base overflow-hidden">
+        <div class="flex flex-wrap items-center justify-between gap-4 px-7 py-6 sm:px-8">
+          <div class="flex items-center gap-3">
+            <span class="h-10 w-1 rounded-full bg-aqua" aria-hidden="true"></span>
+            <div>
+              <p class="mono-label text-[10px] text-ink-faint">English Score</p>
+              <h2 class="mt-1 font-display text-xl font-semibold tracking-tight">TTC · Teacher Training Course</h2>
+            </div>
+          </div>
+          <span class="chip border-line bg-canvas text-ink-faint">
+            <span class="size-1.5 rounded-full bg-aqua"></span>
+            Completed
+          </span>
+        </div>
+        <div class="border-t border-line/70">
+          <div class="bg-surface px-4 py-6 text-center">
+            <p class="mono-label text-[10px] text-ink-faint">Result</p>
+            <p class="mt-2 font-display text-2xl font-semibold tracking-tight text-ink-mute">Excellent</p>
+            <p class="mt-3 text-sm text-ink-faint">Completed in <time datetime="2024">2024</time></p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</BaseLayout>
