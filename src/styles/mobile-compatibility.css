@@ -1,0 +1,44 @@
+/* Narrow phones and Safari 15: preserve layout without relying on newer CSS. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body.site-interior main, body.site-interior .shell, .work-copy, .work-media,
+.recommendation-slot, .recommendation-slot dd { min-width: 0; }
+body.site-interior :is(p, dd, a, h2, h3) { overflow-wrap: break-word; }
+body.site-interior :is(img, video) { max-width: 100%; }
+/* The CV shares the same dark surface and readable text as the other shortcuts. */
+html[data-theme="dark"] body.spectrum-theme.bridge-page .shortcut-dock .cv-download {
+  color: #e3dfdb;
+}
+@supports not (height: 100dvh) {
+  .bridge-page { min-height: 100vh; }
+  .portfolio-header .dropdown-panel { max-height: calc(100vh - 120px); }
+  .work-lightbox { max-height: calc(100vh - 40px); }
+  .work-lightbox figure img { height: min(68vh, 720px); }
+  .article-lightbox { height: calc(100vh - 16px); max-height: calc(100vh - 16px); }
+  .thesis-detail { max-height: calc(100vh - 48px); }
+  .thesis-photo-dialog { max-height: calc(100vh - 32px); }
+  .thesis-photo-view img { height: 65vh; }
+}
+@supports not (grid-template-rows: subgrid) {
+  .recommendation-slot { grid-row: auto; grid-template-rows: auto; align-content: start; }
+  .recommendation-slot dl { grid-row: auto; grid-template-rows: auto; gap: 14px; }
+}
+@supports not (color: color-mix(in srgb, black, white)) {
+  html[data-theme] body.spectrum-theme[style] {
+    --section-accent: var(--section-accent-fallback);
+    --section-wash: var(--section-wash-fallback);
+  }
+  html[data-theme="dark"] body.spectrum-theme[style] {
+    --section-accent: var(--section-soft);
+    --section-wash: var(--section-wash-dark-fallback);
+  }
+  html[data-theme] body.site-interior > footer { background: var(--color-canvas); }
+  .work-sections-divided > .work-section + .work-section::before { background: var(--color-line); }
+  html[data-theme] body.site-interior .btn-primary:hover { background: var(--section-accent); }
+  html[data-theme] body.spectrum-theme.site-interior .page-heading { border-bottom-color: var(--color-line); }
+}
+@media (max-width: 420px) {
+  .portfolio-header .portfolio-selection { min-width: 0; }
+  .portfolio-header .portfolio-controls { max-width: 100%; }
+  .bridge-page .shortcut-dock { max-width: 100%; }
+  .thesis-gallery-heading { flex-wrap: wrap; }
+}

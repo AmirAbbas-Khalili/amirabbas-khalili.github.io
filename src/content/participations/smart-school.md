@@ -4,8 +4,8 @@ summary: "Third place in the first Future Building Competition, organized by the
 order: 1
 status: published
 images:
-  - /images/participations/smart-school-1.png
-  - /images/participations/smart-school-2.jpg
-  - /images/participations/smart-school-design-main.png
-  - /images/participations/smart-school-design-systems.png
+  - /images/optimized/smart-school-1-7b5db35e9c.webp
+  - /images/optimized/smart-school-2-bb8273580c.webp
+  - /images/optimized/smart-school-design-main-ef055d1e60.webp
+  - /images/optimized/smart-school-design-systems-f94fe45054.webp
 ---

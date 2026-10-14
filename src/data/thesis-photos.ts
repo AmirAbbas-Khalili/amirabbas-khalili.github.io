@@ -16,7 +16,7 @@ export const THESIS_PHOTOS = [
   },
   {
     "label": "3D Lattice",
-    "src": "/images/thesis/3d-lattice-1.webp",
+    "src": "/images/optimized/3d-lattice-1-0f1db5cb2d.webp",
     "thumbnail": "/images/thesis/3d-lattice-1-thumb.webp"
   },
   {
@@ -31,7 +31,7 @@ export const THESIS_PHOTOS = [
   },
   {
     "label": "3D Lattice",
-    "src": "/images/thesis/3d-lattice-4.webp",
+    "src": "/images/optimized/3d-lattice-4-445e3f9562.webp",
     "thumbnail": "/images/thesis/3d-lattice-4-thumb.webp"
   },
   {
@@ -56,7 +56,7 @@ export const THESIS_PHOTOS = [
   },
   {
     "label": "Validation",
-    "src": "/images/thesis/validation-6.webp",
+    "src": "/images/optimized/validation-6-194bd651d9.webp",
     "thumbnail": "/images/thesis/validation-6-thumb.webp"
   }
 ];

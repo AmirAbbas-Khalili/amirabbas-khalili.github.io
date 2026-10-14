@@ -13,7 +13,7 @@ const syncPhoto = async () => {
   const frame = background?.querySelector<HTMLElement>(`.harbour-frame--${theme}`);
   if (!background || !frame) return;
   const image = new Image();
-  image.src = theme === 'dark' ? '/images/harbour-night-high-stars.webp' : '/images/harbour-sparse-clouds.webp';
+  image.src = theme === 'dark' ? '/images/harbour-night-high-stars.webp' : '/images/optimized/harbour-sparse-clouds-2bdffd4a38.webp';
   try { await image.decode(); } catch { return; }
   if (currentRequest !== request) return;
   frame.dataset.loaded = 'true';

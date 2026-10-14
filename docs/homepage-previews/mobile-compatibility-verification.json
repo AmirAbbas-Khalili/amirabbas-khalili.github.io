@@ -1,0 +1,94 @@
+{
+  "cases": 1200,
+  "routes": 40,
+  "failures": [],
+  "cv": [
+    {
+      "mode": "webkit",
+      "route": "/fa/",
+      "theme": "light",
+      "color": "rgb(250, 250, 250)",
+      "bg": "rgb(41, 41, 41)"
+    },
+    {
+      "mode": "webkit",
+      "route": "/fa/",
+      "theme": "dark",
+      "color": "rgb(227, 223, 219)",
+      "bg": "rgba(28, 29, 34, 0.93)"
+    },
+    {
+      "mode": "webkit",
+      "route": "/",
+      "theme": "light",
+      "color": "rgb(250, 250, 250)",
+      "bg": "rgb(41, 41, 41)"
+    },
+    {
+      "mode": "webkit",
+      "route": "/",
+      "theme": "dark",
+      "color": "rgb(227, 223, 219)",
+      "bg": "rgba(28, 29, 34, 0.93)"
+    },
+    {
+      "mode": "safari15-css-fallback",
+      "route": "/fa/",
+      "theme": "light",
+      "color": "rgb(250, 250, 250)",
+      "bg": "rgb(41, 41, 41)"
+    },
+    {
+      "mode": "safari15-css-fallback",
+      "route": "/fa/",
+      "theme": "dark",
+      "color": "rgb(227, 223, 219)",
+      "bg": "rgba(28, 29, 34, 0.93)"
+    },
+    {
+      "mode": "safari15-css-fallback",
+      "route": "/",
+      "theme": "light",
+      "color": "rgb(250, 250, 250)",
+      "bg": "rgb(41, 41, 41)"
+    },
+    {
+      "mode": "safari15-css-fallback",
+      "route": "/",
+      "theme": "dark",
+      "color": "rgb(227, 223, 219)",
+      "bg": "rgba(28, 29, 34, 0.93)"
+    },
+    {
+      "mode": "chromium",
+      "route": "/fa/",
+      "theme": "light",
+      "color": "rgb(250, 250, 250)",
+      "bg": "rgb(41, 41, 41)"
+    },
+    {
+      "mode": "chromium",
+      "route": "/fa/",
+      "theme": "dark",
+      "color": "rgb(227, 223, 219)",
+      "bg": "rgba(28, 29, 34, 0.93)"
+    },
+    {
+      "mode": "chromium",
+      "route": "/",
+      "theme": "light",
+      "color": "rgb(250, 250, 250)",
+      "bg": "rgb(41, 41, 41)"
+    },
+    {
+      "mode": "chromium",
+      "route": "/",
+      "theme": "dark",
+      "color": "rgb(227, 223, 219)",
+      "bg": "rgba(28, 29, 34, 0.93)"
+    }
+  ],
+  "errors": [],
+  "images": [],
+  "cssRangeQueries": []
+}

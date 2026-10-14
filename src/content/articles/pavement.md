@@ -29,6 +29,6 @@ abstract: |
 
   The study emphasizes that not only new materials and construction techniques, but also scientifically developed recycling methods, can improve the physical, chemical, and rheological properties of pavement materials. These approaches can also contribute to national economic efficiency and significantly reduce maintenance and rehabilitation costs.
 images:
-  - src: /images/articles/asphalt-paper.png
+  - src: /images/optimized/asphalt-paper-895a3e7940.webp
     alt: First page of Modern Methods in Road Pavement and Asphalt
 ---

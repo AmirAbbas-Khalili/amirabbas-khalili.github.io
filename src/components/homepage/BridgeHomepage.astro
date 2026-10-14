@@ -4,6 +4,7 @@ import '../../styles/bridge-homepage.css';
 import DaylightHeader from '../DaylightHeader.astro';
 import '../../styles/spectrum-theme.css';
 import '../../styles/homepage-photo-refinement.css';
+import '../../styles/mobile-compatibility.css';
 import { getSectionTheme } from '../../data/spectrum-theme';
 import { MAIN_NAV, HYBRID_NAV } from '../../data/site';
 import arrow from '@phosphor-icons/core/assets/regular/arrow-right.svg?raw';
@@ -34,7 +35,7 @@ const moreLinks = [MAIN_NAV[0], MAIN_NAV[2], ...HYBRID_NAV];
       const backgroundPreload = document.createElement('link');
       backgroundPreload.rel = 'preload';
       backgroundPreload.as = 'image';
-      backgroundPreload.href = theme === 'dark' ? '/images/harbour-night-high-stars.webp' : '/images/harbour-sparse-clouds.webp';
+      backgroundPreload.href = theme === 'dark' ? '/images/harbour-night-high-stars.webp' : '/images/optimized/harbour-sparse-clouds-2bdffd4a38.webp';
       backgroundPreload.setAttribute('fetchpriority', 'high');
       document.head.append(backgroundPreload);
     </script>

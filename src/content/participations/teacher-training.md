@@ -5,5 +5,5 @@ order: 4
 status: published
 showGallery: true
 images:
-  - /images/participations/ttc-certificate-straightened.png
+  - /images/optimized/ttc-certificate-straightened-c5aad50628.webp
 ---

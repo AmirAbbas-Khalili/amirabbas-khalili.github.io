@@ -31,5 +31,10 @@ export function getSectionTheme(
   const remaining = sections.length - 1 - anchor;
   const position = index < 0 || sections.length < 2 ? 0.5
     : remaining <= 0 ? 0 : Math.max(0, index - anchor) / remaining;
-  return `--section-soft:${interpolate(position, SOFT)};--section-strong:${interpolate(position, STRONG)}`;
+  const soft = interpolate(position, SOFT);
+  const strong = interpolate(position, STRONG);
+  const mix = (a:string, b:string, weight:number) => '#' + [1,3,5].map(offset =>
+    Math.round(parseInt(a.slice(offset,offset+2),16)*weight + parseInt(b.slice(offset,offset+2),16)*(1-weight)).toString(16).padStart(2,'0')).join('');
+  const fallback = `;--section-accent-fallback:${mix(strong,'#111827',.68)};--section-wash-fallback:${mix(soft,'#f9fafb',.22)};--section-wash-dark-fallback:${mix(soft,'#1c1d22',.09)}`;
+  return `--section-soft:${interpolate(position, SOFT)};--section-strong:${interpolate(position, STRONG)}${fallback}`;
 }

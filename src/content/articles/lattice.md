@@ -23,7 +23,7 @@ keywords:
 abstract: >-
   Vibration reduction remains a major challenge across various industries, driving growing interest in advanced engineering materials and novel metamaterials with specially designed structures. This study introduces and investigates two novel three-dimensional cubic metamaterials aimed at improving vibration reduction performance and widening frequency band gaps. Numerical modeling based on the finite element method is used to analyze the dynamic behavior of these structures. The frequency responses of the two metamaterials are examined, and the results are compared with similar cellular structures reported in previous studies. The findings indicate that the proposed metamaterials achieve wider and more effective band gaps than existing structures and provide improved vibration reduction performance. Overall, these results suggest that the proposed lattice structures could serve as effective and reliable candidates for developing high-performance multifunctional materials for mechanical disturbance mitigation and vibration control.
 images:
-  - src: /images/articles/lattice-conference.jpg
+  - src: /images/optimized/lattice-conference-061de68671.webp
     alt: Amir Abbas Khalili attending the 15th International Conference on Acoustics and Vibration
   - src: /images/articles/lattice-presentation.jpg
     alt: Amir Abbas Khalili presenting the cubic lattice research at the conference

@@ -14,7 +14,7 @@ html[data-theme] body.spectrum-theme.bridge-page .bridge-background {
 }
 .harbour-frame--dark { background: #062351; }
 html[data-harbour-theme="light"] .harbour-frame--light,
-.harbour-frame--light[data-loaded="true"] { --harbour-photo: url('/images/harbour-sparse-clouds.webp'); }
+.harbour-frame--light[data-loaded="true"] { --harbour-photo: url('/images/optimized/harbour-sparse-clouds-2bdffd4a38.webp'); }
 html[data-harbour-theme="dark"] .harbour-frame--dark,
 .harbour-frame--dark[data-loaded="true"] { --harbour-photo: url('/images/harbour-night-high-stars.webp'); }
 html[data-harbour-theme="light"] .harbour-frame--light,
