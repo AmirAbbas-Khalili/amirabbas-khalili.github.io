@@ -6,7 +6,7 @@ body.site-interior :is(p, dd, a, h2, h3) { overflow-wrap: break-word; }
 body.site-interior :is(img, video) { max-width: 100%; }
 /* The CV shares the same dark surface and readable text as the other shortcuts. */
 html[data-theme="dark"] body.spectrum-theme.bridge-page .shortcut-dock .cv-download {
-  color: #e3dfdb;
+  color: #171717;
 }
 @supports not (height: 100dvh) {
   .bridge-page { min-height: 100vh; }
@@ -42,3 +42,10 @@ html[data-theme="dark"] body.spectrum-theme.bridge-page .shortcut-dock .cv-downl
   .bridge-page .shortcut-dock { max-width: 100%; }
   .thesis-gallery-heading { flex-wrap: wrap; }
 }
+
+/* The night-mode shortcuts match the white navigation surface. */
+html[data-theme="dark"] body.spectrum-theme.bridge-page .shortcut-dock {
+  background: #ffffff; color: #171717; border-color: #a5a5a5;
+}
+html[data-theme="dark"] body.spectrum-theme.bridge-page .shortcut-dock :is(a, button:not(:disabled)) { color: #171717; }
+html[data-theme="dark"] body.spectrum-theme.bridge-page .shortcut-dock :is(a, button:not(:disabled)):hover { background: #ededed; color: #171717; }

@@ -1,0 +1,62 @@
+{
+  "limitBytes": 800000,
+  "archivedUnusedOriginals": [
+    {
+      "path": "/images/harbour-clear-sky.png",
+      "bytes": 2245330
+    },
+    {
+      "path": "/images/harbour-night-high-stars.png",
+      "bytes": 1952163
+    },
+    {
+      "path": "/images/harbour-night-stars.png",
+      "bytes": 1972792
+    },
+    {
+      "path": "/images/harbour-sparse-clouds.png",
+      "bytes": 2191266
+    },
+    {
+      "path": "/images/me-cv-eye-corrected.png",
+      "bytes": 1762862
+    },
+    {
+      "path": "/images/me-cv-final.png",
+      "bytes": 1476268
+    },
+    {
+      "path": "/images/me-cv-retouched.png",
+      "bytes": 1932059
+    },
+    {
+      "path": "/images/participations/scientific-association-4.png",
+      "bytes": 928687
+    },
+    {
+      "path": "/images/participations/smart-school-1.png",
+      "bytes": 886139
+    },
+    {
+      "path": "/images/participations/smart-school-2.jpg",
+      "bytes": 1050227
+    },
+    {
+      "path": "/images/participations/smart-school-design-main.png",
+      "bytes": 7553040
+    },
+    {
+      "path": "/images/participations/smart-school-design-systems.png",
+      "bytes": 8151573
+    },
+    {
+      "path": "/images/participations/ttc-certificate-straightened.png",
+      "bytes": 1782273
+    },
+    {
+      "path": "/images/work-path/editing-portfolio.png",
+      "bytes": 932599
+    }
+  ],
+  "maximumPublishedImageBytes": 617428
+}

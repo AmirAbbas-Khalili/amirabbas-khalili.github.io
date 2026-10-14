@@ -1,0 +1,170 @@
+[
+  {
+    "lang": "",
+    "theme": "light",
+    "route": "/me/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "",
+    "theme": "light",
+    "route": "/participations/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "",
+    "theme": "light",
+    "route": "/work-path/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "",
+    "theme": "light",
+    "route": "/study-path/articles/lattice/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "",
+    "theme": "light",
+    "route": "/study-path/articles/pavement/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "",
+    "theme": "light",
+    "route": "/study-path/thesis/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "",
+    "theme": "dark",
+    "route": "/me/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "",
+    "theme": "dark",
+    "route": "/participations/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "",
+    "theme": "dark",
+    "route": "/work-path/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "",
+    "theme": "dark",
+    "route": "/study-path/articles/lattice/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "",
+    "theme": "dark",
+    "route": "/study-path/articles/pavement/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "",
+    "theme": "dark",
+    "route": "/study-path/thesis/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "/fa",
+    "theme": "light",
+    "route": "/me/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "/fa",
+    "theme": "light",
+    "route": "/participations/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "/fa",
+    "theme": "light",
+    "route": "/work-path/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "/fa",
+    "theme": "light",
+    "route": "/study-path/articles/lattice/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "/fa",
+    "theme": "light",
+    "route": "/study-path/articles/pavement/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "/fa",
+    "theme": "light",
+    "route": "/study-path/thesis/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "/fa",
+    "theme": "dark",
+    "route": "/me/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "/fa",
+    "theme": "dark",
+    "route": "/participations/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "/fa",
+    "theme": "dark",
+    "route": "/work-path/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "/fa",
+    "theme": "dark",
+    "route": "/study-path/articles/lattice/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "/fa",
+    "theme": "dark",
+    "route": "/study-path/articles/pavement/",
+    "loading": true,
+    "ready": true
+  },
+  {
+    "lang": "/fa",
+    "theme": "dark",
+    "route": "/study-path/thesis/",
+    "loading": true,
+    "ready": true
+  }
+]

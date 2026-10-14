@@ -8,6 +8,7 @@ import DaylightHeader from '../components/DaylightHeader.astro';
 import '../styles/portfolio-theme.css';
 import '../styles/spectrum-theme.css';
 import '../styles/mobile-compatibility.css';
+import '../styles/photo-loading.css';
 import { getSectionTheme } from '../data/spectrum-theme';
 
 interface Props {
@@ -58,6 +59,7 @@ const pageTitle = title ? `${title} · Amir` : 'Amir — Academic Portfolio';
     <SiteFooter />
 
     <script>
+      import '../scripts/photo-loading';
       const revealables = document.querySelectorAll('.reveal, .reveal-stagger');
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver(

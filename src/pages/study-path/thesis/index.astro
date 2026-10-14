@@ -33,7 +33,7 @@ import { THESIS_PHOTOS } from '../../../data/thesis-photos';
       </div>
       <div class="thesis-gallery-track" id="thesis-gallery-track" tabindex="0" aria-label="Research photographs">
         {THESIS_PHOTOS.map((image,index) => <figure class="thesis-gallery-item">
-          <button class="thesis-image-slot" data-thesis-photo={index} aria-label={`Open ${image.label} photo`} aria-haspopup="dialog"><img src={image.thumbnail} alt={image.label} loading="lazy" width="500" height="500" /></button>
+          <button class="thesis-image-slot" data-photo-frame data-photo-state="loading" data-thesis-photo={index} aria-label={`Open ${image.label} photo`} aria-haspopup="dialog"><img src={image.thumbnail} alt={image.label} loading="lazy" width="500" height="500" /></button>
           <figcaption>{image.label}</figcaption>
         </figure>)}
       </div>
@@ -45,7 +45,7 @@ import { THESIS_PHOTOS } from '../../../data/thesis-photos';
   </div>
   <dialog class="thesis-photo-dialog" aria-label="Research photograph" data-photos={JSON.stringify(THESIS_PHOTOS)}>
     <button data-photo-close class="thesis-close" aria-label="Close photograph"><span class="thesis-icon" set:html={close}/></button>
-    <div class="thesis-photo-view"><button data-photo-prev aria-label="Previous photograph"><span class="thesis-icon" set:html={left}/></button><figure><img data-photo-image alt="" /><figcaption data-photo-caption></figcaption></figure><button data-photo-next aria-label="Next photograph"><span class="thesis-icon" set:html={right}/></button></div>
+    <div class="thesis-photo-view"><button data-photo-prev aria-label="Previous photograph"><span class="thesis-icon" set:html={left}/></button><figure data-photo-frame data-photo-state="idle"><img data-photo-image alt="" /><figcaption data-photo-caption></figcaption></figure><button data-photo-next aria-label="Next photograph"><span class="thesis-icon" set:html={right}/></button></div>
   </dialog>
   <script src="../../../scripts/thesis.ts"></script>
 </BaseLayout>

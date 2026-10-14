@@ -21,7 +21,7 @@ const { sections, alternate = true, dividers = false } = Astro.props;
         {section.showGallery !== false && <div class="work-media">
           {section.photos.length > 0 ? <>
             <div class:list={["work-photo-strip", section.id === "photo-editing" && "work-photo-strip-editing"]} data-work-gallery data-title={section.title} data-photos={JSON.stringify(section.photos)}>
-              {section.photos.slice(0, 4).map((photo, photoIndex) => <button type="button" data-photo-index={photoIndex} aria-label={`Open ${section.title} gallery, image ${photoIndex + 1}`} aria-haspopup="dialog"><img src={galleryThumbnail(photo.thumbnail)} alt={photo.alt} loading="lazy" width="600" height="600" /></button>)}
+              {section.photos.slice(0, 4).map((photo, photoIndex) => <button type="button" data-photo-frame data-photo-state="loading" data-photo-index={photoIndex} aria-label={`Open ${section.title} gallery, image ${photoIndex + 1}`} aria-haspopup="dialog"><img src={galleryThumbnail(photo.thumbnail)} alt={photo.alt} loading="lazy" width="600" height="600" /></button>)}
             </div>
             <p class="work-gallery-hint">{section.photos.length} {section.photos.length === 1 ? 'photo' : 'photos'} <span aria-hidden="true">/</span> Click to view</p>
           </> : <div class="work-gallery-empty"><span aria-hidden="true" set:html={images} /><p>Photos coming soon</p></div>}
@@ -36,7 +36,7 @@ const { sections, alternate = true, dividers = false } = Astro.props;
       <header class="work-lightbox-header"><h2 id="work-lightbox-title"></h2><button type="button" data-lightbox-close aria-label="Close gallery" autofocus><span aria-hidden="true" set:html={close} /></button></header>
       <div class="work-lightbox-view">
         <button type="button" data-lightbox-prev aria-label="Previous image"><span aria-hidden="true" set:html={left} /></button>
-        <figure><img data-lightbox-image alt="" /><figcaption data-lightbox-error hidden>Image unavailable. Try another photo.</figcaption></figure>
+        <figure data-photo-frame data-photo-state="idle"><img data-lightbox-image alt="" /><figcaption data-lightbox-error hidden>Image unavailable. Try another photo.</figcaption></figure>
         <button type="button" data-lightbox-next aria-label="Next image"><span aria-hidden="true" set:html={right} /></button>
       </div>
       <p class="work-lightbox-count" aria-live="polite" aria-atomic="true"></p>
