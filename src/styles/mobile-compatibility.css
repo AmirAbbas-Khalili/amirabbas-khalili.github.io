@@ -49,3 +49,12 @@ html[data-theme="dark"] body.spectrum-theme.bridge-page .shortcut-dock {
 }
 html[data-theme="dark"] body.spectrum-theme.bridge-page .shortcut-dock :is(a, button:not(:disabled)) { color: #171717; }
 html[data-theme="dark"] body.spectrum-theme.bridge-page .shortcut-dock :is(a, button:not(:disabled)):hover { background: #ededed; color: #171717; }
+
+/* Night-mode homepage contact circles match the shortcut/navigation surfaces. */
+html[data-theme="dark"] body.spectrum-theme.bridge-page .contact-fan .orbit-button,
+html[data-theme="dark"] body.spectrum-theme.bridge-page .contact-fan .orbit-button:is(:hover, :focus-visible) {
+  background: #ffffff;
+  color: #171717;
+  border-color: #a5a5a5;
+}
+html[data-theme="dark"] body.spectrum-theme.bridge-page .contact-fan .contact-detail { color: #171717; }
