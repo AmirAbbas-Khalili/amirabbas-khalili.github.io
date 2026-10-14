@@ -30,5 +30,5 @@ for file in (root/'src').rglob('*'):
         text=file.read_text(encoding='utf8'); revised=text
         for row in result:revised=revised.replace(row['from'],row['to'])
         if revised!=text:file.write_text(revised,encoding='utf8')
-(root/'docs/homepage-previews/image-compression.json').write_text(json.dumps(result,indent=2),encoding='utf8')
-print(json.dumps({'images':len(result),'before':sum(r['before'] for r in result),'after':sum(r['after'] for r in result),'largestNew':max(r['after'] for r in result)},indent=2))
+if result: (root/'docs/homepage-previews/image-compression.json').write_text(json.dumps(result,indent=2),encoding='utf8')
+print(json.dumps({'images':len(result),'before':sum(r['before'] for r in result),'after':sum(r['after'] for r in result),'largestNew':max((r['after'] for r in result),default=0)},indent=2))
