@@ -20,7 +20,7 @@ const sectionCols = [SECTIONS.slice(0, 5), SECTIONS.slice(5)];
 
     <div>
       <p class="footer-section-heading mono-label text-ink-faint">Sections</p>
-      <div class="mt-4 grid grid-cols-2 gap-x-8 gap-y-1">
+      <div class="footer-section-links mt-4 grid grid-cols-2 gap-x-8 gap-y-1">
         {
           sectionCols.map((col) => (
             <ul class="space-y-1" role="list">
@@ -77,3 +77,9 @@ const sectionCols = [SECTIONS.slice(0, 5), SECTIONS.slice(5)];
 <script>
   import '../scripts/copy-email';
 </script>
+
+<style>
+  /* Give each navigation column enough room for its complete labels. */
+  .footer-section-links { grid-template-columns: repeat(2, minmax(max-content, 1fr)); }
+  .footer-section-links a { white-space: nowrap; overflow-wrap: normal; word-break: normal; hyphens: none; }
+</style>
