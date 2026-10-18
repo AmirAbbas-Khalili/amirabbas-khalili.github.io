@@ -58,7 +58,6 @@ class CV:
   self.p(link('<b>Dr. Morteza Karamooz</b>','https://scholar.google.com/citations?user=ZH0LT-4AAAAJ&hl=en')+' - Thesis Supervisor, Tarbiat Modares University.<br/>Recommendation to be submitted directly by the referee on request.','ref')
   if all_names:
    self.p('Additional academic referees: '+'; '.join(link(name,'https://scholar.google.com/citations?user='+uid) for name,role,uid in REFS[1:])+'.','ref')
-  self.p(link('Additional recommendation details',WEBSITE+'recommendations/'),'ref')
  def save(self,path,kind):
   def footer(canvas,doc):
    canvas.setFont('CV',8);canvas.setFillColor(colors.HexColor('#697581'));canvas.drawRightString(A4[0]-42,23,f'{doc.page} / 2')
