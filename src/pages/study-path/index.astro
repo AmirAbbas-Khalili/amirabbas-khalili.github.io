@@ -14,6 +14,7 @@ const articles = (await getCollection('articles')).map(entry => ({...entry, view
 );
 
 const degrees = EDUCATION;
+const engineeringRanks: Record<string,string> = { bachelor:'2nd in Iran for Engineering', master:'5th in Iran for Engineering' };
 
 const thesisKeywords = THESIS_TOPICS.map(topic => topic.keyword);
 ---
@@ -60,7 +61,7 @@ const thesisKeywords = THESIS_TOPICS.map(topic => topic.keyword);
                 <span class={`h-8 w-1 rounded-full ${deg.class}`} aria-hidden="true" />
                 <h2 class="font-display text-xl font-semibold tracking-tight">{deg.title}</h2>
               </div>
-              <p class="mt-4 text-sm leading-relaxed text-ink"><strong>{deg.degree} — {deg.university}</strong></p>
+              <p class="mt-4 text-sm leading-relaxed text-ink"><strong><span>{deg.degree} — {deg.university}</span>{engineeringRanks[deg.id] && <> (<a href="https://edurank.org/engineering/ir/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-4">{engineeringRanks[deg.id]}</a>)</>}</strong></p>
               <dl class="mt-5">
                 <div class="spec-row">
                   <dt class="mono-label text-[10px] text-ink-faint">GPA</dt>
