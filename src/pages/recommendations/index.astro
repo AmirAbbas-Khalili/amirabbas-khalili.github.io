@@ -11,14 +11,15 @@ import caret from '@phosphor-icons/core/assets/regular/caret-down.svg?raw';
       <summary><h2>{group.title}</h2><span aria-hidden="true" set:html={caret} /></summary>
       <div class="recommendation-slots">
         {group.letters.map((letter,index) => <article class="card-base recommendation-slot" aria-label={`${group.title}, letter ${index+1}`}>
-          <div class="letter-action">{letter.providedViaEmail ? <p class="letter-email">Provided via Email</p> : letter.pdf ? <a href={letter.pdf} download class="btn-ghost">Click to Download PDF</a> : <button type="button" class="btn-ghost" disabled aria-label={`Click to Download PDF, letter ${index+1}: PDF not yet available`}>Click to Download PDF</button>}</div>
+          <div class="letter-action">{letter.directSubmission ? <p class="letter-email">Direct submission by referee</p> : letter.providedViaEmail ? <p class="letter-email">Provided via Email</p> : letter.pdf ? <a href={letter.pdf} download class="btn-ghost">Click to Download PDF</a> : <button type="button" class="btn-ghost" disabled aria-label={`Click to Download PDF, letter ${index+1}: PDF not yet available`}>Click to Download PDF</button>}</div>
           <dl>
             <div><dt>Professor</dt><dd>{letter.scholar ? <a href={letter.scholar} target="_blank" rel="noopener noreferrer" class="scholar-name">{letter.professor}<span class="scholar-note">Scholar ↗</span></a> : (letter.professor || 'Name to be added')}</dd></div>
             <div><dt>Course</dt><dd>{letter.course || 'Course to be added'}</dd></div>
             <div><dt>Year</dt><dd>{letter.year ?? 'To be added'}{letter.institution && ` · ${letter.institution}`}</dd></div>
           </dl>
+          {letter.directSubmission && <p class="letter-pending">The recommendation will be submitted directly by the referee to the institution reviewing the application.</p>}
           {letter.providedViaEmail && <p class="letter-pending">Completed through an email-based process using the professor’s personal link.</p>}
-          {!letter.pdf && !letter.providedViaEmail && <p class="letter-pending">PDF to be added</p>}
+          {!letter.pdf && !letter.providedViaEmail && !letter.directSubmission && <p class="letter-pending">PDF to be added</p>}
         </article>)}
       </div>
     </details>)}

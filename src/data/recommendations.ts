@@ -7,9 +7,13 @@ export interface RecommendationLetter {
   scholar?: string;
   institution?: string;
   providedViaEmail?: boolean;
+  directSubmission?: boolean;
 }
 export const RECOMMENDATION_GROUPS: { title: string; letters: RecommendationLetter[] }[] = [
-  {title: 'Recommendations – 2026', letters: Array.from({length:2}, (_,index) => ({id:`2026-${index+1}`, year:2026}))},
+  {title: 'Recommendations – 2026', letters: [
+    {id:'2026-karamooz', year:2026, professor:'Dr. Morteza Karamooz', course:'Thesis Supervisor', scholar:'https://scholar.google.com/citations?user=ZH0LT-4AAAAJ&hl=en', institution:'Tarbiat Modares University', directSubmission:true},
+    {id:'2026-2', year:2026}
+  ]},
   {title: 'Recommendations – 2024', letters: [
   {
     "id": "2024-golroo",

@@ -35,7 +35,8 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       "Python Programming and Engineering Tool Development",
       "Engineering Data Processing and Analysis",
       "Machine Learning and Deep Learning",
-      "Data Management and Version Control"
+      "Data Management and Version Control",
+      "Working with Kaggle Datasets and Project Notebooks"
     ],
     "toolLabel": "Tools",
     "tools": [
