@@ -58,3 +58,11 @@ html[data-theme="dark"] body.spectrum-theme.bridge-page .contact-fan .orbit-butt
   border-color: #a5a5a5;
 }
 html[data-theme="dark"] body.spectrum-theme.bridge-page .contact-fan .contact-detail { color: #171717; }
+
+/* Opaque paired colors also work on mobile browsers without color-mix support. */
+html[data-theme] body.site-interior[data-section=skills] #main .soft-skill-pill {
+ background:var(--color-surface);color:var(--color-ink);border-color:var(--color-line);box-shadow:none;
+}
+html[data-theme] body.site-interior[data-section=skills] #main .soft-skill-pill:hover {
+ background:var(--section-wash);color:var(--color-ink);border-color:var(--section-accent);
+}
